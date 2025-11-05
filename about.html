@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIPID+ - Documentation</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Roboto font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-200">
+
+    <!-- Overlay for mobile menu -->
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden" onclick="toggleMobileMenu()"></div>
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full h-16 bg-white border-b border-gray-200 z-40 flex items-center justify-between pl-10 pr-4 md:pl-10 md:pr-6 dark:bg-gray-900 dark:border-gray-700">
+        <!-- Logo and Mobile Menu Button -->
+        <div class="flex items-center space-x-4">
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
+            <!-- Logo/Title -->
+            <a href="index.html" class="flex items-center space-x-2">
+                <!-- Logo Image -->
+                <img src="images/logo.svg" alt="LIPID+ Logo" class="w-24 h-16">
+            </a>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden md:flex items-center space-x-6">
+            <a href="index.html" class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300">Home</a>
+            
+            <!-- Docs Dropdown -->
+            <div class="relative">
+                <button class="nav-link flex items-center text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300" data-nav-id="nav-docs" onclick="toggleDropdown('docs-dropdown')">
+                    Docs
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div id="docs-dropdown" class="dropdown-menu hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl z-50 border border-gray-100 py-1 dark:bg-gray-800 dark:border-gray-700">
+                    <a href="docs.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Installation</a>
+                    <a href="docs.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Quick Start</a>
+                    <a href="docs.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Advanced Usage</a>
+                    <a href="docs.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Development</a>
+                    <a href="docs.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">FAQ</a>
+                    <a href="docs.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Release Note</a>
+                </div>
+            </div>
+
+            <!-- About Dropdown -->
+            <div class="relative">
+                <button class="nav-link nav-active flex items-center text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300" data-nav-id="nav-about" onclick="toggleDropdown('about-dropdown')">
+                    About
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div id="about-dropdown" class="dropdown-menu hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl z-50 border border-gray-100 py-1 dark:bg-gray-800 dark:border-gray-700">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-about-us', 'nav-about', this)" data-page-id="page-about-us">About Us</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-contact', 'nav-about', this)" data-page-id="page-contact">Contact</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-citation', 'nav-about', this)" data-page-id="page-citation">Citation</a>
+                </div>
+            </div>
+            
+            <!-- Search Bar -->
+            <form class="relative" onsubmit="handleSearch(event)">
+                <input id="search-input" type="text" placeholder="Search docs..." class="bg-gray-100 border border-gray-300 rounded-md py-1.5 px-4 text-sm w-48 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-500">
+                <button type="submit" class="text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 hover:text-purple-600 dark:hover:text-purple-400" aria-label="Search">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Dark Mode Toggle -->
+            <button id="dark-mode-toggle" class="text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-white" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                <svg id="theme-icon-light" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+
+            <!-- GitHub Link -->
+            <a href="https://github.com/Bowen999/SLAM" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-white" aria-label="GitHub repository">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.84c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"/>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="relative min-h-screen">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed top-0 left-0 w-64 lg:w-72 h-screen bg-gray-50 border-r border-gray-200 z-30 md:translate-x-0 transition-transform duration-300 ease-in-out dark:bg-gray-800 dark:border-gray-700 transform -translate-x-full">
+            <!-- Sidebar content wrapper with padding for top nav -->
+            <div id="sidebar-content" class="h-full pt-16 overflow-y-auto">
+                <div class="px-4 py-6">
+
+                    <!-- About Nav (Visible on About pages) -->
+                    <nav id="nav-about" class="sidebar-nav">
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">About Project</h3>
+                        <div class="space-y-1">
+                            <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-about-us" onclick="showPage('page-about-us', 'nav-about', this)">
+                                About Us
+                            </a>
+                            <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-contact" onclick="showPage('page-contact', 'nav-about', this)">
+                                Contact
+                            </a>
+                            <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-citation" onclick="showPage('page-citation', 'nav-about', this)">
+                                Citation
+                            </a>
+                        </div>
+                    </nav>
+
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main id="content-area" class="w-full pt-16 transition-all duration-300 ease-in-out md:pl-64 lg:pl-72">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+                <!-- Page: About Us (New) -->
+                <section id="page-about-us" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">About Us</h1>
+                    
+                    <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Our Mission</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">
+                        LIPID + is developed by <a href="https://tmiclinode.com">Liang Li group</a> 
+                         at the University of Alberta, our group specialize in cutting-edge mass spectrometry techniquea and there application in lipidomics and metabolomics.
+                    <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">The Team</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">
+                        LIPID+ is developed by a fictional team of dedicated scientists and software engineers.
+                    </p>
+                </section>
+                
+                <!-- Page: Contact (New) -->
+                <section id="page-contact" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Contact</h1>
+                    
+                    <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Get in Touch</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">
+                    </p>
+                    <ul class="list-disc list-outside pl-5 space-y-2 text-lg text-gray-700 mb-4 dark:text-gray-300">
+                        <li><strong>Issues:</strong> Open an issue on our <a href="https://github.com/Bowen999/SLAM" class="text-purple-600 hover:underline dark:text-purple-400">GitHub Repository</a>. or send an email.</li>
+                        <li><strong>Email:</strong> <a href="#" class="text-purple-600 hover:underline dark:text-purple-400">by8@ualberta.ca</a> (Bowen Yang)</li>
+                    </ul>
+                </section>
+
+                <!-- Page: Citation -->
+                <section id="page-citation" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Citation</h1>
+                    
+                    <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">How to Cite</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">
+                        If you use LIPID+ in your research, please cite our paper:
+                    </p>
+                    
+                    <div class="bg-gray-50 border border-gray-200 rounded-md p-6 text-gray-700 shadow-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300">
+                        <p class="font-mono text-base leading-relaxed">
+                            Cooming Soon.
+                        </p>
+                        <button class="mt-4 bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-700 transition-colors dark:bg-purple-500 dark:hover:bg-purple-600" onclick="copyCitation(this)">
+                            Copy Citation
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer id="page-footer" class="w-full p-6 border-t border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-700 transition-all duration-300 ease-in-out md:pl-64 lg:pl-72">
+            <div class="text-center text-sm text-gray-500 dark:text-gray-400">
+                &copy; <span id="current-year"></span> LIPID+ Development Team. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="search-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4" onclick="closeSearchModal()">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md" onclick="event.stopPropagation()">
+            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Search</h3>
+            <p id="search-modal-message" class="text-sm text-gray-600 dark:text-gray-300 mb-6"></p>
+            <button class="w-full bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-700 transition-colors" onclick="closeSearchModal()">
+                Close
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // --- Page Navigation ---
+        function showPage(pageId, navId, clickedElement) {
+            // Hide all page content
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.add('hidden');
+            });
+            // Show the target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            }
+
+            // Update active state in top nav
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('nav-active');
+            });
+            const topNavLink = document.querySelector(`.nav-link[data-nav-id="${navId}"]`);
+            if (topNavLink) {
+                topNavLink.classList.add('nav-active');
+            }
+
+
+            // Update active state in sidebar
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('sidebar-active');
+            });
+            // Find the corresponding link in the sidebar and activate it
+            const activeSidebarLink = document.querySelector(`.sidebar-link[data-page-id="${pageId}"]`);
+            if (activeSidebarLink) {
+                activeSidebarLink.classList.add('sidebar-active');
+                
+                // If it's in a submenu, make sure the submenu is open
+                const submenu = activeSidebarLink.closest('div[id^="submenu-"]');
+                if (submenu && submenu.classList.contains('hidden')) {
+                    // Find the button that controls this submenu
+                    const parentButton = document.querySelector(`button[onclick*="'${submenu.id}'"]`);
+                    if (parentButton) {
+                        submenu.classList.remove('hidden');
+                        parentButton.classList.add('sidebar-active'); // Also highlight the parent
+                        parentButton.querySelector('.submenu-chevron').classList.add('rotate-180');
+                        parentButton.setAttribute('aria-expanded', 'true');
+                    }
+                }
+            }
+
+            // Close mobile menu on navigation
+            if (window.innerWidth < 768) {
+                toggleMobileMenu(false); // Force close
+            }
+            
+            // Close all top-nav dropdowns
+            closeAllDropdowns();
+
+            // Scroll to top of content area
+            document.getElementById('content-area').scrollTop = 0;
+            window.scrollTo(0, 0);
+            
+            // Stop link from navigating
+            if (clickedElement && typeof clickedElement.preventDefault === 'function') {
+                clickedElement.preventDefault();
+            }
+        }
+
+        // --- Top Nav Dropdowns ---
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            if (!dropdown) return;
+
+            // Check if it's already open
+            const isOpen = !dropdown.classList.contains('hidden');
+
+            // Close all dropdowns first
+            closeAllDropdowns();
+
+            // If it was closed, open it
+            if (!isOpen) {
+                dropdown.classList.remove('hidden');
+            }
+        }
+
+        function closeAllDropdowns() {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.add('hidden');
+            });
+        }
+
+        // Close dropdowns if clicking outside
+        window.addEventListener('click', function(event) {
+            if (!event.target.closest('[onclick^="toggleDropdown"]')) {
+                closeAllDropdowns();
+            }
+        });
+
+        // --- Sidebar Submenu ---
+        function toggleSidebarMenu(submenuId, element) {
+            const submenu = document.getElementById(submenuId);
+            const chevron = element.querySelector('.submenu-chevron');
+            if (submenu) {
+                submenu.classList.toggle('hidden');
+                chevron.classList.toggle('rotate-180');
+                element.setAttribute('aria-expanded', !submenu.classList.contains('hidden'));
+            }
+        }
+
+        // --- Mobile Menu Toggle ---
+        function toggleMobileMenu(forceState) {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            
+            let open;
+            if (typeof forceState === 'boolean') {
+                open = forceState;
+            } else {
+                open = sidebar.classList.contains('-translate-x-full');
+            }
+
+            if (open) {
+                sidebar.classList.remove('-translate-x-full');
+                sidebar.classList.add('translate-x-0');
+                overlay.classList.remove('hidden');
+                mobileMenuBtn.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`; // X icon
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                sidebar.classList.remove('translate-x-0');
+                overlay.classList.add('hidden');
+                mobileMenuBtn.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>`; // Hamburger icon
+            }
+        }
+
+        // --- Search Modal ---
+        function showSearchModal(message) {
+            document.getElementById('search-modal-message').textContent = message;
+            document.getElementById('search-modal').classList.remove('hidden');
+        }
+
+        function closeSearchModal() {
+            document.getElementById('search-modal').classList.add('hidden');
+        }
+
+        function handleSearch(event) {
+            event.preventDefault();
+            const input = document.getElementById('search-input');
+            const query = input.value.trim();
+            if (query) {
+                showSearchModal(`Search functionality for "${query}" is not implemented in this demo.`);
+            } else {
+                showSearchModal('Please enter a search term.');
+            }
+            // input.value = ''; // Optional: clear search bar after search
+        }
+        
+        // --- Citation Copy ---
+        function copyCitation(button) {
+            const citationText = button.previousElementSibling.textContent.trim().replace(/\s+/g, ' ');
+            
+            // Use fallback for clipboard API
+            try {
+                const textArea = document.createElement('textarea');
+                textArea.value = citationText;
+                textArea.style.position = 'fixed'; // Avoid scrolling to bottom
+                textArea.style.top = '0';
+                textArea.style.left = '0';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy Citation';
+                }, 2000);
+
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+                button.textContent = 'Error';
+                setTimeout(() => {
+                    button.textContent = 'Copy Citation';
+                }, 2000);
+            }
+        }
+
+        // --- Dark Mode ---
+        const themeIconLight = document.getElementById('theme-icon-light');
+        const themeIconDark = document.getElementById('theme-icon-dark');
+
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIconLight.classList.remove('hidden');
+                themeIconDark.classList.add('hidden');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIconDark.classList.remove('hidden');
+                themeIconLight.classList.add('hidden');
+            }
+        }
+
+        // Check for saved theme preference
+        function applyInitialTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                themeIconDark.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeIconLight.classList.remove('hidden');
+            }
+        }
+
+        applyInitialTheme();
+
+        // --- Initialize Page ---
+        // Show "About Us" page by default
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('page-about-us', 'nav-about', document.querySelector('.sidebar-link[data-page-id="page-about-us"]'));
+        });
+
+    </script>
+</body>
+</html>

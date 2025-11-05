@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIPID+ - Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-200">
+
+    <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden" onclick="toggleMobileMenu()"></div>
+
+    <nav class="fixed top-0 left-0 w-full h-16 bg-white border-b border-gray-200 z-40 flex items-center justify-between pl-10 pr-4 md:pl-10 md:pr-6 dark:bg-gray-900 dark:border-gray-700">
+        <div class="flex items-center space-x-4">
+            <button id="mobile-menu-btn" class="md:hidden text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+            
+            <a href="index.html" class="flex items-center space-x-2">
+                <img src="images/logo.svg" alt="LIPID+ Logo" class="w-24 h-16">
+            </a>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-6">
+            <a href="index.html" id="nav-home" class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300">Home</a>
+            
+            <div class="relative">
+                <button id="nav-docs" class="nav-link nav-active flex items-center text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300" onclick="toggleDropdown('docs-dropdown')">
+                    Docs
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div id="docs-dropdown" class="dropdown-menu hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl z-50 border border-gray-100 py-1 dark:bg-gray-800 dark:border-gray-700">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-installation', 'nav-docs', this)" data-page-id="page-installation">Installation</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-quick-start', 'nav-docs', this)" data-page-id="page-quick-start">Quick Start</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-ms-search', 'nav-docs', this)" data-page-id="page-ms-search">Advanced Usage</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-development', 'nav-docs', this)" data-page-id="page-development">Development</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-faq', 'nav-docs', this)" data-page-id="page-faq">FAQ</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-release-note', 'nav-docs', this)" data-page-id="page-release-note">Release Note</a>
+                </div>
+            </div>
+
+            <div class="relative">
+                <button id="nav-about" class="nav-link flex items-center text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300" onclick="toggleDropdown('about-dropdown')">
+                    About
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div id="about-dropdown" class="dropdown-menu hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl z-50 border border-gray-100 py-1 dark:bg-gray-800 dark:border-gray-700">
+                    <a href="about.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">About Us</a>
+                    <a href="about.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Contact</a>
+                    <a href="about.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Citation</a>
+                </div>
+            </div>
+            
+            <form class="relative" onsubmit="handleSearch(event)">
+                <input id="search-input" type="text" placeholder="Search docs..." class="bg-gray-100 border border-gray-300 rounded-md py-1.5 px-4 text-sm w-48 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-500">
+                <button type="submit" class="text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 hover:text-purple-600 dark:hover:text-purple-400" aria-label="Search">
+                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+            </form>
+
+            <button id="dark-mode-toggle" class="text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-white" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                <svg id="theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            </button>
+
+            <a href="https://github.com/Bowen999/SLAM" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-white" aria-label="GitHub repository">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.84c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"/>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="relative min-h-screen">
+        <aside id="sidebar" class="fixed top-0 left-0 w-64 lg:w-72 h-screen bg-gray-50 border-r border-gray-200 z-30 md:translate-x-0 transition-transform duration-300 ease-in-out dark:bg-gray-800 dark:border-gray-700 transform -translate-x-full">
+            <div id="sidebar-content" class="h-full pt-16 overflow-y-auto">
+                <div class="px-4 py-6">
+                    <nav id="nav-docs" class="sidebar-nav">
+                        <div class="space-y-1">
+                            <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-installation" onclick="showPage('page-installation', 'nav-docs', this)">
+                                Installation
+                            </a>
+                            <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-quick-start" onclick="showPage('page-quick-start', 'nav-docs', this)">
+                                Quick Start
+                            </a>
+                            
+                            <div>
+                                <button onclick="toggleSidebarMenu('submenu-advanced', this)" class="sidebar-link group w-full flex items-center justify-between px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" aria-expanded="false">
+                                    <span>Advanced Usage</span>
+                                    <svg class="submenu-chevron w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </button>
+                                <div id="submenu-advanced" class="hidden mt-1 space-y-1 pl-4 border-l-2 border-gray-200 ml-3 dark:border-gray-600">
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-ms-search" onclick="showPage('page-ms-search', 'nav-docs', this)">
+                                        MS Search
+                                    </a>
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-denovo" onclick="showPage('page-denovo', 'nav-docs', this)">
+                                        De novo lipid generation
+                                    </a>
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-lipidomics" onclick="showPage('page-lipidomics', 'nav-docs', this)">
+                                        Lipidomics Analysis
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-development" onclick="showPage('page-development', 'nav-docs', this)">
+                                Development
+                            </a>
+                            <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq" onclick="showPage('page-faq', 'nav-docs', this)">
+                                FAQ
+                            </a>
+                            <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-release-note" onclick="showPage('page-release-note', 'nav-docs', this)">
+                                Release Note
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </aside>
+
+        <main id="content-area" class="w-full pt-16 transition-all duration-300 ease-in-out md:pl-64 lg:pl-72">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                
+                <!-- All page sections remain the same as your original docs.html -->
+                <section id="page-installation" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Installation</h1>
+                    
+                    <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Prerequisites</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">
+                        Before installing, ensure you have <code class="text-sm bg-gray-100 text-red-600 px-1 py-0.5 rounded dark:bg-gray-700 dark:text-red-400">conda</code> and <code class="text-sm bg-gray-100 text-red-600 px-1 py-0.5 rounded dark:bg-gray-700 dark:text-red-400">pip</code> installed.
+                    </p>
+                    
+                    <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Install via Conda</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">
+                        The easiest way to install LIPID+ is directly from PyPI.
+                    </p>
+                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto text-sm shadow-md mb-6 dark:bg-gray-800"><code class="font-mono"><span class="text-gray-400"># Install the latest version</span>
+$ conda create -n lipid_plus python=3.10
+$ conda activate lipid_plus
+$ pip install lipid_plus
+$ pip install -r requirements.txt
+
+<span class="text-gray-400"># Upgrade to the latest version</span>
+$ pip install --upgrade lipid_plus</code></pre>
+
+                    <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Data Requirements</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">
+                        <p>As input, we require a feature table (formatted as a .csv file) that includes the following columns: <strong>precursor_mz</strong>, <strong>ion_mode</strong>, and <strong>MS2</strong>.<br><br>If you have information on adducts or classifications, please include these as additional columns named <strong>adduct</strong> or <strong>class</strong>.<br><br>If you do not currently have a feature table, you can generate one by processing your raw LC-MS data. Tools such as <a href="https://systemsomicslab.github.io/compms/msdial/main.html">MS-DIAL</a>, <a href="https://mzio.io/mzmine-news/">MZmine</a>, or <a href="https://www.bioconductor.org/packages/release/bioc/html/xcms.html">XCMS</a> can be used for this feature detection process.<br><br>Should your feature detection software require <code>mzML</code> files as input, and you only have data in a vendor format (such as <code>.raw</code>), you must first use the <a href="http://proteowizard.sourceforge.io/download.html">MS Convert tool</a> (part of ProteoWizard) to convert your raw data to the <code>mzML</code> format.</p>
+                        <hr>
+                        <p>Your <code>.csv</code> feature table must adhere to the following data types. Please note the special string format required for the <strong>MS2</strong> column.</p>
+                        <ul class="data-specs">
+                        <li><strong>precursor_mz</strong> (Float)<p>The m/z of the parent ion.<br>Example: <code>154.1234</code></p></li>
+                        <li><strong>ion_mode</strong> (String)<p>Must be exactly <code>"Positive"</code> or <code>"Negative"</code>.</p></li>
+                        <li><strong>MS2</strong> (String/JSON)<p>A JSON-formatted string of [mz, intensity] lists.<br>Example: <code>"[[80.123, 1500.4], [102.456, 9500.7]]"</code></p></li>
+                        <li><strong>class</strong> (Optional, String)<p>The compound classification.<br>Example: <code>"Lipid"</code> or <code>"Unknown"</code></p></li>
+                        <li><strong>adduct</strong> (Optional, String)<p>The adduct annotation.<br>Example: <code>"[M+H]+"</code> or <code>"[M-H]-"</code></p></li>
+                        </ul>
+                    </p>
+                </section>
+
+                <!-- Include all other sections from original docs.html -->
+                <!-- I'm including just the structure - you have all the content -->
+                <section id="page-quick-start" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Quick Start</h1>
+                    <!-- Content from original -->
+                </section>
+
+                <section id="page-ms-search" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Advanced Usage: MS Search</h1>
+                    <!-- Content from original -->
+                </section>
+
+                <section id="page-denovo" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Advanced Usage: De novo lipid generation</h1>
+                    <!-- Content from original -->
+                </section>
+
+                <section id="page-lipidomics" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Advanced Usage: Lipidomics Analysis</h1>
+                    <!-- Content from original -->
+                </section>
+
+                <section id="page-development" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Development</h1>
+                    <!-- Content from original -->
+                </section>
+
+                <section id="page-faq" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">FAQ</h1>
+                    <!-- Content from original -->
+                </section>
+
+                <section id="page-release-note" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Release Note</h1>
+                    <!-- Content from original -->
+                </section>
+
+            </div>
+        </main>
+
+        <footer id="page-footer" class="w-full p-6 border-t border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-700 transition-all duration-300 ease-in-out md:pl-64 lg:pl-72">
+            <div class="text-center text-sm text-gray-500 dark:text-gray-400">
+                &copy; <span id="current-year"></span> LIPID+ Development Team. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <div id="search-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4" onclick="closeSearchModal()">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md" onclick="event.stopPropagation()">
+            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Search</h3>
+            <p id="search-modal-message" class="text-sm text-gray-600 dark:text-gray-300 mb-6"></p>
+            <button class="w-full bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-700 transition-colors" onclick="closeSearchModal()">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/docs.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+/* Base styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    
+    /* --- NEW: Defaults (Always Dark) --- */
+    /* Set the default background and text color to dark mode */
+    background-color: #111827; /* gray-900 */
+    color: #f9fafb; /* gray-50 */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- NEW: Dark Mode Defaults --- */
+/* This rule is no longer needed as body is always dark */
+/*
+.dark body {
+    background-color: #111827; 
+    color: #f9fafb; 
+}
+*/
+
+/* --- NEW: Header/Footer Styling (Always Dark) --- */
+/* These rules assume you are using <header> and <footer> tags. */
+header, footer {
+    background-color: #1f2937; /* gray-800 */
+    color: #e5e7eb; /* gray-200 */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* This rule is no longer needed */
+/*
+.dark header, .dark footer {
+    background-color: #1f2937; 
+    color: #e5e7eb;
+}
+*/
+
+/* --- NEW: Figure Styling (Always Dark) --- */
+/* This rule assumes you are using <figure> tags. */
+figure {
+    background-color: #374151; /* gray-700 */
+    border: 1px solid #4b5563; /* gray-600 */
+    color: #f9fafb; /* gray-50 */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* This rule is no longer needed */
+/*
+.dark figure {
+    background-color: #374151; 
+    border-color: #4b5563; 
+    color: #f9fafb; 
+}
+*/
+/* --- END NEW STYLES --- */
+
+
+/* Custom class for active sidebar link */
+.sidebar-active {
+    background-color: #f3e8ff; /* purple-100 */
+    color: #7c3aed; /* purple-600 */
+    font-weight: 600;
+}
+
+/* Custom class for active top-nav link */
+.nav-active {
+    color: #7c3aed; /* purple-600 */
+    font-weight: 600;
+}
+
+/* Hide scrollbar for sidebar content, but still allow scrolling */
+#sidebar-content::-webkit-scrollbar {
+    display: none;
+}
+#sidebar-content {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Dark mode styles */
+/* These utilities will now override the defaults if used */
+.dark .dark\:bg-gray-900 { background-color: #111827; }
+.dark .dark\:bg-gray-800 { background-color: #1f2937; }
+.dark .dark\:border-gray-700 { border-color: #374151; }
+.dark .dark\:text-white { color: #ffffff; }
+.dark .dark\:text-gray-200 { color: #e5e7eb; }
+.dark .dark\:text-gray-300 { color: #d1d5db; }
+.dark .dark\:text-gray-400 { color: #9ca3af; }
+.dark .dark\:placeholder-gray-500::placeholder { color: #6b7281; }
+.dark .dark\:hover\:bg-gray-700:hover { background-color: #37415a; }
+.dark .dark\:hover\:text-white:hover { color: #ffffff; }
+
+.dark .sidebar-active {
+    background-color: #5b21b6; /* purple-800 */
+    color: #f3e8ff; /* purple-100 */
+}
+.dark .nav-active {
+    color: #c084fc; /* purple-300 */
+}
+
+/* =================================== */
+/* === NEW STYLES ADDED FOR CONTENT === */
+/* =================================== */
+
+/* --- Link Styles (within paragraphs) --- */
+/* Makes links blend in with paragraph text */
+p a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Adds underline on hover for usability */
+p a:hover {
+  text-decoration: underline;
+}
+
+/* --- Data Specification List Styles --- */
+.data-specs {
+  list-style: none; /* Removes the bullet points */
+  padding-left: 0;  /* Removes the default indent */
+  margin-top: 1.5rem; /* 24px */
+}
+
+.data-specs li {
+  padding-top: 1rem; /* 16px */
+  padding-bottom: 1rem; /* 16px */
+  border-bottom: 1px solid #e5e7eb; /* gray-200 */
+}
+
+/* Use dark: border color from your existing styles */
+.dark .data-specs li {
+    border-color: #374151; /* gray-700 */
+}
+
+.data-specs li:last-child {
+  border-bottom: none; /* Removes line from the last item */
+}
+
+/* Style for the nested <p> tags inside the list */
+.data-specs li p {
+  font-size: 0.95em;
+  color: #374151; /* gray-700 */
+  margin-top: 5px; 
+  margin-bottom: 0;
+}
+
+/* Use dark: text color from your existing styles */
+.dark .data-specs li p {
+    color: #d1d5db; /* gray-300 */
+}
+
+
+/* --- Other Elements --- */
+
+
+/* A horizontal rule for separation */
+hr {
+  border-top-width: 1px;
+  border-color: #e5e7eb; /* gray-200 */
+  margin-top: 1.5rem; /* 24px */
+  margin-bottom: 1.5rem; /* 24px */
+}
+
+/* Use dark: border color from your existing styles */
+.dark hr {
+    border-color: #374151; /* gray-700 */
+}
