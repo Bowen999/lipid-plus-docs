@@ -48,22 +48,8 @@ results/
 
 
 
-### Data Analysis Report Generation
+### Lipidomics Analysis Report Generation
 
-
-### Customizing Parameters (Optional)
-
-If you need different settings:
-
-```bash
-# Custom result directory
-python run.py feature_df.csv --result_path my_results/
-
-# Different MS tolerance
-python run.py feature_df.csv \
-    --MS1_tol 0.01 \
-    --MS2_threshold 0.8
-```
 
 
 
@@ -95,6 +81,21 @@ XXXXX
 ---
 
 # Advanced Usage
+
+### Customizing Parameters (Optional)
+
+If you need different settings:
+
+```bash
+# Custom result directory
+python run.py feature_df.csv --result_path my_results/
+
+# Different MS tolerance
+python run.py feature_df.csv \
+    --MS1_tol 0.01 \
+    --MS2_threshold 0.8
+```
+
 | Parameter | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `input_path` | `str` | *(Required)* | Path to input CSV file |
