@@ -25,14 +25,15 @@ pip install -r requirements.txt
 
 ### Using the All-in-One Identification Pipeline
 
-The easiest way to run the complete annotation pipeline with default settings:
+The easiest way to run the complete identification pipeline (database search + machine learning prediction) with default settings:
 
 ```bash
 python run.py feature_df.csv
 ```
+
 The usage of the pipeline with custom parameters can be found in the `Advanced Usage` section.  
 
-The pipeline will generate several files in the `results/` directory:
+The pipeline will generate several files in the `results/` directory. **Main result file**: `results/final_annotations.csv` contains your complete lipid annotations.
 
 ```text
 results/
@@ -49,36 +50,26 @@ results/
 
 
 ### Lipidomics Analysis Report Generation
-
-
-
-
-After running:
-```bash
-python run.py feature_df.csv
-```
-The usage of the pipeline with custom parameters can be found in the `Advanced Usage` section.  
-The pipeline will generate several files in the `results/` directory:
+An interactive, shareable, and fully customized dynamic lipidomics HTML report (see [example](https://bowen999.github.io/lipid-plus-docs/example_report.html)) can be generated from the previous identification results (identification_result.csv). An example is shown below:
 
 ```
-results/
-├── annotated_df.csv              # Database-matched lipids
-├── dark_lipid.csv                # Unknown lipids for prediction
-├── adduct_predictions.csv        # Step 2 output
-├── class_predictions.csv         # Step 3 output
-├── final_annotations.csv         # Step 4 output (MAIN RESULT)
-└── all_annotations_combined.csv  # Combined database + predicted
+python code/report_generate.py \
+  --input_path results/identification_result.csv \
+  --groups 0h 2h 4h 8h \
+  --group_1 0h \
+  --group_2 8h \
+  --p_value_threshold 0.1 \
+  --fc_threshold 1
 ```
 
-**Main result file**: `results/final_annotations.csv` contains your complete lipid annotations!
+To run this process, the input file must contain at least 3 groups along with intensity or concentration values.
 
-### Report Generate
-
-```
-XXXXX
-```
-
----
+| Parameter | Type | Description |
+| :--- | :--- | :--- | :--- |
+| `--input_path` | `String` | The file path to the identification result|
+| `--groups` | `List` | Space-separated list of all group prefixes present in the CSV columns (e.g., `Control Treated`). |
+| `--group_1` | `String`| The first group for differential analysis. Must be in `--groups`. |
+| `--group_2` | `String` | The second group for differential analysis. Must be in `--groups`. |
 
 # Advanced Usage
 
@@ -404,6 +395,21 @@ python formula_annotation.py data.csv \
 ```
 
 ---
+
+## Analysis
+| Parameter | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `--input_path` | `String` | **Required** | The file path to the identification result|
+| `--groups` | `List` | **Required** | Space-separated list of all group prefixes present in the CSV columns (e.g., `Control Treated`). |
+| `--group_1` | `String` | **Required** | The first group for differential analysis. Must be in `--groups`. |
+| `--group_2` | `String` | **Required** | The second group for differential analysis. Must be in `--groups`. |
+| `--output_path` | `String` | `results` | Directory where the final HTML report and material files will be saved. |
+| `--int_threshold` | `Integer` | `3000` | Intensity threshold. |
+| `--p_value_threshold` | `Float` | `0.05` | The significance threshold for P-values in the Volcano plot. |
+| `--fc_threshold` | `Float` | `1.2` | The fold-change threshold for determining significant lipids. |
+| `--keep_cols` | `List` | `['index', 'name', 'precursor_mz', 'adduct', 'MS2_norm']` | Specific columns to retain for the interactive Mass Spec table in the report. |
+---
+
 # FAQ
 ## Directory Structure
 
@@ -504,6 +510,10 @@ F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.
 Merged database annotations + predicted annotations for comprehensive results.
 
 ---
+
+## What is PLSF
+
+
 
 ## Class
 | Class  | Category | Number of Tail | Full Name of Class                       | Full Name of Category    |
