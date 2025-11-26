@@ -1,7 +1,5 @@
 # Installation
-**Run the following code from the command line.**
-
-Clone the project folder and download database 
+### Clone the project folder and download database 
  
 ```bash
 git clone https://github.com/Bowen999/LIPID-PLUS.git
@@ -13,7 +11,8 @@ wget -O dataset/lipid_plus.db https://github.com/Bowen999/LIPID-PLUS/releases/do
 # curl -L -o dataset/lipid_plus.db https://github.com/Bowen999/LIPID-PLUS/releases/download/v0.0.0/lipid_plus.db
 ```
 
-Install the dependencies 
+### Install the dependencies 
+
 ```
 conda create -n lipid_plus python=3.12 -y
 conda activate lipid_plus
@@ -21,50 +20,6 @@ conda activate lipid_plus
 pip install -r requirements.txt
 ```
 
-
-
-
-### Directory Structure
-
-For the simplest usage, organize your files as follows:
-
-```
-your_project/
-├── run.py                          # The main pipeline script
-├── model/                          # Model directory
-│   ├── adduct.joblib              # Adduct prediction model
-│   ├── class.joblib               # Class prediction model
-│   └── plsf.joblib                # PLSF model
-├── dataset/                        # Database directory
-│   └── lipid.db                   # Reference database
-├── code/                           # All step scripts
-│   ├── db_search.py               # Step 1: Database search
-│   ├── adduct_predict.py          # Step 2: Adduct prediction
-│   ├── class_predict.py           # Step 3: Class prediction
-│   ├── predict_plsf.py            # Step 4: PLSF prediction
-│   └── formula_annotation.py      # Alternative workflow
-├── feature_df.csv                  # Your input data
-└── results/                        # Output directory (created automatically)
-```
-
-With this structure, you can simply run:
-```bash
-python run.py feature_df.csv
-```
-
-### File Requirements
-
-Before running the pipeline, ensure you have:
-
-1. **Input data** (CSV file with MS/MS spectra)
-2. **Trained models** in `model/` directory:
-   - `adduct.joblib` - Adduct prediction model
-   - `class.joblib` - Class prediction model
-   - `plsf.joblib` - Chain composition prediction model
-3. **Database** (optional) in `dataset/` directory:
-   - `lipid.db` or `lipid_plus.db` - SQLite database with reference lipids
-
----
 
 # Quick Start
 
@@ -75,11 +30,25 @@ The easiest way to run the complete annotation pipeline with default settings:
 ```bash
 python run.py feature_df.csv
 ```
+The usage of the pipeline with custom parameters can be found in the `Advanced Usage` section.  
 
-The pipeline will use default paths:
-- **Models**: `model/adduct.joblib`, `model/class.joblib`, `model/plsf.joblib`
-- **Database**: `dataset/lipid.db`
-- **Results**: `results/`
+The pipeline will generate several files in the `results/` directory:
+
+```text
+results/
+├── identification_result.csv     # Final merged output (Database + ML predictions)
+├── process_files/
+├──── processed_feature_table.csv   # Normalized and unfolded MS2 data (Step 0)
+├──── db_matched_df.csv             # Lipids identified by database search (Step 1)
+├──── dark_lipid.csv                # Unknown lipids sent to prediction pipeline
+├──── adduct_predictions.csv        # Intermediate adduct predictions (Step 2)
+├──── class_predictions.csv         # Intermediate class predictions (Step 3)
+└──── final_annotations.csv         # Final ML chain composition predictions (Step 4)
+```
+
+
+
+### Data Analysis Report Generation
 
 
 ### Customizing Parameters (Optional)
@@ -96,13 +65,13 @@ python run.py feature_df.csv \
     --MS2_threshold 0.8
 ```
 
-### Expected Output
+
 
 After running:
 ```bash
 python run.py feature_df.csv
 ```
-
+The usage of the pipeline with custom parameters can be found in the `Advanced Usage` section.  
 The pipeline will generate several files in the `results/` directory:
 
 ```
@@ -126,6 +95,19 @@ XXXXX
 ---
 
 # Advanced Usage
+| Parameter | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `input_path` | `str` | *(Required)* | Path to input CSV file |
+| `--adduct_model` | `str` | `'model/adduct.joblib'` | Path to trained adduct prediction model |
+| `--class_model` | `str` | `'model/class.joblib'` | Path to trained class prediction model |
+| `--plsf_model` | `str` | `'model/plsf.joblib'` | Path to trained PLSF model |
+| `--result_path` | `str` | `'results'` | Directory to save all results |
+| `--db_path` | `str` | `'dataset/lipid_plus.db'` | Path to lipid database file |
+| `--MS1_tol` | `float` | `0.005` | MS1 tolerance for database search in Da |
+| `--MS2_tol` | `float` | `0.01` | MS2 tolerance for database search in Da |
+| `--MS2_threshold` | `float` | `0.7` | Minimum MS2 similarity score for database match |
+| `--ms1_tol_ppm` | `float` | `10.0` | MS1 tolerance for class prediction in ppm |
+| `--ms2_tol_ppm` | `float` | `20.0` | MS2 tolerance for class prediction in ppm |
 ## Database Search
 
 Searches a spectral database to identify known lipids based on precursor m/z and MS/MS similarity.
@@ -422,6 +404,35 @@ python formula_annotation.py data.csv \
 
 ---
 # FAQ
+## Directory Structure
+
+For the simplest usage, organize your files as follows:
+
+```
+your_project/
+├── run.py                          # The main pipeline script
+├── model/                          # Model directory
+│   ├── adduct.joblib              # Adduct prediction model
+│   ├── class.joblib               # Class prediction model
+│   └── plsf.joblib                # PLSF model
+├── dataset/                        # Database directory
+│   └── lipid.db                   # Reference database
+├── code/                           # All step scripts
+│   ├── db_search.py               # Step 1: Database search
+│   ├── adduct_predict.py          # Step 2: Adduct prediction
+│   ├── class_predict.py           # Step 3: Class prediction
+│   ├── predict_plsf.py            # Step 4: PLSF prediction
+│   └── formula_annotation.py      # Alternative workflow
+├── feature_df.csv                  # Your input data
+└── results/                        # Output directory (created automatically)
+```
+
+With this structure, you can simply run:
+```bash
+python run.py feature_df.csv
+```
+
+
 
 ## Input Data Format
 

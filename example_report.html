@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lipidomics Report</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #212529;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav {
+            background-color: #ffffff;
+            overflow: hidden;
+            border-bottom: 1px solid #dee2e6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav button.tablinks {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 20px;
+            transition: all 0.3s ease-in-out;
+            font-size: 16px;
+            font-weight: 500;
+            color: #495057;
+            border-bottom: 3px solid transparent;
+        }
+        .nav button.tablinks:hover {
+            background-color: #f1f3f5;
+            color: #0d6efd;
+        }
+        .nav button.tablinks.active {
+            color: #0d6efd;
+            border-bottom-color: #0d6efd;
+        }
+        .tabcontent {
+            display: none;
+            padding: 12px 24px;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .plot-wrapper {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .plot-wrapper h3 {
+            margin: 0;
+            padding: 12px 16px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color 0.3s, border-bottom-color 0.3s;
+        }
+        .iframe-container {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+            display: block;
+        }
+        .vertical-container { display: flex; flex-direction: column; gap: 24px; }
+        .horizontal-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .comparison-grid { gap: 40px; }
+
+        /* Theme Toggle Button */
+        .theme-toggle-container {
+            float: right;
+            display: flex;
+            align-items: center;
+            height: 57px;
+            padding-right: 15px;
+        }
+        #theme-toggle-btn {
+            cursor: pointer;
+            background-color: #e9ecef;
+            border: 1px solid #dee2e6;
+            color: #495057;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        #theme-toggle-btn:hover {
+            background-color: #ced4da;
+        }
+
+        /* Night Mode Theme */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        body.dark-mode .nav {
+            background-color: #1e1e1e;
+            border-bottom: 1px solid #3a3a3a;
+        }
+        body.dark-mode .nav button.tablinks {
+            color: #bbbbbb;
+        }
+        body.dark-mode .nav button.tablinks:hover {
+            background-color: #333;
+            color: #ffffff;
+        }
+        body.dark-mode .nav button.tablinks.active {
+            color: #4dabf7;
+            border-bottom-color: #4dabf7;
+        }
+        body.dark-mode .plot-wrapper {
+            background-color: #1e1e1e;
+            border: 1px solid #3a3a3a;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        body.dark-mode .plot-wrapper h3 {
+            background-color: #252525;
+            border-bottom: 1px solid #3a3a3a;
+        }
+        body.dark-mode .iframe-container {
+            border-color: #3a3a3a;
+        }
+        body.dark-mode #theme-toggle-btn {
+            background-color: #333;
+            color: #e0e0e0;
+            border-color: #555;
+        }
+        body.dark-mode #theme-toggle-btn:hover {
+            background-color: #444;
+        }
+
+        #Identification { display: block; }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+    <div class="content-wrapper">
+        <div class="theme-toggle-container">
+            <button id="theme-toggle-btn" onclick="toggleTheme()">Night Mode</button>
+        </div>
+        <button class="tablinks active" onclick="openTab(event, 'Identification')">Identification</button>
+        <button class="tablinks" onclick="openTab(event, 'Trend')">Trend</button>
+        <button class="tablinks" onclick="openTab(event, 'Comparison')">Comparison</button>
+    </div>
+</div>
+
+<div class="content-wrapper">
+    <div id="Identification" class="tabcontent">
+        <div class="iframe-container"><iframe src="report_materials/MS.html" title="Spectrum" style="height: 800px;"></iframe></div>
+    </div>
+
+    <div id="Trend" class="tabcontent">
+        <div class="vertical-container">
+            
+<div class="plot-wrapper">
+    <h3>Class Themeriver</h3>
+    <iframe src="report_materials/class_themeriver.html" title="Class Themeriver" style="height: 80vh;"></iframe>
+</div>
+
+    <div class="horizontal-container">
+        
+<div class="plot-wrapper">
+    <h3>Class</h3>
+    <iframe src="report_materials/class.html" title="Class" style="height: 450px;"></iframe>
+</div>
+        
+<div class="plot-wrapper">
+    <h3>PCA</h3>
+    <iframe src="report_materials/pca.html" title="PCA" style="height: 450px;"></iframe>
+</div>
+    </div>
+
+    <div class="horizontal-container">
+        
+<div class="plot-wrapper">
+    <h3>Length</h3>
+    <iframe src="report_materials/length.html" title="Length" style="height: 450px;"></iframe>
+</div>
+        
+<div class="plot-wrapper">
+    <h3>Unsaturation</h3>
+    <iframe src="report_materials/unsaturation.html" title="Unsaturation" style="height: 450px;"></iframe>
+</div>
+    </div>
+        </div>
+    </div>
+
+    <div id="Comparison" class="tabcontent">
+        <div class="vertical-container">
+            
+<div class="plot-wrapper">
+    <h3>Volcano Plot</h3>
+    <iframe src="report_materials/volcano_plot.html" title="Volcano Plot" style="height: 600px;"></iframe>
+</div>
+            <div class="horizontal-container comparison-grid">
+                
+    <div class="plot-wrapper" style="padding-bottom: 10px;">
+        <h3>Class (Significant Lipids)</h3>
+        <iframe src="report_materials/class_sig.html" title="Class (Significant Lipids)"></iframe>
+    </div>
+
+<div class="plot-wrapper">
+    <h3>Length (Significant Lipids)</h3>
+    <iframe src="report_materials/length_sig.html" title="Length (Significant Lipids)" style="height: 450px;"></iframe>
+</div>
+
+<div class="plot-wrapper">
+    <h3>Unsaturation (Significant Lipids)</h3>
+    <iframe src="report_materials/unsaturation_sig.html" title="Unsaturation (Significant Lipids)" style="height: 450px;"></iframe>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function openTab(evt, tabName) {
+    let i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.classList.add("active");
+}
+
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    document.getElementById('theme-toggle-btn').textContent = isDarkMode ? 'Light Mode' : 'Night Mode';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        document.getElementById('theme-toggle-btn').textContent = 'Light Mode';
+    }
+});
+</script>
+
+</body>
+</html>
