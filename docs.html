@@ -120,6 +120,10 @@
                                 </button>
                                 <div id="submenu-advanced-usage" class="hidden mt-1 space-y-1 pl-4 border-l-2 border-gray-200 ml-3 dark:border-gray-600">
 
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-advanced-usage-identification-pipeline" onclick="showPage('page-advanced-usage-identification-pipeline', 'nav-docs', this)">
+                                        Identification Pipeline
+                                    </a>
+
                                     <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-advanced-usage-database-search" onclick="showPage('page-advanced-usage-database-search', 'nav-docs', this)">
                                         Database Search
                                     </a>
@@ -140,6 +144,10 @@
                                         Alternative: Formula Annotation
                                     </a>
 
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-advanced-usage-report-generation" onclick="showPage('page-advanced-usage-report-generation', 'nav-docs', this)">
+                                        Report Generation
+                                    </a>
+
                                 </div>
                             </div>
 
@@ -151,6 +159,10 @@
                                 </button>
                                 <div id="submenu-faq" class="hidden mt-1 space-y-1 pl-4 border-l-2 border-gray-200 ml-3 dark:border-gray-600">
 
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-directory-structure" onclick="showPage('page-faq-directory-structure', 'nav-docs', this)">
+                                        Directory Structure
+                                    </a>
+
                                     <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-input-data-format" onclick="showPage('page-faq-input-data-format', 'nav-docs', this)">
                                         Input Data Format
                                     </a>
@@ -159,8 +171,16 @@
                                         Output Files
                                     </a>
 
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-what-is-plsf" onclick="showPage('page-faq-what-is-plsf', 'nav-docs', this)">
+                                        What is PLSF
+                                    </a>
+
                                     <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-class" onclick="showPage('page-faq-class', 'nav-docs', this)">
                                         Class
+                                    </a>
+
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-data-source" onclick="showPage('page-faq-data-source', 'nav-docs', this)">
+                                        Data Source
                                     </a>
 
                                 </div>
@@ -183,9 +203,7 @@
                 <!-- Page: Installation -->
                 <section id="page-installation" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Installation</h1>
-                    <strong>Run the following code from the command line.</strong>
-
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Clone the project folder and download database</p>
+                    <h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Clone the project folder and download database </h3>
 
 <pre data-language="bash">
 <code class="language-bash">git clone https://github.com/Bowen999/LIPID-PLUS.git
@@ -197,7 +215,8 @@ wget -O dataset/lipid_plus.db https://github.com/Bowen999/LIPID-PLUS/releases/do
 # curl -L -o dataset/lipid_plus.db https://github.com/Bowen999/LIPID-PLUS/releases/download/v0.0.0/lipid_plus.db</code>
 </pre>
 
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Install the dependencies</p>
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Install the dependencies </h3>
+
 <pre data-language="text">
 <code class="language-text">conda create -n lipid_plus python=3.12 -y
 conda activate lipid_plus
@@ -205,58 +224,6 @@ conda activate lipid_plus
 pip install -r requirements.txt</code>
 </pre>
 
-
-
-
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Directory Structure</h3>
-
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For the simplest usage, organize your files as follows:</p>
-
-<pre data-language="text">
-<code class="language-text">your_project/
-├── run.py                          # The main pipeline script
-├── model/                          # Model directory
-│   ├── adduct.joblib              # Adduct prediction model
-│   ├── class.joblib               # Class prediction model
-│   └── plsf.joblib                # PLSF model
-├── dataset/                        # Database directory
-│   └── lipid.db                   # Reference database
-├── code/                           # All step scripts
-│   ├── db_search.py               # Step 1: Database search
-│   ├── adduct_predict.py          # Step 2: Adduct prediction
-│   ├── class_predict.py           # Step 3: Class prediction
-│   ├── predict_plsf.py            # Step 4: PLSF prediction
-│   └── formula_annotation.py      # Alternative workflow
-├── feature_df.csv                  # Your input data
-└── results/                        # Output directory (created automatically)</code>
-</pre>
-
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">With this structure, you can simply run:</p>
-<pre data-language="bash">
-<code class="language-bash">python run.py feature_df.csv</code>
-</pre>
-
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">File Requirements</h3>
-
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Before running the pipeline, ensure you have:</p>
-
-<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><strong>Input data</strong> (CSV file with MS/MS spectra)</li>
-<li><strong>Trained models</strong> in <code>model/</code> directory:</li>
-</ol>
-<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><code>adduct.joblib</code> - Adduct prediction model</li>
-<li><code>class.joblib</code> - Class prediction model</li>
-<li><code>plsf.joblib</code> - Chain composition prediction model</li>
-</ul>
-<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><strong>Database</strong> (optional) in <code>dataset/</code> directory:</li>
-</ol>
-<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><code>lipid.db</code> or <code>lipid_plus.db</code> - SQLite database with reference lipids</li>
-</ul>
-
-<hr />
 
                 </section>
 
@@ -266,23 +233,89 @@ pip install -r requirements.txt</code>
                     
 <h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Using the All-in-One Identification Pipeline</h3>
 
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The easiest way to run the complete annotation pipeline with default settings:</p>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The easiest way to run the complete identification pipeline (database search + machine learning prediction) with default settings:</p>
 
 <pre data-language="bash">
 <code class="language-bash">python run.py feature_df.csv</code>
 </pre>
 
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The pipeline will use default paths:</p>
-<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><strong>Models</strong>: <code>model/adduct.joblib</code>, <code>model/class.joblib</code>, <code>model/plsf.joblib</code></li>
-<li><strong>Database</strong>: <code>dataset/lipid.db</code></li>
-<li><strong>Results</strong>: <code>results/</code></li>
-</ul>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The usage of the pipeline with custom parameters can be found in the <code>Advanced Usage</code> section.</p>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The pipeline will generate several files in the <code>results/</code> directory. <strong>Main result file</strong>: <code>results/final_annotations.csv</code> contains your complete lipid annotations.</p>
+
+<pre data-language="text">
+<code class="language-text">results/
+├── identification_result.csv     # Final merged output (Database + ML predictions)
+├── process_files/
+├──── processed_feature_table.csv   # Normalized and unfolded MS2 data (Step 0)
+├──── db_matched_df.csv             # Lipids identified by database search (Step 1)
+├──── dark_lipid.csv                # Unknown lipids sent to prediction pipeline
+├──── adduct_predictions.csv        # Intermediate adduct predictions (Step 2)
+├──── class_predictions.csv         # Intermediate class predictions (Step 3)
+└──── final_annotations.csv         # Final ML chain composition predictions (Step 4)</code>
+</pre>
 
 
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Customizing Parameters (Optional)</h3>
 
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">If you need different settings:</p>
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Lipidomics Analysis Report Generation</h3>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">An interactive, shareable, and fully customized dynamic lipidomics HTML report (see <a href="https://bowen999.github.io/lipid-plus-docs/example_report.html" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">example</a>) can be generated from the previous identification results (identification_result.csv). An example is shown below:</p>
+
+<pre data-language="text">
+<code class="language-text">python code/report_generate.py \
+  --input_path results/identification_result.csv \
+  --groups 0h 2h 4h 8h \
+  --group_1 0h \
+  --group_2 8h \
+  --p_value_threshold 0.1 \
+  --fc_threshold 1</code>
+</pre>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">To run this process, the input file must contain at least 3 groups along with intensity or concentration values.</p>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>String</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The file path to the identification result</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--groups</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>List</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Space-separated list of all group prefixes present in the CSV columns (e.g., <code>Control Treated</code>).</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--group_1</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>String</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The first group for differential analysis. Must be in <code>--groups</code>.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--group_2</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>String</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The second group for differential analysis. Must be in <code>--groups</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                </section>
+
+                <!-- Page: Advanced Usage -->
+                <section id="page-advanced-usage" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Advanced Usage</h1>
+                    
+                    
+                    <section id="page-advanced-usage-identification-pipeline-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Identification Pipeline</h2>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">If you need different settings:</p>
 
 <pre data-language="bash">
 <code class="language-bash"># Custom result directory
@@ -294,46 +327,93 @@ python run.py feature_df.csv \
     --MS2_threshold 0.8</code>
 </pre>
 
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Expected Output</h3>
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>(Required)</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to input CSV file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--adduct_model</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;model/adduct.joblib&#x27;</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained adduct prediction model</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--class_model</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;model/class.joblib&#x27;</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained class prediction model</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--plsf_model</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;model/plsf.joblib&#x27;</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained PLSF model</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--result_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;results&#x27;</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Directory to save all results</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--db_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;dataset/lipid_plus.db&#x27;</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to lipid database file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS1_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.005</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for database search in Da</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.01</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for database search in Da</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.7</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 similarity score for database match</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol_ppm</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>10.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for class prediction in ppm</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol_ppm</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>20.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for class prediction in ppm</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">After running:</p>
-<pre data-language="bash">
-<code class="language-bash">python run.py feature_df.csv</code>
-</pre>
 
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The pipeline will generate several files in the <code>results/</code> directory:</p>
-
-<pre data-language="text">
-<code class="language-text">results/
-├── annotated_df.csv              # Database-matched lipids
-├── dark_lipid.csv                # Unknown lipids for prediction
-├── adduct_predictions.csv        # Step 2 output
-├── class_predictions.csv         # Step 3 output
-├── final_annotations.csv         # Step 4 output (MAIN RESULT)
-└── all_annotations_combined.csv  # Combined database + predicted</code>
-</pre>
-
-<strong>Main result file</strong>: <code>results/final_annotations.csv</code> contains your complete lipid annotations!
-
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Report Generate</h3>
-
-<pre data-language="text">
-<code class="language-text">XXXXX</code>
-</pre>
-
-<hr />
-
-                </section>
-
-                <!-- Page: Advanced Usage -->
-                <section id="page-advanced-usage" class="page-content hidden">
-                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Advanced Usage</h1>
-                    
+                    </section>
                     
                     <section id="page-advanced-usage-database-search-content" class="mt-10">
                         <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Database Search</h2>
-                        
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Searches a spectral database to identify known lipids based on precursor m/z and MS/MS similarity.</p>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Searches a spectral database to identify known lipids based on precursor m/z and MS/MS similarity.</p>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
 
@@ -858,14 +938,199 @@ python formula_annotation.py data.csv \
 </pre>
 
 <hr />
+
                     </section>
+                    
+                    <section id="page-advanced-usage-report-generation-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Report Generation</h2>
+                        
+<pre data-language="text">
+<code class="language-text">python code/report_generate.py \
+  --input_path results/identification_result.csv \
+  --groups 0h 2h 4h 8h \
+  --group_1 0h \
+  --group_2 8h \
+  --p_value_threshold 0.1 \
+  --fc_threshold 1 \</code>
+</pre>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>String</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>Required</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The file path to the identification result</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--groups</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>List</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>Required</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Space-separated list of all group prefixes present in the CSV columns (e.g., <code>Control Treated</code>).</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--group_1</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>String</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>Required</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The first group for differential analysis. Must be in <code>--groups</code>.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--group_2</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>String</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>Required</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The second group for differential analysis. Must be in <code>--groups</code>.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--output_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>String</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>results</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Directory where the final HTML report and material files will be saved.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--int_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>Integer</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>3000</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Intensity threshold.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--p_value_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>Float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.05</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The significance threshold for P-values in the Volcano plot.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--fc_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>Float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>1.2</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The fold-change threshold for determining significant lipids.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--keep_cols</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>List</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>[&#x27;index&#x27;, &#x27;name&#x27;, &#x27;precursor_mz&#x27;, &#x27;adduct&#x27;, &#x27;MS2_norm&#x27;]</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Specific columns to retain for the interactive Mass Spec table in the report.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+
+
+                    </section>
+                </section>
+
+                <!-- Page: Identification Pipeline -->
+                <section id="page-advanced-usage-identification-pipeline" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Identification Pipeline</h1>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">If you need different settings:</p>
+
+<pre data-language="bash">
+<code class="language-bash"># Custom result directory
+python run.py feature_df.csv --result_path my_results/
+
+# Different MS tolerance
+python run.py feature_df.csv \
+    --MS1_tol 0.01 \
+    --MS2_threshold 0.8</code>
+</pre>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>(Required)</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to input CSV file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--adduct_model</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;model/adduct.joblib&#x27;</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained adduct prediction model</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--class_model</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;model/class.joblib&#x27;</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained class prediction model</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--plsf_model</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;model/plsf.joblib&#x27;</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained PLSF model</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--result_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;results&#x27;</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Directory to save all results</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--db_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;dataset/lipid_plus.db&#x27;</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to lipid database file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS1_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.005</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for database search in Da</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.01</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for database search in Da</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.7</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 similarity score for database match</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol_ppm</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>10.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for class prediction in ppm</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol_ppm</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>20.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for class prediction in ppm</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
                 </section>
 
                 <!-- Page: Database Search -->
                 <section id="page-advanced-usage-database-search" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Database Search</h1>
-                    
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Searches a spectral database to identify known lipids based on precursor m/z and MS/MS similarity.</p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Searches a spectral database to identify known lipids based on precursor m/z and MS/MS similarity.</p>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
 
@@ -1394,12 +1659,133 @@ python formula_annotation.py data.csv \
 </pre>
 
 <hr />
+
+                </section>
+
+                <!-- Page: Report Generation -->
+                <section id="page-advanced-usage-report-generation" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Report Generation</h1>
+                    
+<pre data-language="text">
+<code class="language-text">python code/report_generate.py \
+  --input_path results/identification_result.csv \
+  --groups 0h 2h 4h 8h \
+  --group_1 0h \
+  --group_2 8h \
+  --p_value_threshold 0.1 \
+  --fc_threshold 1 \</code>
+</pre>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>String</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>Required</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The file path to the identification result</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--groups</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>List</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>Required</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Space-separated list of all group prefixes present in the CSV columns (e.g., <code>Control Treated</code>).</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--group_1</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>String</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>Required</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The first group for differential analysis. Must be in <code>--groups</code>.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--group_2</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>String</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>Required</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The second group for differential analysis. Must be in <code>--groups</code>.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--output_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>String</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>results</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Directory where the final HTML report and material files will be saved.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--int_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>Integer</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>3000</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Intensity threshold.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--p_value_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>Float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.05</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The significance threshold for P-values in the Volcano plot.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--fc_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>Float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>1.2</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">The fold-change threshold for determining significant lipids.</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--keep_cols</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>List</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>[&#x27;index&#x27;, &#x27;name&#x27;, &#x27;precursor_mz&#x27;, &#x27;adduct&#x27;, &#x27;MS2_norm&#x27;]</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Specific columns to retain for the interactive Mass Spec table in the report.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+
+
                 </section>
 
                 <!-- Page: FAQ -->
                 <section id="page-faq" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">FAQ</h1>
                     
+                    
+                    <section id="page-faq-directory-structure-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Directory Structure</h2>
+                        
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For the simplest usage, organize your files as follows:</p>
+
+<pre data-language="text">
+<code class="language-text">your_project/
+├── run.py                          # The main pipeline script
+├── model/                          # Model directory
+│   ├── adduct.joblib              # Adduct prediction model
+│   ├── class.joblib               # Class prediction model
+│   └── plsf.joblib                # PLSF model
+├── dataset/                        # Database directory
+│   └── lipid.db                   # Reference database
+├── code/                           # All step scripts
+│   ├── db_search.py               # Step 1: Database search
+│   ├── adduct_predict.py          # Step 2: Adduct prediction
+│   ├── class_predict.py           # Step 3: Class prediction
+│   ├── predict_plsf.py            # Step 4: PLSF prediction
+│   └── formula_annotation.py      # Alternative workflow
+├── feature_df.csv                  # Your input data
+└── results/                        # Output directory (created automatically)</code>
+</pre>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">With this structure, you can simply run:</p>
+<pre data-language="bash">
+<code class="language-bash">python run.py feature_df.csv</code>
+</pre>
+
+
+
+                    </section>
                     
                     <section id="page-faq-input-data-format-content" class="mt-10">
                         <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Input Data Format</h2>
@@ -1519,6 +1905,11 @@ F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.
 
 <hr />
 
+                    </section>
+                    
+                    <section id="page-faq-what-is-plsf-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">What is PLSF</h2>
+                        
                     </section>
                     
                     <section id="page-faq-class-content" class="mt-10">
@@ -1876,6 +2267,59 @@ F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.
 </div>
 
                     </section>
+                    
+                    <section id="page-faq-data-source-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Data Source</h2>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <strong>LIPID+</strong> dataset is aggregated from the following MS libraries and resources:</p>
+
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41587-020-0531-2/MediaObjects/41587_2020_531_MOESM5_ESM.zip" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>MS-DIAL Lipidome Atlas</strong></a></li>
+<li><a href="https://external.gnps2.org/gnpslibrary" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>GNPS (Global Natural Products Social Molecular Networking)</strong></a></li>
+<li><a href="https://gnps.ucsd.edu/ProteoSAFe/gnpslibrary.jsp?library=PNNL-LIPIDS-POSITIVE" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>PNNL Lipid Library (Pacific Northwest National Laboratory Lipid Library)</strong></a></li>
+<li><a href="https://massbank.eu" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>MassBank</strong></a></li>
+<li><a href="https://mona.fiehnlab.ucdavis.edu" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>MoNA (MassBank of North America)</strong></a></li>
+<li><a href="https://huggingface.co/datasets/roman-bushuiev/MassSpecGym" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>MassSpecGym</strong></a></li>
+</ul>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For metabolite MS databases (GNPS, MassBank, MoNA, MassSpecGym), spectra were filtered by matching the <strong><a href="https://en.wikipedia.org/wiki/International_Chemical_Identifier" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">first InChIKey block</a></strong> to structures in lipid databases including <a href="https://www.lipidmaps.org" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>LIPID MAPS</strong></a>, <a href="https://www.swisslipids.org" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>SwissLipids</strong></a> and <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41587-020-0531-2/MediaObjects/41587_2020_531_MOESM5_ESM.zip" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>MS-DIAL Lipid Database</strong></a></p>
+
+
+
+                    </section>
+                </section>
+
+                <!-- Page: Directory Structure -->
+                <section id="page-faq-directory-structure" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Directory Structure</h1>
+                    
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For the simplest usage, organize your files as follows:</p>
+
+<pre data-language="text">
+<code class="language-text">your_project/
+├── run.py                          # The main pipeline script
+├── model/                          # Model directory
+│   ├── adduct.joblib              # Adduct prediction model
+│   ├── class.joblib               # Class prediction model
+│   └── plsf.joblib                # PLSF model
+├── dataset/                        # Database directory
+│   └── lipid.db                   # Reference database
+├── code/                           # All step scripts
+│   ├── db_search.py               # Step 1: Database search
+│   ├── adduct_predict.py          # Step 2: Adduct prediction
+│   ├── class_predict.py           # Step 3: Class prediction
+│   ├── predict_plsf.py            # Step 4: PLSF prediction
+│   └── formula_annotation.py      # Alternative workflow
+├── feature_df.csv                  # Your input data
+└── results/                        # Output directory (created automatically)</code>
+</pre>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">With this structure, you can simply run:</p>
+<pre data-language="bash">
+<code class="language-bash">python run.py feature_df.csv</code>
+</pre>
+
+
+
                 </section>
 
                 <!-- Page: Input Data Format -->
@@ -1998,6 +2442,12 @@ F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.
 
 <hr />
 
+                </section>
+
+                <!-- Page: What is PLSF -->
+                <section id="page-faq-what-is-plsf" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">What is PLSF</h1>
+                    
                 </section>
 
                 <!-- Page: Class -->
@@ -2357,11 +2807,31 @@ F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.
 
                 </section>
 
+                <!-- Page: Data Source -->
+                <section id="page-faq-data-source" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Data Source</h1>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <strong>LIPID+</strong> dataset is aggregated from the following MS libraries and resources:</p>
+
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41587-020-0531-2/MediaObjects/41587_2020_531_MOESM5_ESM.zip" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>MS-DIAL Lipidome Atlas</strong></a></li>
+<li><a href="https://external.gnps2.org/gnpslibrary" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>GNPS (Global Natural Products Social Molecular Networking)</strong></a></li>
+<li><a href="https://gnps.ucsd.edu/ProteoSAFe/gnpslibrary.jsp?library=PNNL-LIPIDS-POSITIVE" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>PNNL Lipid Library (Pacific Northwest National Laboratory Lipid Library)</strong></a></li>
+<li><a href="https://massbank.eu" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>MassBank</strong></a></li>
+<li><a href="https://mona.fiehnlab.ucdavis.edu" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>MoNA (MassBank of North America)</strong></a></li>
+<li><a href="https://huggingface.co/datasets/roman-bushuiev/MassSpecGym" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>MassSpecGym</strong></a></li>
+</ul>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For metabolite MS databases (GNPS, MassBank, MoNA, MassSpecGym), spectra were filtered by matching the <strong><a href="https://en.wikipedia.org/wiki/International_Chemical_Identifier" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">first InChIKey block</a></strong> to structures in lipid databases including <a href="https://www.lipidmaps.org" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>LIPID MAPS</strong></a>, <a href="https://www.swisslipids.org" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>SwissLipids</strong></a> and <a href="https://static-content.springer.com/esm/art%3A10.1038%2Fs41587-020-0531-2/MediaObjects/41587_2020_531_MOESM5_ESM.zip" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300"><strong>MS-DIAL Lipid Database</strong></a></p>
+
+
+
+                </section>
+
                 <!-- Page: Release Note -->
                 <section id="page-release-note" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Release Note</h1>
-                    <strong>Last Updated:</strong> November 2024  
-<strong>Version:</strong> 1.0.0
+                    <strong>Last Updated:</strong> November 26, 2025    
+<strong>Version:</strong> 0.0.0 (Test Version)
 
                 </section>
             </div>
