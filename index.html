@@ -3,37 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIPID+ - Home</title>
+    <title>LIPID+ - Documentation</title>
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Roboto font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="css/style.css">
-    
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            }
-        })();
-    </script>
 </head>
 <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-200">
 
     <!-- Top Navigation Bar -->
     <nav class="fixed top-0 left-0 w-full h-16 bg-white border-b border-gray-200 z-40 flex items-center justify-between pl-10 pr-4 md:pl-10 md:pr-6 dark:bg-gray-900 dark:border-gray-700">
+        <!-- Logo -->
         <div class="flex items-center space-x-4">
             <a href="index.html" class="flex items-center space-x-2">
+                <!-- Logo Image -->
                 <img src="images/logo.svg" alt="LIPID+ Logo" class="w-24 h-16">
             </a>
         </div>
 
+        <!-- Desktop Navigation Links -->
         <div class="hidden md:flex items-center space-x-6">
-            <a href="index.html" id="nav-home" class="nav-link nav-active text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300">Home</a>
+            <a href="index.html" class="nav-link nav-active text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300">Home</a>
             
+            <!-- Docs Dropdown -->
             <div class="relative">
-                <button id="nav-docs" class="nav-link flex items-center text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300" onclick="toggleDropdown('docs-dropdown')">
+                <button class="nav-link flex items-center text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300" data-nav-id="nav-docs" onclick="toggleDropdown('docs-dropdown')">
                     Docs
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
@@ -41,14 +39,14 @@
                     <a href="docs.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Installation</a>
                     <a href="docs.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Quick Start</a>
                     <a href="docs.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Advanced Usage</a>
-                    <a href="docs.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Development</a>
                     <a href="docs.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">FAQ</a>
                     <a href="docs.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">Release Note</a>
                 </div>
             </div>
 
+            <!-- About Dropdown -->
             <div class="relative">
-                <button id="nav-about" class="nav-link flex items-center text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300" onclick="toggleDropdown('about-dropdown')">
+                <button class="nav-link flex items-center text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300" data-nav-id="nav-about" onclick="toggleDropdown('about-dropdown')">
                     About
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
@@ -59,6 +57,7 @@
                 </div>
             </div>
             
+            <!-- Search Bar -->
             <form class="relative" onsubmit="handleSearch(event)">
                 <input id="search-input" type="text" placeholder="Search docs..." class="bg-gray-100 border border-gray-300 rounded-md py-1.5 px-4 text-sm w-48 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-500">
                 <button type="submit" class="text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 hover:text-purple-600 dark:hover:text-purple-400" aria-label="Search">
@@ -68,11 +67,13 @@
                 </button>
             </form>
 
+            <!-- Dark Mode Toggle -->
             <button id="dark-mode-toggle" class="text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-white" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
-                <svg id="theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <svg id="theme-icon-light" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                 <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
             </button>
 
+            <!-- GitHub Link -->
             <a href="https://github.com/Bowen999/SLAM" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-white" aria-label="GitHub repository">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.84c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"/>
@@ -81,10 +82,13 @@
         </div>
     </nav>
 
+    <!-- Main Container -->
     <div class="relative min-h-screen">
+        <!-- Main Content Area (No Sidebar) -->
         <main id="content-area" class="w-full pt-16 transition-all duration-300 ease-in-out">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 
+                <!-- Page: Home -->
                 <section id="page-home" class="page-content">
                     <h1 class="text-4xl font-bold mb-6 pb-2 text-gray-900 dark:text-white">Welcome to LIPID+</h1>
                     <p class="text-xl text-gray-700 leading-relaxed mb-6 dark:text-gray-300">
@@ -105,11 +109,12 @@
                         <li><strong>System-level Analysis</strong>: Tailored analytical and visualization tools designed specifically for lipid characteristics allow detailed exploration of lipid-specific structural features—such as chain length and degree of unsaturation—capturing their dynamic changes. The analytical results are presented as interactive and easily shareable HTML reports.</li>
                     </ul>
                 </section>
-
+                <!-- New Explore Section -->
                 <section id="page-explore" class="page-content mt-16">
                     <h2 class="text-3xl font-semibold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700 dark:text-white">Explore</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         
+                        <!-- Quick Start Card -->
                         <a href="docs.html" class="group block p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg hover:border-purple-300 transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:border-purple-500">
                             <div class="flex items-center space-x-3">
                                 <svg class="w-6 h-6 text-gray-500 group-hover:text-purple-600 dark:text-gray-400 dark:group-hover:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -122,6 +127,7 @@
                             </p>
                         </a>
 
+                        <!-- Source Code Card -->
                         <a href="https://github.com/Bowen999/SLAM" target="_blank" rel="noopener noreferrer" class="group block p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg hover:border-purple-300 transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:border-purple-500">
                             <div class="flex items-center space-x-3">
                                 <svg class="w-6 h-6 text-gray-500 group-hover:text-purple-600 dark:text-gray-400 dark:group-hover:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
@@ -134,6 +140,7 @@
                             </p>
                         </a>
 
+                        <!-- About Card -->
                         <a href="about.html" class="group block p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg hover:border-purple-300 transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:border-purple-500">
                             <div class="flex items-center space-x-3">
                                 <svg class="w-6 h-6 text-gray-500 group-hover:text-purple-600 dark:text-gray-400 dark:group-hover:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
@@ -152,6 +159,7 @@
             </div>
         </main>
 
+        <!-- Footer -->
         <footer id="page-footer" class="w-full p-6 border-t border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-700 transition-all duration-300 ease-in-out">
             <div class="text-center text-sm text-gray-500 dark:text-gray-400">
                 &copy; <span id="current-year"></span> LIPID+ Development Team. All rights reserved.
@@ -159,6 +167,7 @@
         </footer>
     </div>
 
+    <!-- Search Modal -->
     <div id="search-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4" onclick="closeSearchModal()">
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md" onclick="event.stopPropagation()">
             <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Search</h3>
@@ -169,6 +178,100 @@
         </div>
     </div>
 
-    <script src="js/common.js"></script>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // --- Top Nav Dropdowns ---
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            if (!dropdown) return;
+
+            // Check if it's already open
+            const isOpen = !dropdown.classList.contains('hidden');
+
+            // Close all dropdowns first
+            closeAllDropdowns();
+
+            // If it was closed, open it
+            if (!isOpen) {
+                dropdown.classList.remove('hidden');
+            }
+        }
+
+        function closeAllDropdowns() {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.add('hidden');
+            });
+        }
+
+        // Close dropdowns if clicking outside
+        window.addEventListener('click', function(event) {
+            if (!event.target.closest('[onclick^="toggleDropdown"]')) {
+                closeAllDropdowns();
+            }
+        });
+
+        // --- Search Modal ---
+        function showSearchModal(message) {
+            document.getElementById('search-modal-message').textContent = message;
+            document.getElementById('search-modal').classList.remove('hidden');
+        }
+
+        function closeSearchModal() {
+            document.getElementById('search-modal').classList.add('hidden');
+        }
+
+        function handleSearch(event) {
+            event.preventDefault();
+            const input = document.getElementById('search-input');
+            const query = input.value.trim();
+            if (query) {
+                showSearchModal(`Search functionality for "${query}" is not implemented in this demo.`);
+            } else {
+                showSearchModal('Please enter a search term.');
+            }
+            // input.value = ''; // Optional: clear search bar after search
+        }
+
+        // --- Dark Mode ---
+        const themeIconLight = document.getElementById('theme-icon-light');
+        const themeIconDark = document.getElementById('theme-icon-dark');
+
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIconLight.classList.remove('hidden');
+                themeIconDark.classList.add('hidden');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIconDark.classList.remove('hidden');
+                themeIconLight.classList.add('hidden');
+            }
+        }
+
+        // Check for saved theme preference
+        function applyInitialTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                themeIconDark.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeIconLight.classList.remove('hidden');
+            }
+        }
+
+        applyInitialTheme();
+
+        // --- Initialize Page ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Home page doesn't need to do anything on load except set theme
+        });
+
+    </script>
 </body>
 </html>

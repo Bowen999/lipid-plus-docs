@@ -4,56 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIPID+ - Documentation</title>
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Roboto font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="css/style.css">
-    
-    <script>
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            }
-        })();
-    </script>
 </head>
 <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-200">
 
+    <!-- Overlay for mobile menu -->
     <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden" onclick="toggleMobileMenu()"></div>
 
+    <!-- Top Navigation Bar -->
     <nav class="fixed top-0 left-0 w-full h-16 bg-white border-b border-gray-200 z-40 flex items-center justify-between pl-10 pr-4 md:pl-10 md:pr-6 dark:bg-gray-900 dark:border-gray-700">
+        <!-- Logo and Mobile Menu Button -->
         <div class="flex items-center space-x-4">
+            <!-- Mobile Menu Button (Hamburger) -->
             <button id="mobile-menu-btn" class="md:hidden text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white" onclick="toggleMobileMenu()" aria-label="Toggle menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             </button>
             
+            <!-- Logo/Title -->
             <a href="index.html" class="flex items-center space-x-2">
-                <img src="images/logo.svg" alt="LIPID+ Logo" class="w-24 h-16">
+                <!-- Logo Image -->
+                <img src="images/logo.svg" alt="Logo" class="w-24 h-16">
             </a>
         </div>
 
+        <!-- Desktop Navigation Links -->
         <div class="hidden md:flex items-center space-x-6">
-            <a href="index.html" id="nav-home" class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300">Home</a>
+            <a href="index.html" class="nav-link text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300">Home</a>
             
+            <!-- Docs Dropdown -->
             <div class="relative">
-                <button id="nav-docs" class="nav-link nav-active flex items-center text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300" onclick="toggleDropdown('docs-dropdown')">
+                <button class="nav-link nav-active flex items-center text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300" data-nav-id="nav-docs" onclick="toggleDropdown('docs-dropdown')">
                     Docs
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
                 <div id="docs-dropdown" class="dropdown-menu hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-xl z-50 border border-gray-100 py-1 dark:bg-gray-800 dark:border-gray-700">
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-installation', 'nav-docs', this)" data-page-id="page-installation">Installation</a>
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-quick-start', 'nav-docs', this)" data-page-id="page-quick-start">Quick Start</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-ms-search', 'nav-docs', this)" data-page-id="page-ms-search">Advanced Usage</a>
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-development', 'nav-docs', this)" data-page-id="page-development">Development</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-advanced-usage', 'nav-docs', this)" data-page-id="page-advanced-usage">Advanced Usage</a>
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-faq', 'nav-docs', this)" data-page-id="page-faq">FAQ</a>
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700" onclick="showPage('page-release-note', 'nav-docs', this)" data-page-id="page-release-note">Release Note</a>
                 </div>
             </div>
 
+            <!-- About Dropdown -->
             <div class="relative">
-                <button id="nav-about" class="nav-link flex items-center text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300" onclick="toggleDropdown('about-dropdown')">
+                <button class="nav-link flex items-center text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-300" data-nav-id="nav-about" onclick="toggleDropdown('about-dropdown')">
                     About
                     <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
@@ -64,6 +66,7 @@
                 </div>
             </div>
             
+            <!-- Search Bar -->
             <form class="relative" onsubmit="handleSearch(event)">
                 <input id="search-input" type="text" placeholder="Search docs..." class="bg-gray-100 border border-gray-300 rounded-md py-1.5 px-4 text-sm w-48 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-500">
                 <button type="submit" class="text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 hover:text-purple-600 dark:hover:text-purple-400" aria-label="Search">
@@ -73,12 +76,14 @@
                 </button>
             </form>
 
+            <!-- Dark Mode Toggle -->
             <button id="dark-mode-toggle" class="text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-white" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
-                <svg id="theme-icon-light" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <svg id="theme-icon-light" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
                 <svg id="theme-icon-dark" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
             </button>
 
-            <a href="https://github.com/Bowen999/SLAM" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-white" aria-label="GitHub repository">
+            <!-- GitHub Link -->
+            <a href="https://github.com/pluskal-lab/DreaMS" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-white" aria-label="GitHub repository">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.84c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"/>
                 </svg>
@@ -86,150 +91,2450 @@
         </div>
     </nav>
 
+    <!-- Main Container -->
     <div class="relative min-h-screen">
+        <!-- Sidebar -->
         <aside id="sidebar" class="fixed top-0 left-0 w-64 lg:w-72 h-screen bg-gray-50 border-r border-gray-200 z-30 md:translate-x-0 transition-transform duration-300 ease-in-out dark:bg-gray-800 dark:border-gray-700 transform -translate-x-full">
+            <!-- Sidebar content wrapper with padding for top nav -->
             <div id="sidebar-content" class="h-full pt-16 overflow-y-auto">
                 <div class="px-4 py-6">
+
+                    <!-- Docs Nav -->
                     <nav id="nav-docs" class="sidebar-nav">
+                        <!-- Navigation items for Docs -->
                         <div class="space-y-1">
+
                             <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-installation" onclick="showPage('page-installation', 'nav-docs', this)">
                                 Installation
                             </a>
+
                             <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-quick-start" onclick="showPage('page-quick-start', 'nav-docs', this)">
                                 Quick Start
                             </a>
-                            
+
+                            <!-- Collapsible Advanced Usage Menu -->
                             <div>
-                                <button onclick="toggleSidebarMenu('submenu-advanced', this)" class="sidebar-link group w-full flex items-center justify-between px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" aria-expanded="false">
+                                <button onclick="toggleSidebarMenu('submenu-advanced-usage', this)" class="sidebar-link group w-full flex items-center justify-between px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" aria-expanded="false">
                                     <span>Advanced Usage</span>
                                     <svg class="submenu-chevron w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                 </button>
-                                <div id="submenu-advanced" class="hidden mt-1 space-y-1 pl-4 border-l-2 border-gray-200 ml-3 dark:border-gray-600">
-                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-ms-search" onclick="showPage('page-ms-search', 'nav-docs', this)">
-                                        MS Search
+                                <div id="submenu-advanced-usage" class="hidden mt-1 space-y-1 pl-4 border-l-2 border-gray-200 ml-3 dark:border-gray-600">
+
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-advanced-usage-database-search" onclick="showPage('page-advanced-usage-database-search', 'nav-docs', this)">
+                                        Database Search
                                     </a>
-                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-denovo" onclick="showPage('page-denovo', 'nav-docs', this)">
-                                        De novo lipid generation
+
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-advanced-usage-adduct-prediction" onclick="showPage('page-advanced-usage-adduct-prediction', 'nav-docs', this)">
+                                        Adduct Prediction
                                     </a>
-                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-lipidomics" onclick="showPage('page-lipidomics', 'nav-docs', this)">
-                                        Lipidomics Analysis
+
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-advanced-usage-class-prediction" onclick="showPage('page-advanced-usage-class-prediction', 'nav-docs', this)">
+                                        Class Prediction
                                     </a>
+
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-advanced-usage-chain-composition-prediction" onclick="showPage('page-advanced-usage-chain-composition-prediction', 'nav-docs', this)">
+                                        Chain Composition Prediction
+                                    </a>
+
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-advanced-usage-alternative-formula-annotation" onclick="showPage('page-advanced-usage-alternative-formula-annotation', 'nav-docs', this)">
+                                        Alternative: Formula Annotation
+                                    </a>
+
                                 </div>
                             </div>
-                            
-                            <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-development" onclick="showPage('page-development', 'nav-docs', this)">
-                                Development
-                            </a>
-                            <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq" onclick="showPage('page-faq', 'nav-docs', this)">
-                                FAQ
-                            </a>
+
+                            <!-- Collapsible FAQ Menu -->
+                            <div>
+                                <button onclick="toggleSidebarMenu('submenu-faq', this)" class="sidebar-link group w-full flex items-center justify-between px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" aria-expanded="false">
+                                    <span>FAQ</span>
+                                    <svg class="submenu-chevron w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </button>
+                                <div id="submenu-faq" class="hidden mt-1 space-y-1 pl-4 border-l-2 border-gray-200 ml-3 dark:border-gray-600">
+
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-input-data-format" onclick="showPage('page-faq-input-data-format', 'nav-docs', this)">
+                                        Input Data Format
+                                    </a>
+
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-output-files" onclick="showPage('page-faq-output-files', 'nav-docs', this)">
+                                        Output Files
+                                    </a>
+
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-class" onclick="showPage('page-faq-class', 'nav-docs', this)">
+                                        Class
+                                    </a>
+
+                                </div>
+                            </div>
+
                             <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-base font-medium rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-release-note" onclick="showPage('page-release-note', 'nav-docs', this)">
                                 Release Note
                             </a>
                         </div>
                     </nav>
+
                 </div>
             </div>
         </aside>
 
+        <!-- Main Content Area -->
         <main id="content-area" class="w-full pt-16 transition-all duration-300 ease-in-out md:pl-64 lg:pl-72">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 
-                <!-- All page sections remain the same as your original docs.html -->
+                <!-- Page: Installation -->
                 <section id="page-installation" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Installation</h1>
-                    
-                    <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Prerequisites</h2>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">
-                        Before installing, ensure you have <code class="text-sm bg-gray-100 text-red-600 px-1 py-0.5 rounded dark:bg-gray-700 dark:text-red-400">conda</code> and <code class="text-sm bg-gray-100 text-red-600 px-1 py-0.5 rounded dark:bg-gray-700 dark:text-red-400">pip</code> installed.
-                    </p>
-                    
-                    <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Install via Conda</h2>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">
-                        The easiest way to install LIPID+ is directly from PyPI.
-                    </p>
-                    <pre class="bg-gray-800 text-white p-4 rounded-md overflow-x-auto text-sm shadow-md mb-6 dark:bg-gray-800"><code class="font-mono"><span class="text-gray-400"># Install the latest version</span>
-$ conda create -n lipid_plus python=3.10
-$ conda activate lipid_plus
-$ pip install lipid_plus
-$ pip install -r requirements.txt
+                    <strong>Run the following code from the command line.</strong>
 
-<span class="text-gray-400"># Upgrade to the latest version</span>
-$ pip install --upgrade lipid_plus</code></pre>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Clone the project folder and download database</p>
 
-                    <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Data Requirements</h2>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">
-                        <p>As input, we require a feature table (formatted as a .csv file) that includes the following columns: <strong>precursor_mz</strong>, <strong>ion_mode</strong>, and <strong>MS2</strong>.<br><br>If you have information on adducts or classifications, please include these as additional columns named <strong>adduct</strong> or <strong>class</strong>.<br><br>If you do not currently have a feature table, you can generate one by processing your raw LC-MS data. Tools such as <a href="https://systemsomicslab.github.io/compms/msdial/main.html">MS-DIAL</a>, <a href="https://mzio.io/mzmine-news/">MZmine</a>, or <a href="https://www.bioconductor.org/packages/release/bioc/html/xcms.html">XCMS</a> can be used for this feature detection process.<br><br>Should your feature detection software require <code>mzML</code> files as input, and you only have data in a vendor format (such as <code>.raw</code>), you must first use the <a href="http://proteowizard.sourceforge.io/download.html">MS Convert tool</a> (part of ProteoWizard) to convert your raw data to the <code>mzML</code> format.</p>
-                        <hr>
-                        <p>Your <code>.csv</code> feature table must adhere to the following data types. Please note the special string format required for the <strong>MS2</strong> column.</p>
-                        <ul class="data-specs">
-                        <li><strong>precursor_mz</strong> (Float)<p>The m/z of the parent ion.<br>Example: <code>154.1234</code></p></li>
-                        <li><strong>ion_mode</strong> (String)<p>Must be exactly <code>"Positive"</code> or <code>"Negative"</code>.</p></li>
-                        <li><strong>MS2</strong> (String/JSON)<p>A JSON-formatted string of [mz, intensity] lists.<br>Example: <code>"[[80.123, 1500.4], [102.456, 9500.7]]"</code></p></li>
-                        <li><strong>class</strong> (Optional, String)<p>The compound classification.<br>Example: <code>"Lipid"</code> or <code>"Unknown"</code></p></li>
-                        <li><strong>adduct</strong> (Optional, String)<p>The adduct annotation.<br>Example: <code>"[M+H]+"</code> or <code>"[M-H]-"</code></p></li>
-                        </ul>
-                    </p>
+<pre data-language="bash">
+<code class="language-bash">git clone https://github.com/Bowen999/LIPID-PLUS.git
+cd LIPID-PLUS
+mkdir -p dataset
+wget -O dataset/lipid_plus.db https://github.com/Bowen999/LIPID-PLUS/releases/download/v0.0.0/lipid_plus.db
+
+# (if no wget，use curl)
+# curl -L -o dataset/lipid_plus.db https://github.com/Bowen999/LIPID-PLUS/releases/download/v0.0.0/lipid_plus.db</code>
+</pre>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Install the dependencies</p>
+<pre data-language="text">
+<code class="language-text">conda create -n lipid_plus python=3.12 -y
+conda activate lipid_plus
+
+pip install -r requirements.txt</code>
+</pre>
+
+
+
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Directory Structure</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For the simplest usage, organize your files as follows:</p>
+
+<pre data-language="text">
+<code class="language-text">your_project/
+├── run.py                          # The main pipeline script
+├── model/                          # Model directory
+│   ├── adduct.joblib              # Adduct prediction model
+│   ├── class.joblib               # Class prediction model
+│   └── plsf.joblib                # PLSF model
+├── dataset/                        # Database directory
+│   └── lipid.db                   # Reference database
+├── code/                           # All step scripts
+│   ├── db_search.py               # Step 1: Database search
+│   ├── adduct_predict.py          # Step 2: Adduct prediction
+│   ├── class_predict.py           # Step 3: Class prediction
+│   ├── predict_plsf.py            # Step 4: PLSF prediction
+│   └── formula_annotation.py      # Alternative workflow
+├── feature_df.csv                  # Your input data
+└── results/                        # Output directory (created automatically)</code>
+</pre>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">With this structure, you can simply run:</p>
+<pre data-language="bash">
+<code class="language-bash">python run.py feature_df.csv</code>
+</pre>
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">File Requirements</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Before running the pipeline, ensure you have:</p>
+
+<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>Input data</strong> (CSV file with MS/MS spectra)</li>
+<li><strong>Trained models</strong> in <code>model/</code> directory:</li>
+</ol>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>adduct.joblib</code> - Adduct prediction model</li>
+<li><code>class.joblib</code> - Class prediction model</li>
+<li><code>plsf.joblib</code> - Chain composition prediction model</li>
+</ul>
+<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>Database</strong> (optional) in <code>dataset/</code> directory:</li>
+</ol>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>lipid.db</code> or <code>lipid_plus.db</code> - SQLite database with reference lipids</li>
+</ul>
+
+<hr />
+
                 </section>
 
-                <!-- Include all other sections from original docs.html -->
-                <!-- I'm including just the structure - you have all the content -->
+                <!-- Page: Quick Start -->
                 <section id="page-quick-start" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Quick Start</h1>
-                    <!-- Content from original -->
+                    
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Using the All-in-One Identification Pipeline</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The easiest way to run the complete annotation pipeline with default settings:</p>
+
+<pre data-language="bash">
+<code class="language-bash">python run.py feature_df.csv</code>
+</pre>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The pipeline will use default paths:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>Models</strong>: <code>model/adduct.joblib</code>, <code>model/class.joblib</code>, <code>model/plsf.joblib</code></li>
+<li><strong>Database</strong>: <code>dataset/lipid.db</code></li>
+<li><strong>Results</strong>: <code>results/</code></li>
+</ul>
+
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Customizing Parameters (Optional)</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">If you need different settings:</p>
+
+<pre data-language="bash">
+<code class="language-bash"># Custom result directory
+python run.py feature_df.csv --result_path my_results/
+
+# Different MS tolerance
+python run.py feature_df.csv \
+    --MS1_tol 0.01 \
+    --MS2_threshold 0.8</code>
+</pre>
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Expected Output</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">After running:</p>
+<pre data-language="bash">
+<code class="language-bash">python run.py feature_df.csv</code>
+</pre>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The pipeline will generate several files in the <code>results/</code> directory:</p>
+
+<pre data-language="text">
+<code class="language-text">results/
+├── annotated_df.csv              # Database-matched lipids
+├── dark_lipid.csv                # Unknown lipids for prediction
+├── adduct_predictions.csv        # Step 2 output
+├── class_predictions.csv         # Step 3 output
+├── final_annotations.csv         # Step 4 output (MAIN RESULT)
+└── all_annotations_combined.csv  # Combined database + predicted</code>
+</pre>
+
+<strong>Main result file</strong>: <code>results/final_annotations.csv</code> contains your complete lipid annotations!
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Report Generate</h3>
+
+<pre data-language="text">
+<code class="language-text">XXXXX</code>
+</pre>
+
+<hr />
+
                 </section>
 
-                <section id="page-ms-search" class="page-content hidden">
-                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Advanced Usage: MS Search</h1>
-                    <!-- Content from original -->
+                <!-- Page: Advanced Usage -->
+                <section id="page-advanced-usage" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Advanced Usage</h1>
+                    
+                    
+                    <section id="page-advanced-usage-database-search-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Database Search</h2>
+                        
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Searches a spectral database to identify known lipids based on precursor m/z and MS/MS similarity.</p>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+
+<pre data-language="bash">
+<code class="language-bash">python db_search.py input.csv \
+    --result_path results/ \
+    --db_path lipid.db \
+    --MS1_tol 0.005 \
+    --MS2_tol 0.01 \
+    --MS2_threshold 0.7 \
+    --method weighted_dot_product \
+    --is_ppm False</code>
+</pre>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Parameters</h4>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>csv_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to input CSV file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--result_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>.</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output directory</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--db_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>lipid_plus.db</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to SQLite database</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS1_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.005</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance (Da or ppm)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.01</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 fragment tolerance (Da)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--method</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>weighted_dot_product</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Scoring method: <code>dot_product</code>, <code>weighted_dot_product</code>, <code>entropy_similarity</code>, <code>unweighted_entropy_similarity</code></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.7</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 score (0-1) to accept a match</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--is_ppm</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">bool</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>False</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Use ppm for MS1 tolerance (True) or Da (False)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Input Requirements</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Your CSV must contain:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>precursor_mz</code>: Precursor mass-to-charge ratio</li>
+<li><code>adduct</code>: Adduct type (e.g., <code>[M+H]+</code>, <code>[M+Na]+</code>, <code>[M-H]-</code>)</li>
+<li><code>MS2</code>: MS/MS spectrum as string representation of list, e.g., <code>&quot;[[100.0, 1500], [200.5, 3000]]&quot;</code></li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Files</h4>
+
+<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong><code>annotated_df.csv</code></strong>: Successfully matched lipids with database annotations</li>
+</ol>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>Contains all original columns plus:</li>
+<li><code>name</code>, <code>formula</code>, <code>class</code>, <code>category</code> (from database)</li>
+<li><code>mass_diff_ppm</code>: Mass accuracy</li>
+<li>Spectral similarity scores</li>
+</ul>
+
+<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong><code>dark_lipid.csv</code></strong>: Unknown lipids that didn't match the database</li>
+</ol>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>These will be processed by the prediction steps</li>
+</ul>
+
+<hr />
+
+                    </section>
+                    
+                    <section id="page-advanced-usage-adduct-prediction-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Adduct Prediction</h2>
+                        
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts the adduct type for unknown lipids using a trained machine learning model.</p>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+
+<pre data-language="bash">
+<code class="language-bash">python adduct_predict.py input.csv model/adduct.joblib \
+    --output_path results/adduct_predictions.csv</code>
+</pre>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Parameters</h4>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Input CSV file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>model_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained adduct model (.joblib)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--output_path</code> <code>-o</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>adduct_predict.csv</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output file path</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Input Requirements</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The CSV must contain:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>precursor_mz</code>: Precursor m/z (will be rounded to 2 decimals)</li>
+<li><code>ion_mode</code>: Ion mode (<code>positive</code> or <code>negative</code>)</li>
+<li><code>mz_*</code> columns: Binary features (0/1) indicating presence of fragment ions</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Columns</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Original columns plus:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>predicted_adduct</code>: Predicted adduct type</li>
+<li><code>adduct_confidence</code>: Prediction confidence (0-1), if available</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Example</h4>
+
+<pre data-language="bash">
+<code class="language-bash"># Using dark lipids from Step 1
+python adduct_predict.py results/dark_lipid.csv models/adduct.joblib \
+    -o results/with_adducts.csv
+
+# Process all data (no database search)
+python adduct_predict.py raw_data.csv adduct.joblib \
+    -o predictions/adducts.csv</code>
+</pre>
+
+<hr />
+
+                    </section>
+                    
+                    <section id="page-advanced-usage-class-prediction-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Class Prediction</h2>
+                        
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts lipid class using a hybrid approach combining rule-based classification and machine learning.</p>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+
+<pre data-language="bash">
+<code class="language-bash">python class_predict.py input.csv model/class.joblib \
+    --output_path results/class_predictions.csv \
+    --ms1_tol 10 \
+    --ms2_tol 20</code>
+</pre>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Parameters</h4>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Input CSV file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>model_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained class model (.joblib)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--output_path</code> <code>-o</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>class_pred.csv</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output file path</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>10.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for rule-based matching (ppm)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>20.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for rule-based matching (ppm)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--no-rules</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">flag</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>False</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Skip rule-based classification, use ML only</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Input Requirements</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The CSV must contain:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>precursor_mz</code>: Precursor m/z</li>
+<li><code>ion_mode</code>: Ion mode</li>
+<li><code>adduct</code> or <code>predicted_adduct</code>: Adduct type</li>
+<li><code>mz_*</code> columns: Fragment features</li>
+<li><code>MS2</code> or <code>MS2_norm</code>: MS/MS spectrum (for rule-based classification)</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Two-Stage Process</h4>
+
+<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>Rule-Based Classification</strong>: Uses chemical knowledge and fragmentation patterns</li>
+</ol>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>High confidence for lipids with characteristic fragments</li>
+<li>Marks successfully classified lipids with <code>prediction_source = &#x27;rule-based&#x27;</code></li>
+</ul>
+
+<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>ML-Based Prediction</strong>: For remaining lipids</li>
+</ol>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>Uses machine learning model</li>
+<li>Marks predictions with <code>prediction_source = &#x27;model-based&#x27;</code></li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Columns</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Original columns plus:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>predicted_class</code>: Predicted lipid class (e.g., PC, PE, TG, Cer)</li>
+<li><code>prediction_source</code>: <code>&#x27;rule-based&#x27;</code> or <code>&#x27;model-based&#x27;</code></li>
+<li><code>class_confidence</code>: Confidence score (0-1)</li>
+<li><code>category</code>: Lipid category (e.g., Glycerophospholipids, Sphingolipids)</li>
+<li><code>num_chain</code>: Number of fatty acid chains</li>
+<li><code>classes_mz</code>: Possible classes from precursor mass (rule-based)</li>
+<li><code>classes_ms2</code>: Possible classes from MS2 fragments (rule-based)</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Example</h4>
+
+<pre data-language="bash">
+<code class="language-bash"># Default (hybrid approach)
+python class_predict.py results/with_adducts.csv class.joblib \
+    -o results/with_classes.csv
+
+# ML only (faster, may be less accurate)
+python class_predict.py input.csv class.joblib \
+    -o output.csv --no-rules
+
+# Strict tolerances (high-resolution data)
+python class_predict.py input.csv class.joblib \
+    -o output.csv --ms1_tol 5 --ms2_tol 10</code>
+</pre>
+
+<hr />
+
+                    </section>
+                    
+                    <section id="page-advanced-usage-chain-composition-prediction-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Chain Composition Prediction</h2>
+                        
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts detailed fatty acid chain compositions (number of carbons and double bonds in each chain).</p>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+
+<pre data-language="bash">
+<code class="language-bash">python predict_plsf.py model/plsf.joblib input.csv \
+    --output_path results/final_output.csv</code>
+</pre>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Parameters</h4>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>model_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained PLSF model (.joblib)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Input CSV file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>-o</code> <code>--output_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>result.csv</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output file path</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Input Requirements</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The CSV must contain:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>precursor_mz</code>: Precursor m/z (rounded to 2 decimals)</li>
+<li><code>adduct</code> or <code>predicted_adduct</code>: Adduct type</li>
+<li><code>class</code> or <code>predicted_class</code>: Lipid class</li>
+<li><code>num_chain</code>: Number of fatty acid chains (1-4)</li>
+<li><code>mz_*</code> columns: Fragment features</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Special Handling</h4>
+
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>Single-chain lipids</strong> (<code>num_chain=1</code>): Direct mass calculation instead of model</li>
+<li><strong>Unknown adducts/classes</strong>: Marked as invalid, predictions set to NaN</li>
+<li><strong>Confidence scores</strong>: Combined from PLSF, class, and adduct predictions</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Columns</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Cleaned output with:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>name</code>: Combined lipid name (e.g., "PC 16:0_18:1")</li>
+<li><code>precursor_mz</code>, <code>ion_mode</code>, <code>adduct</code>, <code>class</code>, <code>category</code></li>
+<li><code>num_chain</code>: Number of chains</li>
+<li><code>pred_confidence</code>: Average confidence across all prediction steps</li>
+<li><code>plsf_rank1</code>, <code>plsf_rank2</code>, <code>plsf_rank3</code>: Top 3 chain composition predictions</li>
+<li>(mz_* features and intermediate prediction columns are removed)</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Name Format</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <code>name</code> column combines class and chain information:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>Format: <code>{Class} {C1}:{DB1}_{C2}:{DB2}_{C3}:{DB3}_{C4}:{DB4}</code></li>
+<li>Chains sorted by length (descending)</li>
+<li>Zero chains (0:0) are omitted</li>
+<li>Examples:</li>
+<li><code>PC 16:0_18:1</code> (PC with C16:0 and C18:1)</li>
+<li><code>TG 16:0_18:1_18:2</code> (TG with three chains)</li>
+<li><code>Cer 18:1_16:0</code> (Ceramide with two chains)</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Example</h4>
+
+<pre data-language="bash">
+<code class="language-bash"># Basic usage
+python predict_plsf.py plsf.joblib results/with_classes.csv \
+    -o results/final_annotations.csv
+
+# With custom output location
+python predict_plsf.py models/plsf_split.joblib data/classified.csv \
+    -o output/experiment1/annotations.csv</code>
+</pre>
+
+<hr />
+
+                    </section>
+                    
+                    <section id="page-advanced-usage-alternative-formula-annotation-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Alternative: Formula Annotation</h2>
+                        
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For metabolomics or when molecular formulas are needed, use the formula annotation workflow instead of or in addition to the main pipeline.</p>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+
+<pre data-language="bash">
+<code class="language-bash">python formula_annotation.py input.csv \
+    --output_path results/formulas/ \
+    --ms1_tol 15 \
+    --ms2_tol 20</code>
+</pre>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Parameters</h4>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Input CSV file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--output_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>result/process_file</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output directory</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>15.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for formula annotation (ppm)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>20.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for formula annotation (ppm)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">What It Does</h4>
+
+<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>Converts CSV to MGF format</li>
+<li>Uses MsBuddy to predict molecular formulas</li>
+<li>Applies class-specific rules for lipid formulas</li>
+<li>Generates top 5 formula candidates</li>
+</ol>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Files</h4>
+
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>input.mgf</code>: MGF format for MsBuddy</li>
+<li><code>buddy_result.csv</code>: Raw MsBuddy predictions</li>
+<li><code>formula_result.csv</code>: Processed formulas with class rules applied</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Columns</h4>
+
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>predicted_formula</code>: Top-ranked molecular formula</li>
+<li><code>formula_rank_1</code> to <code>formula_rank_5</code>: Top 5 formula candidates</li>
+<li>All original input columns</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Example</h4>
+
+<pre data-language="bash">
+<code class="language-bash"># High-resolution data (tight tolerances)
+python formula_annotation.py data.csv \
+    --output_path results/formulas/ \
+    --ms1_tol 10 \
+    --ms2_tol 15
+
+# Lower-resolution data
+python formula_annotation.py data.csv \
+    --output_path results/ \
+    --ms1_tol 20 \
+    --ms2_tol 25</code>
+</pre>
+
+<hr />
+                    </section>
                 </section>
 
-                <section id="page-denovo" class="page-content hidden">
-                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Advanced Usage: De novo lipid generation</h1>
-                    <!-- Content from original -->
+                <!-- Page: Database Search -->
+                <section id="page-advanced-usage-database-search" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Database Search</h1>
+                    
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Searches a spectral database to identify known lipids based on precursor m/z and MS/MS similarity.</p>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+
+<pre data-language="bash">
+<code class="language-bash">python db_search.py input.csv \
+    --result_path results/ \
+    --db_path lipid.db \
+    --MS1_tol 0.005 \
+    --MS2_tol 0.01 \
+    --MS2_threshold 0.7 \
+    --method weighted_dot_product \
+    --is_ppm False</code>
+</pre>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Parameters</h4>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>csv_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to input CSV file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--result_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>.</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output directory</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--db_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>lipid_plus.db</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to SQLite database</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS1_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.005</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance (Da or ppm)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.01</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 fragment tolerance (Da)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--method</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>weighted_dot_product</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Scoring method: <code>dot_product</code>, <code>weighted_dot_product</code>, <code>entropy_similarity</code>, <code>unweighted_entropy_similarity</code></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.7</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 score (0-1) to accept a match</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--is_ppm</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">bool</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>False</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Use ppm for MS1 tolerance (True) or Da (False)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Input Requirements</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Your CSV must contain:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>precursor_mz</code>: Precursor mass-to-charge ratio</li>
+<li><code>adduct</code>: Adduct type (e.g., <code>[M+H]+</code>, <code>[M+Na]+</code>, <code>[M-H]-</code>)</li>
+<li><code>MS2</code>: MS/MS spectrum as string representation of list, e.g., <code>&quot;[[100.0, 1500], [200.5, 3000]]&quot;</code></li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Files</h4>
+
+<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong><code>annotated_df.csv</code></strong>: Successfully matched lipids with database annotations</li>
+</ol>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>Contains all original columns plus:</li>
+<li><code>name</code>, <code>formula</code>, <code>class</code>, <code>category</code> (from database)</li>
+<li><code>mass_diff_ppm</code>: Mass accuracy</li>
+<li>Spectral similarity scores</li>
+</ul>
+
+<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong><code>dark_lipid.csv</code></strong>: Unknown lipids that didn't match the database</li>
+</ol>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>These will be processed by the prediction steps</li>
+</ul>
+
+<hr />
+
                 </section>
 
-                <section id="page-lipidomics" class="page-content hidden">
-                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Advanced Usage: Lipidomics Analysis</h1>
-                    <!-- Content from original -->
+                <!-- Page: Adduct Prediction -->
+                <section id="page-advanced-usage-adduct-prediction" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Adduct Prediction</h1>
+                    
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts the adduct type for unknown lipids using a trained machine learning model.</p>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+
+<pre data-language="bash">
+<code class="language-bash">python adduct_predict.py input.csv model/adduct.joblib \
+    --output_path results/adduct_predictions.csv</code>
+</pre>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Parameters</h4>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Input CSV file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>model_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained adduct model (.joblib)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--output_path</code> <code>-o</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>adduct_predict.csv</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output file path</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Input Requirements</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The CSV must contain:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>precursor_mz</code>: Precursor m/z (will be rounded to 2 decimals)</li>
+<li><code>ion_mode</code>: Ion mode (<code>positive</code> or <code>negative</code>)</li>
+<li><code>mz_*</code> columns: Binary features (0/1) indicating presence of fragment ions</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Columns</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Original columns plus:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>predicted_adduct</code>: Predicted adduct type</li>
+<li><code>adduct_confidence</code>: Prediction confidence (0-1), if available</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Example</h4>
+
+<pre data-language="bash">
+<code class="language-bash"># Using dark lipids from Step 1
+python adduct_predict.py results/dark_lipid.csv models/adduct.joblib \
+    -o results/with_adducts.csv
+
+# Process all data (no database search)
+python adduct_predict.py raw_data.csv adduct.joblib \
+    -o predictions/adducts.csv</code>
+</pre>
+
+<hr />
+
                 </section>
 
-                <section id="page-development" class="page-content hidden">
-                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Development</h1>
-                    <!-- Content from original -->
+                <!-- Page: Class Prediction -->
+                <section id="page-advanced-usage-class-prediction" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Class Prediction</h1>
+                    
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts lipid class using a hybrid approach combining rule-based classification and machine learning.</p>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+
+<pre data-language="bash">
+<code class="language-bash">python class_predict.py input.csv model/class.joblib \
+    --output_path results/class_predictions.csv \
+    --ms1_tol 10 \
+    --ms2_tol 20</code>
+</pre>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Parameters</h4>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Input CSV file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>model_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained class model (.joblib)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--output_path</code> <code>-o</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>class_pred.csv</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output file path</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>10.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for rule-based matching (ppm)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>20.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for rule-based matching (ppm)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--no-rules</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">flag</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>False</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Skip rule-based classification, use ML only</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Input Requirements</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The CSV must contain:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>precursor_mz</code>: Precursor m/z</li>
+<li><code>ion_mode</code>: Ion mode</li>
+<li><code>adduct</code> or <code>predicted_adduct</code>: Adduct type</li>
+<li><code>mz_*</code> columns: Fragment features</li>
+<li><code>MS2</code> or <code>MS2_norm</code>: MS/MS spectrum (for rule-based classification)</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Two-Stage Process</h4>
+
+<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>Rule-Based Classification</strong>: Uses chemical knowledge and fragmentation patterns</li>
+</ol>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>High confidence for lipids with characteristic fragments</li>
+<li>Marks successfully classified lipids with <code>prediction_source = &#x27;rule-based&#x27;</code></li>
+</ul>
+
+<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>ML-Based Prediction</strong>: For remaining lipids</li>
+</ol>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>Uses machine learning model</li>
+<li>Marks predictions with <code>prediction_source = &#x27;model-based&#x27;</code></li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Columns</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Original columns plus:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>predicted_class</code>: Predicted lipid class (e.g., PC, PE, TG, Cer)</li>
+<li><code>prediction_source</code>: <code>&#x27;rule-based&#x27;</code> or <code>&#x27;model-based&#x27;</code></li>
+<li><code>class_confidence</code>: Confidence score (0-1)</li>
+<li><code>category</code>: Lipid category (e.g., Glycerophospholipids, Sphingolipids)</li>
+<li><code>num_chain</code>: Number of fatty acid chains</li>
+<li><code>classes_mz</code>: Possible classes from precursor mass (rule-based)</li>
+<li><code>classes_ms2</code>: Possible classes from MS2 fragments (rule-based)</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Example</h4>
+
+<pre data-language="bash">
+<code class="language-bash"># Default (hybrid approach)
+python class_predict.py results/with_adducts.csv class.joblib \
+    -o results/with_classes.csv
+
+# ML only (faster, may be less accurate)
+python class_predict.py input.csv class.joblib \
+    -o output.csv --no-rules
+
+# Strict tolerances (high-resolution data)
+python class_predict.py input.csv class.joblib \
+    -o output.csv --ms1_tol 5 --ms2_tol 10</code>
+</pre>
+
+<hr />
+
                 </section>
 
+                <!-- Page: Chain Composition Prediction -->
+                <section id="page-advanced-usage-chain-composition-prediction" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Chain Composition Prediction</h1>
+                    
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts detailed fatty acid chain compositions (number of carbons and double bonds in each chain).</p>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+
+<pre data-language="bash">
+<code class="language-bash">python predict_plsf.py model/plsf.joblib input.csv \
+    --output_path results/final_output.csv</code>
+</pre>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Parameters</h4>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>model_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained PLSF model (.joblib)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Input CSV file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>-o</code> <code>--output_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>result.csv</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output file path</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Input Requirements</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The CSV must contain:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>precursor_mz</code>: Precursor m/z (rounded to 2 decimals)</li>
+<li><code>adduct</code> or <code>predicted_adduct</code>: Adduct type</li>
+<li><code>class</code> or <code>predicted_class</code>: Lipid class</li>
+<li><code>num_chain</code>: Number of fatty acid chains (1-4)</li>
+<li><code>mz_*</code> columns: Fragment features</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Special Handling</h4>
+
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>Single-chain lipids</strong> (<code>num_chain=1</code>): Direct mass calculation instead of model</li>
+<li><strong>Unknown adducts/classes</strong>: Marked as invalid, predictions set to NaN</li>
+<li><strong>Confidence scores</strong>: Combined from PLSF, class, and adduct predictions</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Columns</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Cleaned output with:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>name</code>: Combined lipid name (e.g., "PC 16:0_18:1")</li>
+<li><code>precursor_mz</code>, <code>ion_mode</code>, <code>adduct</code>, <code>class</code>, <code>category</code></li>
+<li><code>num_chain</code>: Number of chains</li>
+<li><code>pred_confidence</code>: Average confidence across all prediction steps</li>
+<li><code>plsf_rank1</code>, <code>plsf_rank2</code>, <code>plsf_rank3</code>: Top 3 chain composition predictions</li>
+<li>(mz_* features and intermediate prediction columns are removed)</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Name Format</h4>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <code>name</code> column combines class and chain information:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>Format: <code>{Class} {C1}:{DB1}_{C2}:{DB2}_{C3}:{DB3}_{C4}:{DB4}</code></li>
+<li>Chains sorted by length (descending)</li>
+<li>Zero chains (0:0) are omitted</li>
+<li>Examples:</li>
+<li><code>PC 16:0_18:1</code> (PC with C16:0 and C18:1)</li>
+<li><code>TG 16:0_18:1_18:2</code> (TG with three chains)</li>
+<li><code>Cer 18:1_16:0</code> (Ceramide with two chains)</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Example</h4>
+
+<pre data-language="bash">
+<code class="language-bash"># Basic usage
+python predict_plsf.py plsf.joblib results/with_classes.csv \
+    -o results/final_annotations.csv
+
+# With custom output location
+python predict_plsf.py models/plsf_split.joblib data/classified.csv \
+    -o output/experiment1/annotations.csv</code>
+</pre>
+
+<hr />
+
+                </section>
+
+                <!-- Page: Alternative: Formula Annotation -->
+                <section id="page-advanced-usage-alternative-formula-annotation" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Alternative: Formula Annotation</h1>
+                    
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For metabolomics or when molecular formulas are needed, use the formula annotation workflow instead of or in addition to the main pipeline.</p>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+
+<pre data-language="bash">
+<code class="language-bash">python formula_annotation.py input.csv \
+    --output_path results/formulas/ \
+    --ms1_tol 15 \
+    --ms2_tol 20</code>
+</pre>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Parameters</h4>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Parameter</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Default</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>input_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Input CSV file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--output_path</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>result/process_file</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output directory</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>15.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for formula annotation (ppm)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>20.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for formula annotation (ppm)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">What It Does</h4>
+
+<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>Converts CSV to MGF format</li>
+<li>Uses MsBuddy to predict molecular formulas</li>
+<li>Applies class-specific rules for lipid formulas</li>
+<li>Generates top 5 formula candidates</li>
+</ol>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Files</h4>
+
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>input.mgf</code>: MGF format for MsBuddy</li>
+<li><code>buddy_result.csv</code>: Raw MsBuddy predictions</li>
+<li><code>formula_result.csv</code>: Processed formulas with class rules applied</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Columns</h4>
+
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>predicted_formula</code>: Top-ranked molecular formula</li>
+<li><code>formula_rank_1</code> to <code>formula_rank_5</code>: Top 5 formula candidates</li>
+<li>All original input columns</li>
+</ul>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Example</h4>
+
+<pre data-language="bash">
+<code class="language-bash"># High-resolution data (tight tolerances)
+python formula_annotation.py data.csv \
+    --output_path results/formulas/ \
+    --ms1_tol 10 \
+    --ms2_tol 15
+
+# Lower-resolution data
+python formula_annotation.py data.csv \
+    --output_path results/ \
+    --ms1_tol 20 \
+    --ms2_tol 25</code>
+</pre>
+
+<hr />
+                </section>
+
+                <!-- Page: FAQ -->
                 <section id="page-faq" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">FAQ</h1>
-                    <!-- Content from original -->
+                    
+                    
+                    <section id="page-faq-input-data-format-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Input Data Format</h2>
+                        
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Required Columns</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Your input CSV file must contain these columns:</p>
+
+<pre data-language="csv">
+<code class="language-csv">index,precursor_mz,ion_mode,adduct,MS2,mz_100,mz_101,...
+F000001,760.5851,positive,[M+H]+,&quot;[[184.07, 5000], [104.11, 2000]]&quot;,1,0,...
+F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,0,...</code>
+</pre>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Column Descriptions</h4>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Column</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Required For</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>index</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Unique identifier</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">All steps</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>precursor_mz</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Precursor mass-to-charge ratio</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">All steps</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>ion_mode</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>positive</code> or <code>negative</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Adduct prediction</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>adduct</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Adduct type (e.g., <code>[M+H]+</code>)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DB search, class prediction</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>MS2</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str/list</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS/MS spectrum as <code>[[mz, intensity], ...]</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DB search, class prediction</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>mz_*</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">int</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Binary features (0/1) for fragment presence</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">All predictions</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">MS2 Spectrum Format</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <code>MS2</code> column can be formatted as:</p>
+
+<pre data-language="python">
+<code class="language-python"># String representation (preferred for CSV)
+&quot;[[184.07, 5000], [104.11, 2000], [506.36, 1500]]&quot;
+
+# Or after loading, as a Python list
+[[184.07, 5000], [104.11, 2000], [506.36, 1500]]</code>
+</pre>
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Feature Columns (mz_*)</h3>
+
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>Binary features indicating presence/absence of fragment ions</li>
+<li>Typically generated during preprocessing</li>
+<li>Example: <code>mz_184</code>, <code>mz_104</code>, <code>mz_86</code>, etc.</li>
+<li>Values: <code>0</code> (absent) or <code>1</code> (present)</li>
+</ul>
+
+<hr />
+
+                    </section>
+                    
+                    <section id="page-faq-output-files-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Output Files</h2>
+                        
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Final Annotations (<code>final_annotations.csv</code>)</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The main output containing complete lipid annotations:</p>
+
+<pre data-language="csv">
+<code class="language-csv">index,name,precursor_mz,ion_mode,adduct,class,category,num_chain,pred_confidence,plsf_rank1,...
+F000001,PC 16:0_18:1,760.5851,positive,[M+H]+,PC,Glycerophospholipids,2,0.94,&quot;16:0_18:1&quot;,...</code>
+</pre>
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Database Annotations (<code>annotated_df.csv</code>)</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Lipids successfully matched to the database:</p>
+
+<pre data-language="csv">
+<code class="language-csv">index,precursor_mz,adduct,name,formula,class,category,mass_diff_ppm,weighted_dot_product,...
+F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.89,...</code>
+</pre>
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Combined Results (<code>all_annotations_combined.csv</code>)</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Merged database annotations + predicted annotations for comprehensive results.</p>
+
+<hr />
+
+                    </section>
+                    
+                    <section id="page-faq-class-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Class</h2>
+                        <div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Class</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Category</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Number of Tail</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Full Name of Class</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Full Name of Category</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CAR</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Acyl carnitine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acid</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NAE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">N-acyl ethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">WE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Wax Ester</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Digalactosyldiacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Monoacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MGDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Monogalactosyldiacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SQDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sulfoquinovosyldiacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">TG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Triacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">BMP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Bis(monoacylglycero)phosphate</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cardiolipin</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidic acid</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-alkylphosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-alkylphosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPI</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylinositol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidic acid</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkylphosphatidylcholine (PC-O)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-P</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Plasmenylcholine (PC-P)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkylphosphatidylethanolamine (PE-O)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-P</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Plasmenylethanolamine (PE-P)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkylphosphatidylglycerol (PG-O)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG-P</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Plasmenylglycerol (PG-P)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylinositol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PMeOH</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylmethanol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGCC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglyceryl-N,N,N-trimethylhomoserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGGA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglycerylglucuronide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGTS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglyceryl hydroxymethyl-N,N,N-trimethyl-beta-alanine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LDGCC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-diacylglyceryl-N,N,N-trimethylhomoserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LDGTS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-diacylglyceryl hydroxymethyl-N,N,N-trimethyl-beta-alanine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Ceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GalCer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Galactosylceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GlcCer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glucosylceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">HexCer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Hexosylceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LacCer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lactosylceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE_Cer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoethanolamine ceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI_Cer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoinositol ceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SM</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingomyelin</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cholesterol Ester</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol Lipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol Lipids</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                    </section>
                 </section>
 
+                <!-- Page: Input Data Format -->
+                <section id="page-faq-input-data-format" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Input Data Format</h1>
+                    
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Required Columns</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Your input CSV file must contain these columns:</p>
+
+<pre data-language="csv">
+<code class="language-csv">index,precursor_mz,ion_mode,adduct,MS2,mz_100,mz_101,...
+F000001,760.5851,positive,[M+H]+,&quot;[[184.07, 5000], [104.11, 2000]]&quot;,1,0,...
+F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,0,...</code>
+</pre>
+
+<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Column Descriptions</h4>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Column</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Description</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Required For</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>index</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Unique identifier</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">All steps</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>precursor_mz</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Precursor mass-to-charge ratio</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">All steps</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>ion_mode</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>positive</code> or <code>negative</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Adduct prediction</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>adduct</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Adduct type (e.g., <code>[M+H]+</code>)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DB search, class prediction</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>MS2</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str/list</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS/MS spectrum as <code>[[mz, intensity], ...]</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DB search, class prediction</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>mz_*</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">int</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Binary features (0/1) for fragment presence</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">All predictions</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">MS2 Spectrum Format</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <code>MS2</code> column can be formatted as:</p>
+
+<pre data-language="python">
+<code class="language-python"># String representation (preferred for CSV)
+&quot;[[184.07, 5000], [104.11, 2000], [506.36, 1500]]&quot;
+
+# Or after loading, as a Python list
+[[184.07, 5000], [104.11, 2000], [506.36, 1500]]</code>
+</pre>
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Feature Columns (mz_*)</h3>
+
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li>Binary features indicating presence/absence of fragment ions</li>
+<li>Typically generated during preprocessing</li>
+<li>Example: <code>mz_184</code>, <code>mz_104</code>, <code>mz_86</code>, etc.</li>
+<li>Values: <code>0</code> (absent) or <code>1</code> (present)</li>
+</ul>
+
+<hr />
+
+                </section>
+
+                <!-- Page: Output Files -->
+                <section id="page-faq-output-files" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Output Files</h1>
+                    
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Final Annotations (<code>final_annotations.csv</code>)</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The main output containing complete lipid annotations:</p>
+
+<pre data-language="csv">
+<code class="language-csv">index,name,precursor_mz,ion_mode,adduct,class,category,num_chain,pred_confidence,plsf_rank1,...
+F000001,PC 16:0_18:1,760.5851,positive,[M+H]+,PC,Glycerophospholipids,2,0.94,&quot;16:0_18:1&quot;,...</code>
+</pre>
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Database Annotations (<code>annotated_df.csv</code>)</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Lipids successfully matched to the database:</p>
+
+<pre data-language="csv">
+<code class="language-csv">index,precursor_mz,adduct,name,formula,class,category,mass_diff_ppm,weighted_dot_product,...
+F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.89,...</code>
+</pre>
+
+<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Combined Results (<code>all_annotations_combined.csv</code>)</h3>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Merged database annotations + predicted annotations for comprehensive results.</p>
+
+<hr />
+
+                </section>
+
+                <!-- Page: Class -->
+                <section id="page-faq-class" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Class</h1>
+                    <div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Class</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Category</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Number of Tail</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Full Name of Class</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Full Name of Category</th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CAR</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Acyl carnitine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acid</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NAE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">N-acyl ethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">WE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Wax Ester</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Digalactosyldiacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Monoacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MGDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Monogalactosyldiacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SQDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sulfoquinovosyldiacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">TG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Triacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">BMP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Bis(monoacylglycero)phosphate</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cardiolipin</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidic acid</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-alkylphosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-alkylphosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPI</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylinositol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidic acid</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkylphosphatidylcholine (PC-O)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-P</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Plasmenylcholine (PC-P)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkylphosphatidylethanolamine (PE-O)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-P</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Plasmenylethanolamine (PE-P)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkylphosphatidylglycerol (PG-O)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG-P</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Plasmenylglycerol (PG-P)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylinositol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PMeOH</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylmethanol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGCC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglyceryl-N,N,N-trimethylhomoserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGGA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglycerylglucuronide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGTS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglyceryl hydroxymethyl-N,N,N-trimethyl-beta-alanine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LDGCC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-diacylglyceryl-N,N,N-trimethylhomoserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LDGTS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-diacylglyceryl hydroxymethyl-N,N,N-trimethyl-beta-alanine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Ceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GalCer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Galactosylceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GlcCer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glucosylceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">HexCer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Hexosylceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LacCer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lactosylceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE_Cer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoethanolamine ceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI_Cer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoinositol ceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SM</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingomyelin</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cholesterol Ester</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol Lipids</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol Lipids</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+                </section>
+
+                <!-- Page: Release Note -->
                 <section id="page-release-note" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Release Note</h1>
-                    <!-- Content from original -->
-                </section>
+                    <strong>Last Updated:</strong> November 2024  
+<strong>Version:</strong> 1.0.0
 
+                </section>
             </div>
         </main>
-
-        <footer id="page-footer" class="w-full p-6 border-t border-gray-200 bg-white dark:bg-gray-900 dark:border-gray-700 transition-all duration-300 ease-in-out md:pl-64 lg:pl-72">
-            <div class="text-center text-sm text-gray-500 dark:text-gray-400">
-                &copy; <span id="current-year"></span> LIPID+ Development Team. All rights reserved.
-            </div>
-        </footer>
     </div>
 
-    <div id="search-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4" onclick="closeSearchModal()">
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 w-full max-w-md" onclick="event.stopPropagation()">
-            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Search</h3>
-            <p id="search-modal-message" class="text-sm text-gray-600 dark:text-gray-300 mb-6"></p>
-            <button class="w-full bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-700 transition-colors" onclick="closeSearchModal()">
-                Close
-            </button>
+    <!-- Search Modal -->
+    <div id="search-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
+            <p id="search-modal-message" class="text-gray-700 dark:text-gray-300 mb-4"></p>
+            <button onclick="closeSearchModal()" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Close</button>
         </div>
     </div>
 
-    <script src="js/common.js"></script>
-    <script src="js/docs.js"></script>
+    <script>
+        // --- Page Navigation ---
+        function showPage(pageId, navId, clickedElement) {
+            // Hide all page content sections
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // Show the selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            }
+
+            // Remove active class from all sidebar links
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.classList.remove('sidebar-active');
+            });
+
+            // Add active class to clicked element
+            if (clickedElement) {
+                clickedElement.classList.add('sidebar-active');
+            }
+
+            // Close mobile menu on page navigation
+            if (window.innerWidth < 768) {
+                toggleMobileMenu(false);
+            }
+
+            // Close dropdowns
+            closeAllDropdowns();
+        }
+
+        // --- Dropdown Menus ---
+        function toggleDropdown(dropdownId) {
+            const dropdown = document.getElementById(dropdownId);
+            const isOpen = !dropdown.classList.contains('hidden');
+            
+            // Close all dropdowns first
+            closeAllDropdowns();
+
+            // If it was closed, open it
+            if (!isOpen) {
+                dropdown.classList.remove('hidden');
+            }
+        }
+
+        function closeAllDropdowns() {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.add('hidden');
+            });
+        }
+
+        // Close dropdowns if clicking outside
+        window.addEventListener('click', function(event) {
+            if (!event.target.closest('[onclick^="toggleDropdown"]')) {
+                closeAllDropdowns();
+            }
+        });
+
+        // --- Sidebar Submenu ---
+        function toggleSidebarMenu(submenuId, element) {
+            const submenu = document.getElementById(submenuId);
+            const chevron = element.querySelector('.submenu-chevron');
+            if (submenu) {
+                submenu.classList.toggle('hidden');
+                chevron.classList.toggle('rotate-180');
+                element.setAttribute('aria-expanded', !submenu.classList.contains('hidden'));
+            }
+        }
+
+        // --- Mobile Menu Toggle ---
+        function toggleMobileMenu(forceState) {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            
+            let open;
+            if (typeof forceState === 'boolean') {
+                open = forceState;
+            } else {
+                open = sidebar.classList.contains('-translate-x-full');
+            }
+
+            if (open) {
+                sidebar.classList.remove('-translate-x-full');
+                sidebar.classList.add('translate-x-0');
+                overlay.classList.remove('hidden');
+                mobileMenuBtn.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                sidebar.classList.remove('translate-x-0');
+                overlay.classList.add('hidden');
+                mobileMenuBtn.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>`;
+            }
+        }
+
+        // --- Search Modal ---
+        function showSearchModal(message) {
+            document.getElementById('search-modal-message').textContent = message;
+            document.getElementById('search-modal').classList.remove('hidden');
+        }
+
+        function closeSearchModal() {
+            document.getElementById('search-modal').classList.add('hidden');
+        }
+
+        function handleSearch(event) {
+            event.preventDefault();
+            const input = document.getElementById('search-input');
+            const query = input.value.trim();
+            if (query) {
+                showSearchModal(`Search functionality for "${query}" is not implemented yet.`);
+            } else {
+                showSearchModal('Please enter a search term.');
+            }
+        }
+        
+        // --- Dark Mode ---
+        const themeIconLight = document.getElementById('theme-icon-light');
+        const themeIconDark = document.getElementById('theme-icon-dark');
+
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                themeIconLight.classList.remove('hidden');
+                themeIconDark.classList.add('hidden');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                themeIconDark.classList.remove('hidden');
+                themeIconLight.classList.add('hidden');
+            }
+        }
+
+        // Check for saved theme preference
+        function applyInitialTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                themeIconDark.classList.remove('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeIconLight.classList.remove('hidden');
+            }
+        }
+
+        applyInitialTheme();
+
+        // --- Initialize Page ---
+        // Show first page by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstLink = document.querySelector('.sidebar-link[data-page-id]');
+            if (firstLink) {
+                showPage('page-installation', 'nav-docs', firstLink);
+            }
+        });
+    </script>
+
 </body>
 </html>

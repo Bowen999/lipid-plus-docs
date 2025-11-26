@@ -164,3 +164,218 @@ hr {
 .dark hr {
     border-color: #374151; /* gray-700 */
 }
+
+/* =================================== */
+/* === CODE BLOCK STYLES === */
+/* =================================== */
+
+/* --- Code Block Container (pre) --- */
+pre {
+    background: linear-gradient(135deg, #1e1e2e 0%, #252536 100%);
+    border: 1px solid #3d3d5c;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.3),
+        0 2px 4px -1px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+/* Add subtle top bar effect */
+pre::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #7c3aed, #a855f7, #7c3aed);
+    border-radius: 8px 8px 0 0;
+    opacity: 0.8;
+}
+
+/* --- Code Block Text (code inside pre) --- */
+pre code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', 'Monaco', monospace;
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: #e4e4e7; /* zinc-200 */
+    background: transparent;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    display: block;
+    tab-size: 4;
+}
+
+/* Scrollbar styling for code blocks */
+pre::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+pre::-webkit-scrollbar-track {
+    background: #1e1e2e;
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: #4c4c6d;
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+    background: #5c5c8a;
+}
+
+/* --- Inline Code Styles --- */
+code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', 'Monaco', monospace;
+    font-size: 0.875em;
+    padding: 0.2em 0.45em;
+    border-radius: 6px;
+    font-weight: 500;
+    /* Light mode */
+    background-color: #f3f4f6; /* gray-100 */
+    color: #be185d; /* pink-700 */
+    border: 1px solid #e5e7eb; /* gray-200 */
+}
+
+/* Dark mode inline code */
+.dark code {
+    background: linear-gradient(135deg, #2d2d3d 0%, #363649 100%);
+    color: #f0abfc; /* fuchsia-300 */
+    border: 1px solid #4c4c6d;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure code inside pre doesn't get inline styles */
+pre code {
+    background: transparent !important;
+    color: #e4e4e7 !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.dark pre code {
+    background: transparent !important;
+    color: #e4e4e7 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* --- Basic Syntax Highlighting Colors --- */
+/* Comments */
+pre code .text-gray-400,
+pre code .comment {
+    color: #6b7280; /* gray-500 */
+    font-style: italic;
+}
+
+/* Strings */
+pre code .text-green-400,
+pre code .string {
+    color: #86efac; /* green-300 */
+}
+
+/* Keywords */
+pre code .text-purple-400,
+pre code .keyword {
+    color: #c084fc; /* purple-400 */
+}
+
+/* Functions/Methods */
+pre code .text-yellow-300,
+pre code .function {
+    color: #fde047; /* yellow-300 */
+}
+
+/* Numbers */
+pre code .text-orange-400,
+pre code .number {
+    color: #fb923c; /* orange-400 */
+}
+
+/* Operators */
+pre code .text-blue-400,
+pre code .operator {
+    color: #60a5fa; /* blue-400 */
+}
+
+/* Shell prompt */
+pre code .text-emerald-400 {
+    color: #34d399; /* emerald-400 */
+}
+
+/* --- Language Label (optional) --- */
+pre[data-language]::after {
+    content: attr(data-language);
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* --- Copy Button Area (if you add one later) --- */
+pre .copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.75rem;
+    color: #9ca3af;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+pre .copy-button:hover {
+    color: #e5e7eb;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Table inside code documentation --- */
+/* Parameter tables styling */
+.dark table {
+    background-color: #1f2937; /* gray-800 */
+}
+
+.dark thead {
+    background-color: #374151; /* gray-700 */
+}
+
+.dark th {
+    color: #e5e7eb; /* gray-200 */
+}
+
+.dark td {
+    color: #d1d5db; /* gray-300 */
+    border-color: #374151; /* gray-700 */
+}
+
+.dark tbody tr:hover {
+    background-color: #2d3748;
+}
+
+/* Code inside table cells */
+td code, th code {
+    font-size: 0.8em;
+    padding: 0.15em 0.35em;
+}
+
+.dark td code {
+    background: #2d2d3d;
+    color: #f0abfc;
+    border-color: #4c4c6d;
+}
