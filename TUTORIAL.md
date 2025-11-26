@@ -73,8 +73,7 @@ To run this process, the input file must contain at least 3 groups along with in
 
 # Advanced Usage
 
-### Customizing Parameters (Optional)
-
+## Identification Pipeline
 If you need different settings:
 
 ```bash
@@ -100,8 +99,9 @@ python run.py feature_df.csv \
 | `--MS2_threshold` | `float` | `0.7` | Minimum MS2 similarity score for database match |
 | `--ms1_tol_ppm` | `float` | `10.0` | MS1 tolerance for class prediction in ppm |
 | `--ms2_tol_ppm` | `float` | `20.0` | MS2 tolerance for class prediction in ppm |
-## Database Search
 
+
+## Database Search
 Searches a spectral database to identify known lipids based on precursor m/z and MS/MS similarity.
 
 #### Command
@@ -396,7 +396,18 @@ python formula_annotation.py data.csv \
 
 ---
 
-## Analysis
+## Report Generation
+
+```
+python code/report_generate.py \
+  --input_path results/identification_result.csv \
+  --groups 0h 2h 4h 8h \
+  --group_1 0h \
+  --group_2 8h \
+  --p_value_threshold 0.1 \
+  --fc_threshold 1 \
+```
+
 | Parameter | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `--input_path` | `String` | **Required** | The file path to the identification result|
@@ -409,6 +420,7 @@ python formula_annotation.py data.csv \
 | `--fc_threshold` | `Float` | `1.2` | The fold-change threshold for determining significant lipids. |
 | `--keep_cols` | `List` | `['index', 'name', 'precursor_mz', 'adduct', 'MS2_norm']` | Specific columns to retain for the interactive Mass Spec table in the report. |
 ---
+
 
 # FAQ
 ## Directory Structure
@@ -513,8 +525,6 @@ Merged database annotations + predicted annotations for comprehensive results.
 
 ## What is PLSF
 
-
-
 ## Class
 | Class  | Category | Number of Tail | Full Name of Class                       | Full Name of Category    |
 | :----- | :------- | :-------- | :--------------------------------------- | :----------------------- |
@@ -568,8 +578,19 @@ Merged database annotations + predicted annotations for comprehensive results.
 | ST     | ST       | 1         | Sterol                                   | Sterol Lipids            |
 
 ## Data Source
+The **LIPID+** dataset is aggregated from the following MS libraries and resources:  
+
+* [**MS-DIAL Lipidome Atlas**](https://static-content.springer.com/esm/art%3A10.1038%2Fs41587-020-0531-2/MediaObjects/41587_2020_531_MOESM5_ESM.zip)
+* [**GNPS (Global Natural Products Social Molecular Networking)**](https://external.gnps2.org/gnpslibrary)
+* [**PNNL Lipid Library (Pacific Northwest National Laboratory Lipid Library)**](https://gnps.ucsd.edu/ProteoSAFe/gnpslibrary.jsp?library=PNNL-LIPIDS-POSITIVE)
+* [**MassBank**](https://massbank.eu)
+* [**MoNA (MassBank of North America)**](https://mona.fiehnlab.ucdavis.edu)
+* [**MassSpecGym**](https://huggingface.co/datasets/roman-bushuiev/MassSpecGym)
+
+For metabolite MS databases (GNPS, MassBank, MoNA, MassSpecGym), spectra were filtered by matching the **[first InChIKey block](https://en.wikipedia.org/wiki/International_Chemical_Identifier)** to structures in lipid databases including [**LIPID MAPS**](https://www.lipidmaps.org), [**SwissLipids**](https://www.swisslipids.org) and [**MS-DIAL Lipid Database**](https://static-content.springer.com/esm/art%3A10.1038%2Fs41587-020-0531-2/MediaObjects/41587_2020_531_MOESM5_ESM.zip)
+
 
 
 # Release Note
-**Last Updated:** November 2024  
-**Version:** 1.0.0
+**Last Updated:** November 26, 2025    
+**Version:** 0.0.0 (Test Version)
