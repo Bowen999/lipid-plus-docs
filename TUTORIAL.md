@@ -31,7 +31,11 @@ The easiest way to run the complete identification pipeline (database search + m
 python run.py feature_df.csv
 ```
 
-
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 The usage of the pipeline with custom parameters can be found in the `Advanced Usage` section.  
 
