@@ -31,6 +31,8 @@ The easiest way to run the complete identification pipeline (database search + m
 python run.py feature_df.csv
 ```
 
+
+
 The usage of the pipeline with custom parameters can be found in the `Advanced Usage` section.  
 
 The pipeline will generate several files in the `results/` directory. **Main result file**: `results/final_annotations.csv` contains your complete lipid annotations.
