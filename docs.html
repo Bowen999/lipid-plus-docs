@@ -136,8 +136,8 @@
                                         Class Prediction
                                     </a>
 
-                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-advanced-usage-chain-composition-prediction" onclick="showPage('page-advanced-usage-chain-composition-prediction', 'nav-docs', this)">
-                                        Chain Composition Prediction
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-advanced-usage-plsf-prediction" onclick="showPage('page-advanced-usage-plsf-prediction', 'nav-docs', this)">
+                                        PLSF Prediction
                                     </a>
 
                                     <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-advanced-usage-alternative-formula-annotation" onclick="showPage('page-advanced-usage-alternative-formula-annotation', 'nav-docs', this)">
@@ -734,15 +734,15 @@ python class_predict.py input.csv class.joblib \
 
                     </section>
                     
-                    <section id="page-advanced-usage-chain-composition-prediction-content" class="mt-10">
-                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Chain Composition Prediction</h2>
+                    <section id="page-advanced-usage-plsf-prediction-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">PLSF Prediction</h2>
                         
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts detailed fatty acid chain compositions (number of carbons and double bonds in each chain).</p>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
 
 <pre data-language="bash">
-<code class="language-bash">python predict_plsf.py model/plsf.joblib input.csv \
+<code class="language-bash">python predict_plsf.py input.csv model/plsf.joblib \
     --output_path results/final_output.csv</code>
 </pre>
 
@@ -777,10 +777,15 @@ python class_predict.py input.csv class.joblib \
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>result.csv</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output file path</td>
 </tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>n-jobs</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">int</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CPU cores number are used</td>
+</tr>
 </tbody>
 </table>
 </div>
-
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Input Requirements</h4>
 
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The CSV must contain:</p>
@@ -1453,16 +1458,16 @@ python class_predict.py input.csv class.joblib \
 
                 </section>
 
-                <!-- Page: Chain Composition Prediction -->
-                <section id="page-advanced-usage-chain-composition-prediction" class="page-content hidden">
-                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Chain Composition Prediction</h1>
+                <!-- Page: PLSF Prediction -->
+                <section id="page-advanced-usage-plsf-prediction" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">PLSF Prediction</h1>
                     
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts detailed fatty acid chain compositions (number of carbons and double bonds in each chain).</p>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
 
 <pre data-language="bash">
-<code class="language-bash">python predict_plsf.py model/plsf.joblib input.csv \
+<code class="language-bash">python predict_plsf.py input.csv model/plsf.joblib \
     --output_path results/final_output.csv</code>
 </pre>
 
@@ -1497,10 +1502,15 @@ python class_predict.py input.csv class.joblib \
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>result.csv</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output file path</td>
 </tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>n-jobs</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">int</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CPU cores number are used</td>
+</tr>
 </tbody>
 </table>
 </div>
-
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Input Requirements</h4>
 
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The CSV must contain:</p>

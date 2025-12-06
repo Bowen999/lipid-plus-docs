@@ -268,14 +268,14 @@ python class_predict.py input.csv class.joblib \
 
 ---
 
-## Chain Composition Prediction
+## PLSF Prediction
 
 Predicts detailed fatty acid chain compositions (number of carbons and double bonds in each chain).
 
 #### Command
 
 ```bash
-python predict_plsf.py model/plsf.joblib input.csv \
+python predict_plsf.py input.csv model/plsf.joblib \
     --output_path results/final_output.csv
 ```
 
@@ -286,7 +286,7 @@ python predict_plsf.py model/plsf.joblib input.csv \
 | `model_path` | str | *required* | Path to trained PLSF model (.joblib) |
 | `input_path` | str | *required* | Input CSV file |
 | `-o` `--output_path` | str | `result.csv` | Output file path |
-
+|`n-jobs`|int|2| CPU cores number are used |
 #### Input Requirements
 
 The CSV must contain:
