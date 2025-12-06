@@ -30,12 +30,8 @@ The easiest way to run the complete identification pipeline (database search + m
 ```bash
 python run.py feature_df.csv
 ```
+&nbsp;
 
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
 
 The usage of the pipeline with custom parameters can be found in the `Advanced Usage` section.  
 
@@ -91,6 +87,7 @@ python run.py feature_df.csv \
     --MS1_tol 0.01 \
     --MS2_threshold 0.8
 ```
+&nbsp;
 
 | Parameter | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -413,6 +410,7 @@ python code/report_generate.py \
   --p_value_threshold 0.1 \
   --fc_threshold 1 \
 ```
+&nbsp;
 
 | Parameter | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
@@ -451,7 +449,7 @@ your_project/
 ├── feature_df.csv                  # Your input data
 └── results/                        # Output directory (created automatically)
 ```
-
+&nbsp;
 With this structure, you can simply run:
 ```bash
 python run.py feature_df.csv
