@@ -1,6 +1,6 @@
 # Installation
 ### Clone the project folder and download database 
- 
+Download the source code at https://github.com/Bowen999/LIPID-PLUS/releases or run the command below:
 ```bash
 git clone https://github.com/Bowen999/LIPID-PLUS.git
 cd LIPID-PLUS
@@ -35,7 +35,8 @@ python run.py feature_df.csv
 
 The usage of the pipeline with custom parameters can be found in the `Advanced Usage` section.  
 
-The pipeline will generate several files in the `results/` directory. **Main result file**: `results/final_annotations.csv` contains your complete lipid annotations.
+The pipeline will generate several files in the `results/` directory.   
+**Main result file**: `results/final_annotations.csv` contains the complete lipid annotations result, search/prediction are recorded in `name` column.
 
 ```text
 results/
@@ -64,7 +65,7 @@ python code/report_generate.py \
   --fc_threshold 1
 ```
 
-To run this process, the input file must contain at least 3 groups along with intensity or concentration values.
+**Note: To run this process, the input file must contain at least 3 groups along with intensity or concentration values, and user must adjust the `groups, group_1, and group_2` parameters to match the experimental design.**
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- | :--- |
@@ -84,8 +85,10 @@ python run.py feature_df.csv --result_path my_results/
 
 # Different MS tolerance
 python run.py feature_df.csv \
-    --MS1_tol 0.01 \
-    --MS2_threshold 0.8
+    --ms1_tol 10 \
+    --ms_2tol 20 \
+    --ms2_threshold 0.8 \
+    --n_jobs -1
 ```
 &nbsp;
 
@@ -103,13 +106,19 @@ python run.py feature_df.csv \
 | `--MS2_threshold` | `float` | `0.7` | Minimum MS2 similarity score for database match |
 |`--n_jobs`|`int`|`4`|Number of parallel workers to use for the PLSF prediction|
 
+Your input_path CSV must contain:
+- `precursor_mz`: Precursor mass-to-charge ratio
+- `adduct`: Adduct type (e.g., `[M+H]+`, `[M+Na]+`, `[M-H]-`). If you only have `ion_mode` (e.g., `Positive` and `Negative`), you can use `Adduct Prediction` to predict adduct (see Advanced Usage - Adduct Prediction)
+- `MS2`: MS/MS spectrum as string representation of list, e.g., `"[[100.0, 1500], [200.5, 3000]]"`
+
 ## Database Search
-Searches a spectral database to identify known lipids based on precursor m/z and MS/MS similarity.
+Searches a spectral database to identify known lipids based on precursor m/z and MS2 similarity.
+Similarity caculation based on [MSEntropy](https://github.com/YuanyueLi/MSEntropy?tab=readme-ov-file), including `dot product`, `entropy similarity`, and `unwighted entropy similarity`.
 
 #### Command
 
 ```bash
-python db_search.py input.csv \
+python code/db_search.py feature_df.csv \
     --result_path results/ \
     --db_path lipid.db \
     --MS1_tol 0.005 \
@@ -140,12 +149,11 @@ Your CSV must contain:
 - `MS2`: MS/MS spectrum as string representation of list, e.g., `"[[100.0, 1500], [200.5, 3000]]"`
 
 #### Output Files
-
 1. **`annotated_df.csv`**: Successfully matched lipids with database annotations
    - Contains all original columns plus:
    - `name`, `formula`, `class`, `category` (from database)
    - `mass_diff_ppm`: Mass accuracy
-   - Spectral similarity scores
+   - 3 Spectral similarity scores
    
 2. **`dark_lipid.csv`**: Unknown lipids that didn't match the database
    - These will be processed by the prediction steps
@@ -157,9 +165,16 @@ Your CSV must contain:
 Predicts the adduct type for unknown lipids using a trained machine learning model.
 
 #### Command
+To perform adduct prediction, you must first expand the MS2 column into `mz_*` columns.
 
 ```bash
-python adduct_predict.py input.csv model/adduct.joblib \
+! python code/process_ms2.py feature_df.csv --output_path input.csv
+```
+
+then:
+
+```bash
+python code/adduct_predict.py input.csv model/adduct.joblib \
     --output_path results/adduct_predictions.csv
 ```
 
@@ -188,24 +203,29 @@ Original columns plus:
 
 ```bash
 # Using dark lipids from Step 1
-python adduct_predict.py results/dark_lipid.csv models/adduct.joblib \
+python code/adduct_predict.py results/dark_lipid.csv models/adduct.joblib \
     -o results/with_adducts.csv
-
-# Process all data (no database search)
-python adduct_predict.py raw_data.csv adduct.joblib \
-    -o predictions/adducts.csv
-```
 
 ---
 
+
 ## Class Prediction
 
-Predicts lipid class using a hybrid approach combining rule-based classification and machine learning.
+
+
+The lipid class is first determined by possible exact masses (the head-group mass is fixed, while the tail-chain masses are discontinuous) and by MS2 fragments or neutral losses to narrow down the candidate range. Then, within this possible range, machine learning is applied for further prediction.
+
 
 #### Command
+To perform adduct prediction, you must first expand the MS2 column into `mz_*` columns.
+```bash
+! python code/process_ms2.py feature_df.csv --output_path input.csv
+```
+
+then:
 
 ```bash
-python class_predict.py input.csv model/class.joblib \
+python code/class_predict.py input.csv model/class.joblib \
     --output_path results/class_predictions.csv \
     --ms1_tol 10 \
     --ms2_tol 20
@@ -233,11 +253,11 @@ The CSV must contain:
 
 #### Two-Stage Process
 
-1. **Rule-Based Classification**: Uses chemical knowledge and fragmentation patterns
+1. **Rule-Based Classification**: Uses chemical knowledge (exact mass and fragmentation patterns)
    - High confidence for lipids with characteristic fragments
-   - Marks successfully classified lipids with `prediction_source = 'rule-based'`
+   - Marks successfully classified lipids (only has one possible class under applied rules) with `prediction_source = 'rule-based'`
 
-2. **ML-Based Prediction**: For remaining lipids
+2. **ML-Based Prediction**: If exact mass and fragment patterns overlap is not only one,
    - Uses machine learning model
    - Marks predictions with `prediction_source = 'model-based'`
 
@@ -256,18 +276,13 @@ Original columns plus:
 
 ```bash
 # Default (hybrid approach)
-python class_predict.py results/with_adducts.csv class.joblib \
+python code/class_predict.py results/with_adducts.csv class.joblib \
     -o results/with_classes.csv
 
-# ML only (faster, may be less accurate)
-python class_predict.py input.csv class.joblib \
-    -o output.csv --no-rules
-
-# Strict tolerances (high-resolution data)
-python class_predict.py input.csv class.joblib \
-    -o output.csv --ms1_tol 5 --ms2_tol 10
+# Strict tolerances (low-resolution data)
+python code/class_predict.py input.csv class.joblib \
+    -o output.csv --ms1_tol 20 --ms2_tol 30
 ```
-
 ---
 
 ## PLSF Prediction
@@ -275,9 +290,8 @@ python class_predict.py input.csv class.joblib \
 Predicts detailed fatty acid chain compositions (number of carbons and double bonds in each chain).
 
 #### Command
-
 ```bash
-python predict_plsf.py input.csv model/plsf.joblib \
+python code/predict_plsf.py input.csv model/plsf.joblib \
     --output_path results/final_output.csv
 ```
 
@@ -312,10 +326,8 @@ Cleaned output with:
 - `num_chain`: Number of chains
 - `pred_confidence`: Average confidence across all prediction steps
 - `plsf_rank1`, `plsf_rank2`, `plsf_rank3`: Top 3 chain composition predictions
-- (mz_* features and intermediate prediction columns are removed)
 
 #### Name Format
-
 The `name` column combines class and chain information:
 - Format: `{Class} {C1}:{DB1}_{C2}:{DB2}_{C3}:{DB3}_{C4}:{DB4}`
 - Chains sorted by length (descending)
@@ -324,31 +336,16 @@ The `name` column combines class and chain information:
   - `PC 16:0_18:1` (PC with C16:0 and C18:1)
   - `TG 16:0_18:1_18:2` (TG with three chains)
   - `Cer 18:1_16:0` (Ceramide with two chains)
-
-#### Example
-
-```bash
-# Basic usage
-python predict_plsf.py plsf.joblib results/with_classes.csv \
-    -o results/final_annotations.csv
-
-# With custom output location
-python predict_plsf.py models/plsf_split.joblib data/classified.csv \
-    -o output/experiment1/annotations.csv
-```
-
 ---
 
 ## Alternative: Formula Annotation
 
-For metabolomics or when molecular formulas are needed, use the formula annotation workflow instead of or in addition to the main pipeline.
-
 #### Command
 
 ```bash
-python formula_annotation.py input.csv \
+python code/formula_annotation.py input.csv \
     --output_path results/formulas/ \
-    --ms1_tol 15 \
+    --ms1_tol 10 \
     --ms2_tol 20
 ```
 
@@ -364,9 +361,9 @@ python formula_annotation.py input.csv \
 #### What It Does
 
 1. Converts CSV to MGF format
-2. Uses MsBuddy to predict molecular formulas
-3. Applies class-specific rules for lipid formulas
-4. Generates top 5 formula candidates
+2. Uses [MsBuddy](https://github.com/Philipbear/msbuddy) to predict molecular formulas
+3. Applies class-specific rules for re-rank formulas 
+4. Generates formula candidates
 
 #### Output Files
 
@@ -386,14 +383,8 @@ python formula_annotation.py input.csv \
 # High-resolution data (tight tolerances)
 python formula_annotation.py data.csv \
     --output_path results/formulas/ \
-    --ms1_tol 10 \
-    --ms2_tol 15
-
-# Lower-resolution data
-python formula_annotation.py data.csv \
-    --output_path results/ \
-    --ms1_tol 20 \
-    --ms2_tol 25
+    --ms1_tol 5 \
+    --ms2_tol 10
 ```
 
 ---
@@ -418,7 +409,9 @@ python code/report_generate.py \
 | `--group_1` | `String` | **Required** | The first group for differential analysis. Must be in `--groups`. |
 | `--group_2` | `String` | **Required** | The second group for differential analysis. Must be in `--groups`. |
 | `--output_path` | `String` | `results` | Directory where the final HTML report and material files will be saved. |
+| `confidence` | `0.8` | Confidence threshold for filtering.|
 | `--int_threshold` | `Integer` | `3000` | Intensity threshold. |
+
 | `--p_value_threshold` | `Float` | `0.05` | The significance threshold for P-values in the Volcano plot. |
 | `--fc_threshold` | `Float` | `1.2` | The fold-change threshold for determining significant lipids. |
 | `--keep_cols` | `List` | `['index', 'name', 'precursor_mz', 'adduct', 'MS2_norm']` | Specific columns to retain for the interactive Mass Spec table in the report. |
@@ -444,7 +437,8 @@ your_project/
 │   ├── adduct_predict.py          # Step 2: Adduct prediction
 │   ├── class_predict.py           # Step 3: Class prediction
 │   ├── predict_plsf.py            # Step 4: PLSF prediction
-│   └── formula_annotation.py      # Alternative workflow
+│   ├── formula_annotation.py      # Alternative workflow
+│   └── ......
 ├── feature_df.csv                  # Your input data
 └── results/                        # Output directory (created automatically)
 ```
@@ -454,12 +448,9 @@ With this structure, you can simply run:
 python run.py feature_df.csv
 ```
 
-
-
-## Input Data Format
+## Input data format
 
 ### Required Columns
-
 Your input CSV file must contain these columns:
 
 ```csv
@@ -475,60 +466,27 @@ F000002,788.6164,positive,[M+H]+,"[[184.07, 8000], [506.36, 1500]]",1,0,...
 | `index` | str | Unique identifier | All steps |
 | `precursor_mz` | float | Precursor mass-to-charge ratio | All steps |
 | `ion_mode` | str | `positive` or `negative` | Adduct prediction |
-| `adduct` | str | Adduct type (e.g., `[M+H]+`) | DB search, class prediction |
+| `adduct` | str | Adduct type (e.g., `[M+H]+`) | DB search, class prediction, PLSF prediction |
 | `MS2` | str/list | MS/MS spectrum as `[[mz, intensity], ...]` | DB search, class prediction |
-| `mz_*` | int | Binary features (0/1) for fragment presence | All predictions |
 
-### MS2 Spectrum Format
-
-The `MS2` column can be formatted as:
-
-```python
-# String representation (preferred for CSV)
-"[[184.07, 5000], [104.11, 2000], [506.36, 1500]]"
-
-# Or after loading, as a Python list
-[[184.07, 5000], [104.11, 2000], [506.36, 1500]]
 ```
-
-### Feature Columns (mz_*)
-
-- Binary features indicating presence/absence of fragment ions
-- Typically generated during preprocessing
-- Example: `mz_184`, `mz_104`, `mz_86`, etc.
-- Values: `0` (absent) or `1` (present)
-
----
-
-## Output Files
-
-### Final Annotations (`final_annotations.csv`)
-
-The main output containing complete lipid annotations:
-
-```csv
-index,name,precursor_mz,ion_mode,adduct,class,category,num_chain,pred_confidence,plsf_rank1,...
-F000001,PC 16:0_18:1,760.5851,positive,[M+H]+,PC,Glycerophospholipids,2,0.94,"16:0_18:1",...
-```
-
-### Database Annotations (`annotated_df.csv`)
-
-Lipids successfully matched to the database:
-
-```csv
-index,precursor_mz,adduct,name,formula,class,category,mass_diff_ppm,weighted_dot_product,...
-F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.89,...
-```
-
-### Combined Results (`all_annotations_combined.csv`)
-
-Merged database annotations + predicted annotations for comprehensive results.
-
----
 
 ## What is PLSF
+The **Primary Lipid Structural Features (PLSF)** are the fundamental parts of a lipid structure that can be **reliably identified** using conventional tandem mass spectrometry.
+
+PLSFs specifically include:
+* **Lipid Class**: for example, `PC`
+* Composition of Each Chain**: for example, `18:2_16:1`
+
+For example, the complete lipid name **PC 10:0/18:2(9Z, 12Z)** is simplified to its PLSF: **PC 10:0\_18:2**.  
+The naming convention is structured so the first token is the **lipid class**, followed by up to four pairs of tokens, each representing the **carbon number** and **$C=C$ number** for an acyl chain.  
+
+This representation avoids the ambiguity and false positives associated with predicting complete structures, which is often unsuitable for lipids, its fixed and simple format makes it also more suitable for machine learning.
+
 
 ## Class
+Lipid class information can be found in LIPID MAPS. Following are classes that support by LIPID+:
+
 | Class  | Category | Number of Tail | Full Name of Class                       | Full Name of Category    |
 | :----- | :------- | :-------- | :--------------------------------------- | :----------------------- |
 | CAR    | FA       | 1         | Acyl carnitine                           | Fatty Acyls              |
@@ -595,5 +553,5 @@ For metabolite MS databases (GNPS, MassBank, MoNA, MassSpecGym), spectra were fi
 
 
 # Release Note
-**Last Updated:** November 26, 2025    
-**Version:** 0.0.0 (Test Version)
+**Last Updated:** Dec 08, 2025    
+**Version:** 1.0
