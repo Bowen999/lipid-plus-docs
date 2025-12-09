@@ -97,12 +97,11 @@ python run.py feature_df.csv \
 | `--plsf_model` | `str` | `'model/plsf.joblib'` | Path to trained PLSF model |
 | `--result_path` | `str` | `'results'` | Directory to save all results |
 | `--db_path` | `str` | `'dataset/lipid_plus.db'` | Path to lipid database file |
-| `--MS1_tol` | `float` | `0.005` | MS1 tolerance for database search in Da |
-| `--MS2_tol` | `float` | `0.01` | MS2 tolerance for database search in Da |
+| `--ms1_tol` | `float` | `0.005` | MS1 tolerance for database search and prediction (in ppm)|
+| `--ms2_tol` | `float` | `0.01` | MS2 tolerance for database search nd prediction (in ppm)|
+| `--is_ppm`|  `bool`| `True`| If True, tolerances (--ms1_tol, --ms2_tol) are in ppm; if False, in Da|
 | `--MS2_threshold` | `float` | `0.7` | Minimum MS2 similarity score for database match |
-| `--ms1_tol_ppm` | `float` | `10.0` | MS1 tolerance for class prediction in ppm |
-| `--ms2_tol_ppm` | `float` | `20.0` | MS2 tolerance for class prediction in ppm |
-
+|`--n_jobs`|`int`|`4`|Number of parallel workers to use for the PLSF prediction|
 
 ## Database Search
 Searches a spectral database to identify known lipids based on precursor m/z and MS/MS similarity.
