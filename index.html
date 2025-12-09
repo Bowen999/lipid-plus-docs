@@ -74,7 +74,7 @@
             </button>
 
             <!-- GitHub Link -->
-            <a href="https://github.com/Bowen999/SLAM" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-white" aria-label="GitHub repository">
+            <a href="https://github.com/Bowen999/LIPID-PLUS" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-purple-600 dark:text-gray-400 dark:hover:text-white" aria-label="GitHub repository">
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.84c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z"/>
                 </svg>
@@ -92,7 +92,7 @@
                 <section id="page-home" class="page-content">
                     <h1 class="text-4xl font-bold mb-6 pb-2 text-gray-900 dark:text-white">Welcome to LIPID+</h1>
                     <p class="text-xl text-gray-700 leading-relaxed mb-6 dark:text-gray-300">
-                        LIPID+ (Lipid Identification and Profiling for Intelligent Discovery) is a machine learning powered platform designed specifically for mass spectrometry based lipidomics. It overcomes the failures of traditional metabolomics tools in lipidomics, by shifting focus from ambiguous full structures to reliably identifiable Principal Lipid Structural Features (PLSFs).
+                        LIPID+ (Lipid Identification and Profiling for Intelligent Discovery) is a machine learning-powered platform designed to overcome critical bottlenecks in lipidomics. By shifting analytical focus from elusive complete structures to primary lipid structural features, LIPID+ provides accurate, comprehensive, and scalable lipid identification, specifically targeting the dark lipidome where reference spectra are missing.
                     </p>
 
                     <figure class="bg-gray-50 rounded-lg overflow-hidden border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -104,11 +104,9 @@
 
                     <h2 class="text-3xl font-semibold mt-12 mb-4 dark:text-white">Core Features</h2>
                     <ul class="list-disc list-outside pl-5 space-y-2 text-lg text-gray-700 dark:text-gray-300">
-                        <li><strong>MS Search</strong>: A large-scale, curated lipid database containing lipids from diverse sources (represented as PLSF), along with their precursor m/z values and corresponding MS² spectra, enables high-throughput mass spectral searching.</li>
-                        <li><strong>De Novo Generation</strong>: For spectra that cannot be identified through database matching, the SLAM (Spectrum-based Lipid Annotation Model) module supports de novo generation of lipid PLSFs.</li>
-                        <li><strong>System-level Analysis</strong>: Tailored analytical and visualization tools designed specifically for lipid characteristics allow detailed exploration of lipid-specific structural features—such as chain length and degree of unsaturation—capturing their dynamic changes. The analytical results are presented as interactive and easily shareable HTML reports.</li>
-                    </ul>
-                </section>
+                        <li><strong>Pure Lipids MS Database</strong>: A large-scale, curated lipid database containing lipids from diverse sources, along with their precursor m/z values and corresponding MS² spectra, enables high-throughput mass spectral searching.
+                        <li><strong>SLAM (Spectrum-based Lipid Annotation Model)</strong>: A cascaded generative machine learning model that performs de novo annotation, enabling the identification of novel lipids without relying on existing spectral libraries.
+                        <li><strong>Interactive System-level Analysis</strong>: Tailored analytical and visualization tools designed specifically for lipid characteristics allow detailed exploration of lipid-specific structural features, such as chain length and degree of unsaturation. The analytical results are presented as interactive and easily shareable HTML reports.
                 <!-- New Explore Section -->
                 <section id="page-explore" class="page-content mt-16">
                     <h2 class="text-3xl font-semibold mb-6 pb-2 border-b border-gray-200 dark:border-gray-700 dark:text-white">Explore</h2>
@@ -128,7 +126,7 @@
                         </a>
 
                         <!-- Source Code Card -->
-                        <a href="https://github.com/Bowen999/SLAM" target="_blank" rel="noopener noreferrer" class="group block p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg hover:border-purple-300 transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:border-purple-500">
+                        <a href="https://github.com/Bowen999/LIPID-PLUS" target="_blank" rel="noopener noreferrer" class="group block p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg hover:border-purple-300 transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:border-purple-500">
                             <div class="flex items-center space-x-3">
                                 <svg class="w-6 h-6 text-gray-500 group-hover:text-purple-600 dark:text-gray-400 dark:group-hover:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                                 <h3 class="text-xl font-semibold text-gray-800 group-hover:text-purple-600 dark:text-white dark:group-hover:text-purple-400">
