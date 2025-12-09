@@ -164,11 +164,7 @@
                                     </a>
 
                                     <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-input-data-format" onclick="showPage('page-faq-input-data-format', 'nav-docs', this)">
-                                        Input Data Format
-                                    </a>
-
-                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-output-files" onclick="showPage('page-faq-output-files', 'nav-docs', this)">
-                                        Output Files
+                                        Input data format
                                     </a>
 
                                     <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-what-is-plsf" onclick="showPage('page-faq-what-is-plsf', 'nav-docs', this)">
@@ -204,7 +200,7 @@
                 <section id="page-installation" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Installation</h1>
                     <h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Clone the project folder and download database </h3>
-
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Download the source code at <a href="https://github.com/Bowen999/LIPID-PLUS/releases" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">https://github.com/Bowen999/LIPID-PLUS/releases</a> or run the command below:</p>
 <pre data-language="bash">
 <code class="language-bash">git clone https://github.com/Bowen999/LIPID-PLUS.git
 cd LIPID-PLUS
@@ -243,8 +239,9 @@ pip install -r requirements.txt</code>
 
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The usage of the pipeline with custom parameters can be found in the <code>Advanced Usage</code> section.</p>
 
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The pipeline will generate several files in the <code>results/</code> directory. <strong>Main result file</strong>: <code>results/final_annotations.csv</code> contains your complete lipid annotations.</p>
-
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The pipeline will generate several files in the <code>results/</code> directory.</p>
+<strong>Main result file</strong>: <code>results/final_annotations.csv</code> contains the complete lipid annotations result, search/prediction are recorded in <code>name</code> column.
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">&nbsp;</p>
 <pre data-language="text">
 <code class="language-text">results/
 ├── identification_result.csv     # Final merged output (Database + ML predictions)
@@ -257,7 +254,7 @@ pip install -r requirements.txt</code>
 └──── final_annotations.csv         # Final ML chain composition predictions (Step 4)</code>
 </pre>
 
-
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">&nbsp;</p>
 
 <h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Lipidomics Analysis Report Generation</h3>
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">An interactive, shareable, and fully customized dynamic lipidomics HTML report (see <a href="https://bowen999.github.io/lipid-plus-docs/example_report.html" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">example</a>) can be generated from the previous identification results (identification_result.csv). An example is shown below:</p>
@@ -271,8 +268,10 @@ pip install -r requirements.txt</code>
   --p_value_threshold 0.1 \
   --fc_threshold 1</code>
 </pre>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">&nbsp;</p>
+<strong>Note: To run this process, the input file must contain at least 3 groups along with intensity or concentration values, and user must adjust the <code>groups, group_1, and group_2</code> parameters to match the experimental design.</strong>
 
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">To run this process, the input file must contain at least 3 groups along with intensity or concentration values.</p>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">&nbsp;</p>
 
 <div class="overflow-x-auto mb-6">
 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -325,8 +324,10 @@ python run.py feature_df.csv --result_path my_results/
 
 # Different MS tolerance
 python run.py feature_df.csv \
-    --MS1_tol 0.01 \
-    --MS2_threshold 0.8</code>
+    --ms1_tol 10 \
+    --ms_2tol 20 \
+    --ms2_threshold 0.8 \
+    --n_jobs -1</code>
 </pre>
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">&nbsp;</p>
 
@@ -378,16 +379,22 @@ python run.py feature_df.csv \
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to lipid database file</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS1_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.005</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for database search in Da</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for database search and prediction (in ppm)</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.01</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for database search in Da</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for database search nd prediction (in ppm)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--is_ppm</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>bool</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>True</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">If True, tolerances (--ms1_tol, --ms2_tol) are in ppm; if False, in Da</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_threshold</code></td>
@@ -396,32 +403,35 @@ python run.py feature_df.csv \
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 similarity score for database match</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol_ppm</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>10.0</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for class prediction in ppm</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol_ppm</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>20.0</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for class prediction in ppm</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--n_jobs</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>int</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>4</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Number of parallel workers to use for the PLSF prediction</td>
 </tr>
 </tbody>
 </table>
 </div>
 
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Your input_path CSV must contain:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>precursor_mz</code>: Precursor mass-to-charge ratio</li>
+<li><code>adduct</code>: Adduct type (e.g., <code>[M+H]+</code>, <code>[M+Na]+</code>, <code>[M-H]-</code>).</li>
+<li><code>MS2</code>: MS/MS spectrum as string representation of list, e.g., <code>&quot;[[100.0, 1500], [200.5, 3000]]&quot;</code></li>
+</ul>
+
+<em>If you only have <code>ion_mode</code> (e.g., <code>Positive</code> and <code>Negative</code>), you can use <code>Adduct Prediction</code> to predict adduct (see Advanced Usage - Adduct Prediction)</em>
 
                     </section>
                     
                     <section id="page-advanced-usage-database-search-content" class="mt-10">
                         <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Database Search</h2>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Searches a spectral database to identify known lipids based on precursor m/z and MS/MS similarity.</p>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Searches a spectral database to identify known lipids based on precursor m/z and MS2 similarity.</p>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Similarity caculation based on <a href="https://github.com/YuanyueLi/MSEntropy?tab=readme-ov-file" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">MSEntropy</a>, including <strong>dot product, weighted dot product, entropy similarity, and unweighted entropy similarity</strong>.</p>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
 
 <pre data-language="bash">
-<code class="language-bash">python db_search.py input.csv \
+<code class="language-bash">python code/db_search.py feature_df.csv \
     --result_path results/ \
     --db_path lipid.db \
     --MS1_tol 0.005 \
@@ -506,20 +516,15 @@ python run.py feature_df.csv \
 </ul>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Files</h4>
-
-<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><strong><code>annotated_df.csv</code></strong>: Successfully matched lipids with database annotations</li>
-</ol>
+<strong>annotated_df.csv</strong>: Successfully matched lipids with database annotations
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>Contains all original columns plus:</li>
 <li><code>name</code>, <code>formula</code>, <code>class</code>, <code>category</code> (from database)</li>
 <li><code>mass_diff_ppm</code>: Mass accuracy</li>
-<li>Spectral similarity scores</li>
+<li>3 Spectral similarity scores</li>
 </ul>
 
-<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><strong><code>dark_lipid.csv</code></strong>: Unknown lipids that didn't match the database</li>
-</ol>
+<strong>dark_lipid.csv</strong>: Unknown lipids that didn't match the database
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>These will be processed by the prediction steps</li>
 </ul>
@@ -534,9 +539,16 @@ python run.py feature_df.csv \
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts the adduct type for unknown lipids using a trained machine learning model.</p>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">To perform adduct prediction, you must first expand the MS2 column into <code>mz_*</code> columns.</p>
 
 <pre data-language="bash">
-<code class="language-bash">python adduct_predict.py input.csv model/adduct.joblib \
+<code class="language-bash">python code/process_ms2.py feature_df.csv --output_path input.csv</code>
+</pre>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">then:</p>
+
+<pre data-language="bash">
+<code class="language-bash">python code/adduct_predict.py input.csv model/adduct.joblib \
     --output_path results/adduct_predictions.csv</code>
 </pre>
 
@@ -591,32 +603,27 @@ python run.py feature_df.csv \
 <li><code>predicted_adduct</code>: Predicted adduct type</li>
 <li><code>adduct_confidence</code>: Prediction confidence (0-1), if available</li>
 </ul>
-
-<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Example</h4>
-
-<pre data-language="bash">
-<code class="language-bash"># Using dark lipids from Step 1
-python adduct_predict.py results/dark_lipid.csv models/adduct.joblib \
-    -o results/with_adducts.csv
-
-# Process all data (no database search)
-python adduct_predict.py raw_data.csv adduct.joblib \
-    -o predictions/adducts.csv</code>
-</pre>
-
 <hr />
+
 
                     </section>
                     
                     <section id="page-advanced-usage-class-prediction-content" class="mt-10">
                         <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Class Prediction</h2>
                         
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts lipid class using a hybrid approach combining rule-based classification and machine learning.</p>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The lipid class is first determined by possible exact masses (the head-group mass is fixed, while the tail-chain masses are discontinuous) and by MS2 fragments or neutral losses to narrow down the candidate range. Then, within this possible range, machine learning is applied for further prediction.</p>
+
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">To perform adduct prediction, you must first expand the MS2 column into <code>mz_*</code> columns.</p>
+<pre data-language="bash">
+<code class="language-bash">python code/process_ms2.py feature_df.csv --output_path input.csv</code>
+</pre>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">then:</p>
 
 <pre data-language="bash">
-<code class="language-bash">python class_predict.py input.csv model/class.joblib \
+<code class="language-bash">python code/class_predict.py input.csv model/class.joblib \
     --output_path results/class_predictions.csv \
     --ms1_tol 10 \
     --ms2_tol 20</code>
@@ -689,15 +696,15 @@ python adduct_predict.py raw_data.csv adduct.joblib \
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Two-Stage Process</h4>
 
 <ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><strong>Rule-Based Classification</strong>: Uses chemical knowledge and fragmentation patterns</li>
+<li><strong>Rule-Based Classification</strong>: Uses chemical knowledge (exact mass and fragmentation patterns)</li>
 </ol>
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>High confidence for lipids with characteristic fragments</li>
-<li>Marks successfully classified lipids with <code>prediction_source = &#x27;rule-based&#x27;</code></li>
+<li>Marks successfully classified lipids (only has one possible class under applied rules) with <code>prediction_source = &#x27;rule-based&#x27;</code></li>
 </ul>
 
 <ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><strong>ML-Based Prediction</strong>: For remaining lipids</li>
+<li><strong>ML-Based Prediction</strong>: If exact mass and fragment patterns overlap is not only one,</li>
 </ol>
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>Uses machine learning model</li>
@@ -721,18 +728,13 @@ python adduct_predict.py raw_data.csv adduct.joblib \
 
 <pre data-language="bash">
 <code class="language-bash"># Default (hybrid approach)
-python class_predict.py results/with_adducts.csv class.joblib \
+python code/class_predict.py results/with_adducts.csv class.joblib \
     -o results/with_classes.csv
 
-# ML only (faster, may be less accurate)
-python class_predict.py input.csv class.joblib \
-    -o output.csv --no-rules
-
-# Strict tolerances (high-resolution data)
-python class_predict.py input.csv class.joblib \
-    -o output.csv --ms1_tol 5 --ms2_tol 10</code>
+# Strict tolerances (low-resolution data)
+python code/class_predict.py input.csv class.joblib \
+    -o output.csv --ms1_tol 20 --ms2_tol 30</code>
 </pre>
-
 <hr />
 
                     </section>
@@ -743,9 +745,8 @@ python class_predict.py input.csv class.joblib \
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts detailed fatty acid chain compositions (number of carbons and double bonds in each chain).</p>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
-
 <pre data-language="bash">
-<code class="language-bash">python predict_plsf.py input.csv model/plsf.joblib \
+<code class="language-bash">python code/predict_plsf.py input.csv model/plsf.joblib \
     --output_path results/final_output.csv</code>
 </pre>
 
@@ -817,11 +818,9 @@ python class_predict.py input.csv class.joblib \
 <li><code>num_chain</code>: Number of chains</li>
 <li><code>pred_confidence</code>: Average confidence across all prediction steps</li>
 <li><code>plsf_rank1</code>, <code>plsf_rank2</code>, <code>plsf_rank3</code>: Top 3 chain composition predictions</li>
-<li>(mz_* features and intermediate prediction columns are removed)</li>
 </ul>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Name Format</h4>
-
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <code>name</code> column combines class and chain information:</p>
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>Format: <code>{Class} {C1}:{DB1}_{C2}:{DB2}_{C3}:{DB3}_{C4}:{DB4}</code></li>
@@ -832,19 +831,6 @@ python class_predict.py input.csv class.joblib \
 <li><code>TG 16:0_18:1_18:2</code> (TG with three chains)</li>
 <li><code>Cer 18:1_16:0</code> (Ceramide with two chains)</li>
 </ul>
-
-<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Example</h4>
-
-<pre data-language="bash">
-<code class="language-bash"># Basic usage
-python predict_plsf.py plsf.joblib results/with_classes.csv \
-    -o results/final_annotations.csv
-
-# With custom output location
-python predict_plsf.py models/plsf_split.joblib data/classified.csv \
-    -o output/experiment1/annotations.csv</code>
-</pre>
-
 <hr />
 
                     </section>
@@ -852,14 +838,12 @@ python predict_plsf.py models/plsf_split.joblib data/classified.csv \
                     <section id="page-advanced-usage-alternative-formula-annotation-content" class="mt-10">
                         <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Alternative: Formula Annotation</h2>
                         
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For metabolomics or when molecular formulas are needed, use the formula annotation workflow instead of or in addition to the main pipeline.</p>
-
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
 
 <pre data-language="bash">
-<code class="language-bash">python formula_annotation.py input.csv \
+<code class="language-bash">python code/formula_annotation.py input.csv \
     --output_path results/formulas/ \
-    --ms1_tol 15 \
+    --ms1_tol 10 \
     --ms2_tol 20</code>
 </pre>
 
@@ -908,9 +892,9 @@ python predict_plsf.py models/plsf_split.joblib data/classified.csv \
 
 <ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>Converts CSV to MGF format</li>
-<li>Uses MsBuddy to predict molecular formulas</li>
-<li>Applies class-specific rules for lipid formulas</li>
-<li>Generates top 5 formula candidates</li>
+<li>Uses <a href="https://github.com/Philipbear/msbuddy" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">MsBuddy</a> to predict molecular formulas</li>
+<li>Applies class-specific rules for re-rank formulas </li>
+<li>Generates formula candidates</li>
 </ol>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Files</h4>
@@ -935,14 +919,8 @@ python predict_plsf.py models/plsf_split.joblib data/classified.csv \
 <code class="language-bash"># High-resolution data (tight tolerances)
 python formula_annotation.py data.csv \
     --output_path results/formulas/ \
-    --ms1_tol 10 \
-    --ms2_tol 15
-
-# Lower-resolution data
-python formula_annotation.py data.csv \
-    --output_path results/ \
-    --ms1_tol 20 \
-    --ms2_tol 25</code>
+    --ms1_tol 5 \
+    --ms2_tol 10</code>
 </pre>
 
 <hr />
@@ -1005,6 +983,12 @@ python formula_annotation.py data.csv \
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Directory where the final HTML report and material files will be saved.</td>
 </tr>
 <tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--confidence</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>Float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.8</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Confidence threshold for filtering.</td>
+</tr>
+<tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--int_threshold</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>Integer</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>3000</code></td>
@@ -1048,8 +1032,10 @@ python run.py feature_df.csv --result_path my_results/
 
 # Different MS tolerance
 python run.py feature_df.csv \
-    --MS1_tol 0.01 \
-    --MS2_threshold 0.8</code>
+    --ms1_tol 10 \
+    --ms_2tol 20 \
+    --ms2_threshold 0.8 \
+    --n_jobs -1</code>
 </pre>
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">&nbsp;</p>
 
@@ -1101,16 +1087,22 @@ python run.py feature_df.csv \
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to lipid database file</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS1_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.005</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for database search in Da</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for database search and prediction (in ppm)</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.01</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for database search in Da</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for database search nd prediction (in ppm)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--is_ppm</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>bool</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>True</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">If True, tolerances (--ms1_tol, --ms2_tol) are in ppm; if False, in Da</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_threshold</code></td>
@@ -1119,33 +1111,36 @@ python run.py feature_df.csv \
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 similarity score for database match</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol_ppm</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>10.0</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for class prediction in ppm</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol_ppm</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>20.0</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for class prediction in ppm</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--n_jobs</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>int</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>4</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Number of parallel workers to use for the PLSF prediction</td>
 </tr>
 </tbody>
 </table>
 </div>
 
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Your input_path CSV must contain:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><code>precursor_mz</code>: Precursor mass-to-charge ratio</li>
+<li><code>adduct</code>: Adduct type (e.g., <code>[M+H]+</code>, <code>[M+Na]+</code>, <code>[M-H]-</code>).</li>
+<li><code>MS2</code>: MS/MS spectrum as string representation of list, e.g., <code>&quot;[[100.0, 1500], [200.5, 3000]]&quot;</code></li>
+</ul>
+
+<em>If you only have <code>ion_mode</code> (e.g., <code>Positive</code> and <code>Negative</code>), you can use <code>Adduct Prediction</code> to predict adduct (see Advanced Usage - Adduct Prediction)</em>
 
                 </section>
 
                 <!-- Page: Database Search -->
                 <section id="page-advanced-usage-database-search" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Database Search</h1>
-                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Searches a spectral database to identify known lipids based on precursor m/z and MS/MS similarity.</p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Searches a spectral database to identify known lipids based on precursor m/z and MS2 similarity.</p>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Similarity caculation based on <a href="https://github.com/YuanyueLi/MSEntropy?tab=readme-ov-file" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">MSEntropy</a>, including <strong>dot product, weighted dot product, entropy similarity, and unweighted entropy similarity</strong>.</p>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
 
 <pre data-language="bash">
-<code class="language-bash">python db_search.py input.csv \
+<code class="language-bash">python code/db_search.py feature_df.csv \
     --result_path results/ \
     --db_path lipid.db \
     --MS1_tol 0.005 \
@@ -1230,20 +1225,15 @@ python run.py feature_df.csv \
 </ul>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Files</h4>
-
-<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><strong><code>annotated_df.csv</code></strong>: Successfully matched lipids with database annotations</li>
-</ol>
+<strong>annotated_df.csv</strong>: Successfully matched lipids with database annotations
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>Contains all original columns plus:</li>
 <li><code>name</code>, <code>formula</code>, <code>class</code>, <code>category</code> (from database)</li>
 <li><code>mass_diff_ppm</code>: Mass accuracy</li>
-<li>Spectral similarity scores</li>
+<li>3 Spectral similarity scores</li>
 </ul>
 
-<ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><strong><code>dark_lipid.csv</code></strong>: Unknown lipids that didn't match the database</li>
-</ol>
+<strong>dark_lipid.csv</strong>: Unknown lipids that didn't match the database
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>These will be processed by the prediction steps</li>
 </ul>
@@ -1259,9 +1249,16 @@ python run.py feature_df.csv \
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts the adduct type for unknown lipids using a trained machine learning model.</p>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">To perform adduct prediction, you must first expand the MS2 column into <code>mz_*</code> columns.</p>
 
 <pre data-language="bash">
-<code class="language-bash">python adduct_predict.py input.csv model/adduct.joblib \
+<code class="language-bash">python code/process_ms2.py feature_df.csv --output_path input.csv</code>
+</pre>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">then:</p>
+
+<pre data-language="bash">
+<code class="language-bash">python code/adduct_predict.py input.csv model/adduct.joblib \
     --output_path results/adduct_predictions.csv</code>
 </pre>
 
@@ -1316,20 +1313,8 @@ python run.py feature_df.csv \
 <li><code>predicted_adduct</code>: Predicted adduct type</li>
 <li><code>adduct_confidence</code>: Prediction confidence (0-1), if available</li>
 </ul>
-
-<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Example</h4>
-
-<pre data-language="bash">
-<code class="language-bash"># Using dark lipids from Step 1
-python adduct_predict.py results/dark_lipid.csv models/adduct.joblib \
-    -o results/with_adducts.csv
-
-# Process all data (no database search)
-python adduct_predict.py raw_data.csv adduct.joblib \
-    -o predictions/adducts.csv</code>
-</pre>
-
 <hr />
+
 
                 </section>
 
@@ -1337,12 +1322,19 @@ python adduct_predict.py raw_data.csv adduct.joblib \
                 <section id="page-advanced-usage-class-prediction" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Class Prediction</h1>
                     
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts lipid class using a hybrid approach combining rule-based classification and machine learning.</p>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The lipid class is first determined by possible exact masses (the head-group mass is fixed, while the tail-chain masses are discontinuous) and by MS2 fragments or neutral losses to narrow down the candidate range. Then, within this possible range, machine learning is applied for further prediction.</p>
+
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">To perform adduct prediction, you must first expand the MS2 column into <code>mz_*</code> columns.</p>
+<pre data-language="bash">
+<code class="language-bash">python code/process_ms2.py feature_df.csv --output_path input.csv</code>
+</pre>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">then:</p>
 
 <pre data-language="bash">
-<code class="language-bash">python class_predict.py input.csv model/class.joblib \
+<code class="language-bash">python code/class_predict.py input.csv model/class.joblib \
     --output_path results/class_predictions.csv \
     --ms1_tol 10 \
     --ms2_tol 20</code>
@@ -1415,15 +1407,15 @@ python adduct_predict.py raw_data.csv adduct.joblib \
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Two-Stage Process</h4>
 
 <ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><strong>Rule-Based Classification</strong>: Uses chemical knowledge and fragmentation patterns</li>
+<li><strong>Rule-Based Classification</strong>: Uses chemical knowledge (exact mass and fragmentation patterns)</li>
 </ol>
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>High confidence for lipids with characteristic fragments</li>
-<li>Marks successfully classified lipids with <code>prediction_source = &#x27;rule-based&#x27;</code></li>
+<li>Marks successfully classified lipids (only has one possible class under applied rules) with <code>prediction_source = &#x27;rule-based&#x27;</code></li>
 </ul>
 
 <ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><strong>ML-Based Prediction</strong>: For remaining lipids</li>
+<li><strong>ML-Based Prediction</strong>: If exact mass and fragment patterns overlap is not only one,</li>
 </ol>
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>Uses machine learning model</li>
@@ -1447,18 +1439,13 @@ python adduct_predict.py raw_data.csv adduct.joblib \
 
 <pre data-language="bash">
 <code class="language-bash"># Default (hybrid approach)
-python class_predict.py results/with_adducts.csv class.joblib \
+python code/class_predict.py results/with_adducts.csv class.joblib \
     -o results/with_classes.csv
 
-# ML only (faster, may be less accurate)
-python class_predict.py input.csv class.joblib \
-    -o output.csv --no-rules
-
-# Strict tolerances (high-resolution data)
-python class_predict.py input.csv class.joblib \
-    -o output.csv --ms1_tol 5 --ms2_tol 10</code>
+# Strict tolerances (low-resolution data)
+python code/class_predict.py input.csv class.joblib \
+    -o output.csv --ms1_tol 20 --ms2_tol 30</code>
 </pre>
-
 <hr />
 
                 </section>
@@ -1470,9 +1457,8 @@ python class_predict.py input.csv class.joblib \
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Predicts detailed fatty acid chain compositions (number of carbons and double bonds in each chain).</p>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
-
 <pre data-language="bash">
-<code class="language-bash">python predict_plsf.py input.csv model/plsf.joblib \
+<code class="language-bash">python code/predict_plsf.py input.csv model/plsf.joblib \
     --output_path results/final_output.csv</code>
 </pre>
 
@@ -1544,11 +1530,9 @@ python class_predict.py input.csv class.joblib \
 <li><code>num_chain</code>: Number of chains</li>
 <li><code>pred_confidence</code>: Average confidence across all prediction steps</li>
 <li><code>plsf_rank1</code>, <code>plsf_rank2</code>, <code>plsf_rank3</code>: Top 3 chain composition predictions</li>
-<li>(mz_* features and intermediate prediction columns are removed)</li>
 </ul>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Name Format</h4>
-
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <code>name</code> column combines class and chain information:</p>
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>Format: <code>{Class} {C1}:{DB1}_{C2}:{DB2}_{C3}:{DB3}_{C4}:{DB4}</code></li>
@@ -1559,19 +1543,6 @@ python class_predict.py input.csv class.joblib \
 <li><code>TG 16:0_18:1_18:2</code> (TG with three chains)</li>
 <li><code>Cer 18:1_16:0</code> (Ceramide with two chains)</li>
 </ul>
-
-<h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Example</h4>
-
-<pre data-language="bash">
-<code class="language-bash"># Basic usage
-python predict_plsf.py plsf.joblib results/with_classes.csv \
-    -o results/final_annotations.csv
-
-# With custom output location
-python predict_plsf.py models/plsf_split.joblib data/classified.csv \
-    -o output/experiment1/annotations.csv</code>
-</pre>
-
 <hr />
 
                 </section>
@@ -1580,14 +1551,12 @@ python predict_plsf.py models/plsf_split.joblib data/classified.csv \
                 <section id="page-advanced-usage-alternative-formula-annotation" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Alternative: Formula Annotation</h1>
                     
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For metabolomics or when molecular formulas are needed, use the formula annotation workflow instead of or in addition to the main pipeline.</p>
-
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Command</h4>
 
 <pre data-language="bash">
-<code class="language-bash">python formula_annotation.py input.csv \
+<code class="language-bash">python code/formula_annotation.py input.csv \
     --output_path results/formulas/ \
-    --ms1_tol 15 \
+    --ms1_tol 10 \
     --ms2_tol 20</code>
 </pre>
 
@@ -1636,9 +1605,9 @@ python predict_plsf.py models/plsf_split.joblib data/classified.csv \
 
 <ol class="list-decimal list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>Converts CSV to MGF format</li>
-<li>Uses MsBuddy to predict molecular formulas</li>
-<li>Applies class-specific rules for lipid formulas</li>
-<li>Generates top 5 formula candidates</li>
+<li>Uses <a href="https://github.com/Philipbear/msbuddy" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">MsBuddy</a> to predict molecular formulas</li>
+<li>Applies class-specific rules for re-rank formulas </li>
+<li>Generates formula candidates</li>
 </ol>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Files</h4>
@@ -1663,14 +1632,8 @@ python predict_plsf.py models/plsf_split.joblib data/classified.csv \
 <code class="language-bash"># High-resolution data (tight tolerances)
 python formula_annotation.py data.csv \
     --output_path results/formulas/ \
-    --ms1_tol 10 \
-    --ms2_tol 15
-
-# Lower-resolution data
-python formula_annotation.py data.csv \
-    --output_path results/ \
-    --ms1_tol 20 \
-    --ms2_tol 25</code>
+    --ms1_tol 5 \
+    --ms2_tol 10</code>
 </pre>
 
 <hr />
@@ -1734,6 +1697,12 @@ python formula_annotation.py data.csv \
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Directory where the final HTML report and material files will be saved.</td>
 </tr>
 <tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--confidence</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>Float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.8</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Confidence threshold for filtering.</td>
+</tr>
+<tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--int_threshold</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>Integer</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>3000</code></td>
@@ -1789,7 +1758,8 @@ python formula_annotation.py data.csv \
 │   ├── adduct_predict.py          # Step 2: Adduct prediction
 │   ├── class_predict.py           # Step 3: Class prediction
 │   ├── predict_plsf.py            # Step 4: PLSF prediction
-│   └── formula_annotation.py      # Alternative workflow
+│   ├── formula_annotation.py      # Alternative workflow
+│   └── ......
 ├── feature_df.csv                  # Your input data
 └── results/                        # Output directory (created automatically)</code>
 </pre>
@@ -1799,15 +1769,12 @@ python formula_annotation.py data.csv \
 <code class="language-bash">python run.py feature_df.csv</code>
 </pre>
 
-
-
                     </section>
                     
                     <section id="page-faq-input-data-format-content" class="mt-10">
-                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Input Data Format</h2>
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Input data format</h2>
                         
 <h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Required Columns</h3>
-
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Your input CSV file must contain these columns:</p>
 
 <pre data-language="csv">
@@ -1851,7 +1818,7 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>adduct</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Adduct type (e.g., <code>[M+H]+</code>)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DB search, class prediction</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DB search, class prediction, PLSF prediction</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>MS2</code></td>
@@ -1859,78 +1826,37 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS/MS spectrum as <code>[[mz, intensity], ...]</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DB search, class prediction</td>
 </tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>mz_*</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">int</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Binary features (0/1) for fragment presence</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">All predictions</td>
-</tr>
 </tbody>
 </table>
 </div>
 
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">MS2 Spectrum Format</h3>
 
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <code>MS2</code> column can be formatted as:</p>
-
-<pre data-language="python">
-<code class="language-python"># String representation (preferred for CSV)
-&quot;[[184.07, 5000], [104.11, 2000], [506.36, 1500]]&quot;
-
-# Or after loading, as a Python list
-[[184.07, 5000], [104.11, 2000], [506.36, 1500]]</code>
-</pre>
-
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Feature Columns (mz_*)</h3>
-
-<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li>Binary features indicating presence/absence of fragment ions</li>
-<li>Typically generated during preprocessing</li>
-<li>Example: <code>mz_184</code>, <code>mz_104</code>, <code>mz_86</code>, etc.</li>
-<li>Values: <code>0</code> (absent) or <code>1</code> (present)</li>
-</ul>
-
-<hr />
-
-                    </section>
-                    
-                    <section id="page-faq-output-files-content" class="mt-10">
-                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Output Files</h2>
-                        
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Final Annotations (<code>final_annotations.csv</code>)</h3>
-
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The main output containing complete lipid annotations:</p>
-
-<pre data-language="csv">
-<code class="language-csv">index,name,precursor_mz,ion_mode,adduct,class,category,num_chain,pred_confidence,plsf_rank1,...
-F000001,PC 16:0_18:1,760.5851,positive,[M+H]+,PC,Glycerophospholipids,2,0.94,&quot;16:0_18:1&quot;,...</code>
-</pre>
-
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Database Annotations (<code>annotated_df.csv</code>)</h3>
-
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Lipids successfully matched to the database:</p>
-
-<pre data-language="csv">
-<code class="language-csv">index,precursor_mz,adduct,name,formula,class,category,mass_diff_ppm,weighted_dot_product,...
-F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.89,...</code>
-</pre>
-
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Combined Results (<code>all_annotations_combined.csv</code>)</h3>
-
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Merged database annotations + predicted annotations for comprehensive results.</p>
-
-<hr />
 
                     </section>
                     
                     <section id="page-faq-what-is-plsf-content" class="mt-10">
                         <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">What is PLSF</h2>
-                        
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <strong>Primary Lipid Structural Features (PLSF)</strong> are the fundamental parts of a lipid structure that can be <strong>reliably identified</strong> using conventional tandem mass spectrometry.</p>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">PLSFs specifically include:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>Lipid Class</strong>: for example, <code>PC</code></li>
+<li><strong>Composition of Each Chain</strong>: for example, <code>18:2_16:1</code></li>
+</ul>
+
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For example, the complete lipid name <code>PC 10:0/18:2(9Z, 12Z)</code> is simplified to its PLSF: <code>PC 10:0_18:2</code>.</p>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">This representation avoids the ambiguity and false positives associated with predicting complete structures, which is often unsuitable for lipids, its fixed and simple format makes it also more suitable for machine learning.</p>
+
+
                     </section>
                     
                     <section id="page-faq-class-content" class="mt-10">
                         <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Class</h2>
-                        <div class="overflow-x-auto mb-6">
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Lipid class information can be found in <a href="https://www.lipidmaps.org/data/classification/lipid_cns.html" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">LIPID MAPS</a>. Following are classes that support by LIPID+:</p>
+
+<div class="overflow-x-auto mb-6">
 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
 <thead class="bg-gray-50 dark:bg-gray-800">
 <tr>
@@ -2324,7 +2250,8 @@ F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.
 │   ├── adduct_predict.py          # Step 2: Adduct prediction
 │   ├── class_predict.py           # Step 3: Class prediction
 │   ├── predict_plsf.py            # Step 4: PLSF prediction
-│   └── formula_annotation.py      # Alternative workflow
+│   ├── formula_annotation.py      # Alternative workflow
+│   └── ......
 ├── feature_df.csv                  # Your input data
 └── results/                        # Output directory (created automatically)</code>
 </pre>
@@ -2334,16 +2261,13 @@ F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.
 <code class="language-bash">python run.py feature_df.csv</code>
 </pre>
 
-
-
                 </section>
 
-                <!-- Page: Input Data Format -->
+                <!-- Page: Input data format -->
                 <section id="page-faq-input-data-format" class="page-content hidden">
-                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Input Data Format</h1>
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Input data format</h1>
                     
 <h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Required Columns</h3>
-
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Your input CSV file must contain these columns:</p>
 
 <pre data-language="csv">
@@ -2387,7 +2311,7 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>adduct</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Adduct type (e.g., <code>[M+H]+</code>)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DB search, class prediction</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DB search, class prediction, PLSF prediction</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>MS2</code></td>
@@ -2395,81 +2319,39 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS/MS spectrum as <code>[[mz, intensity], ...]</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DB search, class prediction</td>
 </tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>mz_*</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">int</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Binary features (0/1) for fragment presence</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">All predictions</td>
-</tr>
 </tbody>
 </table>
 </div>
 
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">MS2 Spectrum Format</h3>
 
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <code>MS2</code> column can be formatted as:</p>
-
-<pre data-language="python">
-<code class="language-python"># String representation (preferred for CSV)
-&quot;[[184.07, 5000], [104.11, 2000], [506.36, 1500]]&quot;
-
-# Or after loading, as a Python list
-[[184.07, 5000], [104.11, 2000], [506.36, 1500]]</code>
-</pre>
-
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Feature Columns (mz_*)</h3>
-
-<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li>Binary features indicating presence/absence of fragment ions</li>
-<li>Typically generated during preprocessing</li>
-<li>Example: <code>mz_184</code>, <code>mz_104</code>, <code>mz_86</code>, etc.</li>
-<li>Values: <code>0</code> (absent) or <code>1</code> (present)</li>
-</ul>
-
-<hr />
-
-                </section>
-
-                <!-- Page: Output Files -->
-                <section id="page-faq-output-files" class="page-content hidden">
-                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Output Files</h1>
-                    
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Final Annotations (<code>final_annotations.csv</code>)</h3>
-
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The main output containing complete lipid annotations:</p>
-
-<pre data-language="csv">
-<code class="language-csv">index,name,precursor_mz,ion_mode,adduct,class,category,num_chain,pred_confidence,plsf_rank1,...
-F000001,PC 16:0_18:1,760.5851,positive,[M+H]+,PC,Glycerophospholipids,2,0.94,&quot;16:0_18:1&quot;,...</code>
-</pre>
-
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Database Annotations (<code>annotated_df.csv</code>)</h3>
-
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Lipids successfully matched to the database:</p>
-
-<pre data-language="csv">
-<code class="language-csv">index,precursor_mz,adduct,name,formula,class,category,mass_diff_ppm,weighted_dot_product,...
-F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.89,...</code>
-</pre>
-
-<h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Combined Results (<code>all_annotations_combined.csv</code>)</h3>
-
-<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Merged database annotations + predicted annotations for comprehensive results.</p>
-
-<hr />
 
                 </section>
 
                 <!-- Page: What is PLSF -->
                 <section id="page-faq-what-is-plsf" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">What is PLSF</h1>
-                    
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <strong>Primary Lipid Structural Features (PLSF)</strong> are the fundamental parts of a lipid structure that can be <strong>reliably identified</strong> using conventional tandem mass spectrometry.</p>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">PLSFs specifically include:</p>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>Lipid Class</strong>: for example, <code>PC</code></li>
+<li><strong>Composition of Each Chain</strong>: for example, <code>18:2_16:1</code></li>
+</ul>
+
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For example, the complete lipid name <code>PC 10:0/18:2(9Z, 12Z)</code> is simplified to its PLSF: <code>PC 10:0_18:2</code>.</p>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">This representation avoids the ambiguity and false positives associated with predicting complete structures, which is often unsuitable for lipids, its fixed and simple format makes it also more suitable for machine learning.</p>
+
+
                 </section>
 
                 <!-- Page: Class -->
                 <section id="page-faq-class" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Class</h1>
-                    <div class="overflow-x-auto mb-6">
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Lipid class information can be found in <a href="https://www.lipidmaps.org/data/classification/lipid_cns.html" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">LIPID MAPS</a>. Following are classes that support by LIPID+:</p>
+
+<div class="overflow-x-auto mb-6">
 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
 <thead class="bg-gray-50 dark:bg-gray-800">
 <tr>
@@ -2846,8 +2728,10 @@ F000015,760.5851,[M+H]+,PC(16:0/18:1),C42H82NO8P,PC,Glycerophospholipids,-0.8,0.
                 <!-- Page: Release Note -->
                 <section id="page-release-note" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Release Note</h1>
-                    <strong>Last Updated:</strong> November 26, 2025    
-<strong>Version:</strong> 0.0.0 (Test Version)
+                    <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>Last Updated:</strong> Dec 08, 2025    </li>
+<li><strong>Version:</strong> 1.0</li>
+</ul>
 
                 </section>
             </div>

@@ -1,6 +1,6 @@
 # Installation
 ### Clone the project folder and download database 
-Download the source code at https://github.com/Bowen999/LIPID-PLUS/releases or run the command below:
+Download the source code at [https://github.com/Bowen999/LIPID-PLUS/releases](https://github.com/Bowen999/LIPID-PLUS/releases) or run the command below:
 ```bash
 git clone https://github.com/Bowen999/LIPID-PLUS.git
 cd LIPID-PLUS
@@ -37,7 +37,7 @@ The usage of the pipeline with custom parameters can be found in the `Advanced U
 
 The pipeline will generate several files in the `results/` directory.   
 **Main result file**: `results/final_annotations.csv` contains the complete lipid annotations result, search/prediction are recorded in `name` column.
-
+&nbsp;
 ```text
 results/
 ├── identification_result.csv     # Final merged output (Database + ML predictions)
@@ -50,7 +50,7 @@ results/
 └──── final_annotations.csv         # Final ML chain composition predictions (Step 4)
 ```
 
-
+&nbsp;
 
 ### Lipidomics Analysis Report Generation
 An interactive, shareable, and fully customized dynamic lipidomics HTML report (see [example](https://bowen999.github.io/lipid-plus-docs/example_report.html)) can be generated from the previous identification results (identification_result.csv). An example is shown below:
@@ -64,8 +64,10 @@ python code/report_generate.py \
   --p_value_threshold 0.1 \
   --fc_threshold 1
 ```
-
+&nbsp;
 **Note: To run this process, the input file must contain at least 3 groups along with intensity or concentration values, and user must adjust the `groups, group_1, and group_2` parameters to match the experimental design.**
+
+&nbsp;
 
 | Parameter | Type | Description |
 | :--- | :--- | :--- | :--- |
@@ -108,12 +110,14 @@ python run.py feature_df.csv \
 
 Your input_path CSV must contain:
 - `precursor_mz`: Precursor mass-to-charge ratio
-- `adduct`: Adduct type (e.g., `[M+H]+`, `[M+Na]+`, `[M-H]-`). If you only have `ion_mode` (e.g., `Positive` and `Negative`), you can use `Adduct Prediction` to predict adduct (see Advanced Usage - Adduct Prediction)
+- `adduct`: Adduct type (e.g., `[M+H]+`, `[M+Na]+`, `[M-H]-`).
 - `MS2`: MS/MS spectrum as string representation of list, e.g., `"[[100.0, 1500], [200.5, 3000]]"`
+
+*If you only have `ion_mode` (e.g., `Positive` and `Negative`), you can use `Adduct Prediction` to predict adduct (see Advanced Usage - Adduct Prediction)*
 
 ## Database Search
 Searches a spectral database to identify known lipids based on precursor m/z and MS2 similarity.
-Similarity caculation based on [MSEntropy](https://github.com/YuanyueLi/MSEntropy?tab=readme-ov-file), including `dot product`, `entropy similarity`, and `unwighted entropy similarity`.
+Similarity caculation based on [MSEntropy](https://github.com/YuanyueLi/MSEntropy?tab=readme-ov-file), including **dot product, weighted dot product, entropy similarity, and unweighted entropy similarity**.
 
 #### Command
 
@@ -149,14 +153,14 @@ Your CSV must contain:
 - `MS2`: MS/MS spectrum as string representation of list, e.g., `"[[100.0, 1500], [200.5, 3000]]"`
 
 #### Output Files
-1. **`annotated_df.csv`**: Successfully matched lipids with database annotations
-   - Contains all original columns plus:
-   - `name`, `formula`, `class`, `category` (from database)
-   - `mass_diff_ppm`: Mass accuracy
-   - 3 Spectral similarity scores
+**annotated_df.csv**: Successfully matched lipids with database annotations
+   * Contains all original columns plus:
+   * `name`, `formula`, `class`, `category` (from database)
+   * `mass_diff_ppm`: Mass accuracy
+   * 3 Spectral similarity scores
    
-2. **`dark_lipid.csv`**: Unknown lipids that didn't match the database
-   - These will be processed by the prediction steps
+**dark_lipid.csv**: Unknown lipids that didn't match the database
+   * These will be processed by the prediction steps
 
 ---
 
@@ -168,7 +172,7 @@ Predicts the adduct type for unknown lipids using a trained machine learning mod
 To perform adduct prediction, you must first expand the MS2 column into `mz_*` columns.
 
 ```bash
-! python code/process_ms2.py feature_df.csv --output_path input.csv
+python code/process_ms2.py feature_df.csv --output_path input.csv
 ```
 
 then:
@@ -198,20 +202,10 @@ The CSV must contain:
 Original columns plus:
 - `predicted_adduct`: Predicted adduct type
 - `adduct_confidence`: Prediction confidence (0-1), if available
-
-#### Example
-
-```bash
-# Using dark lipids from Step 1
-python code/adduct_predict.py results/dark_lipid.csv models/adduct.joblib \
-    -o results/with_adducts.csv
-
 ---
 
 
 ## Class Prediction
-
-
 
 The lipid class is first determined by possible exact masses (the head-group mass is fixed, while the tail-chain masses are discontinuous) and by MS2 fragments or neutral losses to narrow down the candidate range. Then, within this possible range, machine learning is applied for further prediction.
 
@@ -219,7 +213,7 @@ The lipid class is first determined by possible exact masses (the head-group mas
 #### Command
 To perform adduct prediction, you must first expand the MS2 column into `mz_*` columns.
 ```bash
-! python code/process_ms2.py feature_df.csv --output_path input.csv
+python code/process_ms2.py feature_df.csv --output_path input.csv
 ```
 
 then:
@@ -409,10 +403,9 @@ python code/report_generate.py \
 | `--group_1` | `String` | **Required** | The first group for differential analysis. Must be in `--groups`. |
 | `--group_2` | `String` | **Required** | The second group for differential analysis. Must be in `--groups`. |
 | `--output_path` | `String` | `results` | Directory where the final HTML report and material files will be saved. |
-| `confidence` | `0.8` | Confidence threshold for filtering.|
+| `--confidence` |`Float`| `0.8` | Confidence threshold for filtering.|
 | `--int_threshold` | `Integer` | `3000` | Intensity threshold. |
-
-| `--p_value_threshold` | `Float` | `0.05` | The significance threshold for P-values in the Volcano plot. |
+| `--p_value_threshold` | `Float` |`0.05`|The significance threshold for P-values in the Volcano plot.|
 | `--fc_threshold` | `Float` | `1.2` | The fold-change threshold for determining significant lipids. |
 | `--keep_cols` | `List` | `['index', 'name', 'precursor_mz', 'adduct', 'MS2_norm']` | Specific columns to retain for the interactive Mass Spec table in the report. |
 ---
@@ -469,23 +462,23 @@ F000002,788.6164,positive,[M+H]+,"[[184.07, 8000], [506.36, 1500]]",1,0,...
 | `adduct` | str | Adduct type (e.g., `[M+H]+`) | DB search, class prediction, PLSF prediction |
 | `MS2` | str/list | MS/MS spectrum as `[[mz, intensity], ...]` | DB search, class prediction |
 
-```
+
 
 ## What is PLSF
 The **Primary Lipid Structural Features (PLSF)** are the fundamental parts of a lipid structure that can be **reliably identified** using conventional tandem mass spectrometry.
 
 PLSFs specifically include:
 * **Lipid Class**: for example, `PC`
-* Composition of Each Chain**: for example, `18:2_16:1`
+* **Composition of Each Chain**: for example, `18:2_16:1`
 
-For example, the complete lipid name **PC 10:0/18:2(9Z, 12Z)** is simplified to its PLSF: **PC 10:0\_18:2**.  
-The naming convention is structured so the first token is the **lipid class**, followed by up to four pairs of tokens, each representing the **carbon number** and **$C=C$ number** for an acyl chain.  
+
+For example, the complete lipid name `PC 10:0/18:2(9Z, 12Z)` is simplified to its PLSF: `PC 10:0_18:2`.  
 
 This representation avoids the ambiguity and false positives associated with predicting complete structures, which is often unsuitable for lipids, its fixed and simple format makes it also more suitable for machine learning.
 
 
 ## Class
-Lipid class information can be found in LIPID MAPS. Following are classes that support by LIPID+:
+Lipid class information can be found in [LIPID MAPS](https://www.lipidmaps.org/data/classification/lipid_cns.html). Following are classes that support by LIPID+:
 
 | Class  | Category | Number of Tail | Full Name of Class                       | Full Name of Category    |
 | :----- | :------- | :-------- | :--------------------------------------- | :----------------------- |
@@ -553,5 +546,5 @@ For metabolite MS databases (GNPS, MassBank, MoNA, MassSpecGym), spectra were fi
 
 
 # Release Note
-**Last Updated:** Dec 08, 2025    
-**Version:** 1.0
+* **Last Updated:** Dec 08, 2025    
+* **Version:** 1.0
