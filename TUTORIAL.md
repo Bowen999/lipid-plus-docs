@@ -407,7 +407,7 @@ python code/report_generate.py \
 | `--int_threshold` | `Integer` | `3000` | Intensity threshold. |
 | `--p_value_threshold` | `Float` |`0.05`|The significance threshold for P-values in the Volcano plot.|
 | `--fc_threshold` | `Float` | `1.2` | The fold-change threshold for determining significant lipids. |
-| `--keep_cols` | `List` | `['index', 'name', 'precursor_mz', 'adduct', 'MS2_norm']` | Specific columns to retain for the interactive Mass Spec table in the report. |
+| `--keep_cols` | `List` | `index name precursor_mz adduct MS2_norm` | Specific columns to retain for the interactive Mass Spec table in the report. |
 ---
 
 
@@ -546,5 +546,6 @@ For metabolite MS databases (GNPS, MassBank, MoNA, MassSpecGym), spectra were fi
 
 
 # Release Note
-* **Last Updated:** Dec 08, 2025    
-* **Version:** 1.0
+#### Last Updated: Dec 28, 2025, Version: 1.0.1
+
+* **Dec 28, 2025**: Fixed some garbled text issues in visualizations.
