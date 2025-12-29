@@ -105,7 +105,8 @@ python run.py feature_df.csv \
 | `--ms1_tol` | `float` | `0.005` | MS1 tolerance for database search and prediction (in ppm)|
 | `--ms2_tol` | `float` | `0.01` | MS2 tolerance for database search nd prediction (in ppm)|
 | `--is_ppm`|  `bool`| `True`| If True, tolerances (--ms1_tol, --ms2_tol) are in ppm; if False, in Da|
-| `--MS2_threshold` | `float` | `0.7` | Minimum MS2 similarity score for database match |
+|`--similarity_method`| `str` |`weighted_dot_product`| choose from dot_product,weighted_dot_product,entropy_similarity,unweighted_entropy_similarity|
+| `--ms2_threshold` | `float` | `0.7` | Minimum MS2 similarity score for database match |
 |`--n_jobs`|`int`|`4`|Number of parallel workers to use for the PLSF prediction|
 
 Your input_path CSV must contain:
@@ -392,7 +393,7 @@ python code/report_generate.py \
   --group_1 0h \
   --group_2 8h \
   --p_value_threshold 0.1 \
-  --fc_threshold 1 \
+  --fc_threshold 1 
 ```
 &nbsp;
 
@@ -532,6 +533,13 @@ Lipid class information can be found in [LIPID MAPS](https://www.lipidmaps.org/d
 | ST     | ST       | 1         | Sterol                                   | Sterol Lipids            |
 
 ## Data Source
+The model outputs probabilities for each of the three components: adduct, class, and plsf. 
+For rule-based class classification, the probability is 0.8 if it's the unique intersection of the exact mass and the MS/MS diagnostic ion.
+
+`pred_confidence = (plsf × adduct × class) ^ (1/3)`
+Each confidence value has a minimum floor of 0.01 applied before calculation. This prevents an extremely low value from making the final score near zero.
+
+## Data Source
 The **LIPID+** dataset is aggregated from the following MS libraries and resources:  
 
 * [**MS-DIAL Lipidome Atlas**](https://static-content.springer.com/esm/art%3A10.1038%2Fs41587-020-0531-2/MediaObjects/41587_2020_531_MOESM5_ESM.zip)
@@ -548,4 +556,4 @@ For metabolite MS databases (GNPS, MassBank, MoNA, MassSpecGym), spectra were fi
 # Release Note
 #### Last Updated: Dec 28, 2025, Version: 1.0.1
 
-* **Dec 28, 2025**: Fixed some garbled text issues in visualizations.
+* **Dec 28, 2025**: Fixed some garbled text issues in visualizations. Update the confidence calculation method.
