@@ -1,0 +1,311 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Interactive DataFrame Viewer</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                background-color: #f9fafb;
+                color: #333;
+            }
+            .container { max-width: 1200px; margin: 20px auto; padding: 20px; }
+            .table-wrapper { background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); overflow: hidden; }
+            table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+            th, td { 
+                padding: 12px 15px; 
+                text-align: left; 
+                white-space: nowrap; 
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+            }
+            thead th { 
+                background-color: #10B981; 
+                color: white; 
+                font-weight: 600; 
+                font-size: 14px; 
+                cursor: pointer; 
+                position: relative; 
+                transition: background-color 0.2s ease-in-out;
+            }
+            thead th:hover {
+                background-color: #059669;
+            }
+            thead th .sort-indicator {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 14px;
+                opacity: 0.8;
+            }
+            tbody tr { border-bottom: 1px solid #e5e7eb; }
+            tbody tr:nth-child(even) { background-color: #f9fafb; }
+            tbody tr:last-child { border-bottom: none; }
+            tbody tr:hover { background-color: #f3f4f6; }
+            td { font-size: 14px; }
+            .pagination-controls {
+                margin-top: 20px;
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+            }
+            .pagination-controls button { background-color: #ffffff; color: #374151; border: 1px solid #d1d5db; padding: 8px 16px; font-size: 14px; margin: 0 4px; cursor: pointer; border-radius: 6px; transition: background-color 0.2s; }
+            .pagination-controls button:hover { background-color: #f3f4f6; }
+            .pagination-controls button:disabled { cursor: not-allowed; opacity: 0.5; }
+            .pagination-controls input {
+                width: 60px;
+                padding: 8px;
+                border: 1px solid #d1d5db;
+                border-radius: 6px;
+                text-align: center;
+                font-size: 14px;
+            }
+             .pagination-controls span {
+                font-size: 14px;
+                color: #4b5563;
+                margin: 0 8px;
+            }
+            .clickable-link { color: #059669; text-decoration: none; font-weight: 500; cursor: pointer; }
+            .clickable-link:hover { text-decoration: underline; }
+            .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); }
+            .modal-content { background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 800px; border-radius: 8px; position: relative; }
+            .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; top: 10px; right: 20px; cursor: pointer; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="table-wrapper"><table id="interactive-table"><thead></thead><tbody></tbody></table></div>
+            <div class="pagination-controls" id="pagination-controls"></div>
+        </div>
+        <div id="spectrumModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span><h3>MS/MS Spectrum</h3>
+                <canvas id="modalChart" width="400" height="200"></canvas>
+            </div>
+        </div>
+        <script>
+            let data = [{"index": "F000114", "name": "Cer-d 18:1", "precursor_mz": 300.28958, "MS2_norm": "[[283.259, 100.0], [300.14456, 78.0]]", "originalIndex": 0}, {"index": "F000115", "name": "Cer-d 18:1", "precursor_mz": 300.28989, "MS2_norm": "[[253.20238, 100.0]]", "originalIndex": 1}, {"index": "F000136", "name": "FA 20:3", "precursor_mz": 329.24326, "MS2_norm": "[[312.32663, 100.0]]", "originalIndex": 2}, {"index": "F000155", "name": "Cer 17:2;2O_2:0", "precursor_mz": 343.29578, "MS2_norm": "[[183.17354, 9.5], [240.23219, 100.0]]", "originalIndex": 3}, {"index": "F000178", "name": "Cer 19:2;2O_2:0", "precursor_mz": 371.32697, "MS2_norm": "[[268.26288, 100.0]]", "originalIndex": 4}, {"index": "F000180", "name": "Cer 20:0;2O_2:0", "precursor_mz": 372.34811, "MS2_norm": "[[283.26321, 100.0], [372.3447, 16.7]]", "originalIndex": 5}, {"index": "F000196", "name": "Cer 21:2;2O_2:0", "precursor_mz": 399.35938, "MS2_norm": "[[296.29337, 100.0]]", "originalIndex": 6}, {"index": "F000197", "name": "Cer 22:0;2O_2:0", "precursor_mz": 400.37994, "MS2_norm": "[[189.13005, 6.2], [311.29498, 100.0], [400.37778, 5.9]]", "originalIndex": 7}, {"index": "F000202", "name": "HexCer 12:2;2O_2:0", "precursor_mz": 418.24384, "MS2_norm": "[[183.10159, 16.8], [184.10664, 3.3], [201.11221, 100.0], [202.11549, 6.6], [239.09055, 3.4], [255.15833, 5.5], [311.16058, 3.6], [321.26419, 3.4], [329.16077, 3.6], [401.21927, 10.9]]", "originalIndex": 8}, {"index": "F000206", "name": "Cer 23:2;2O_2:0", "precursor_mz": 427.39096, "MS2_norm": "[[324.3255, 100.0]]", "originalIndex": 9}, {"index": "F000243", "name": "FA 32:1", "precursor_mz": 479.48331, "MS2_norm": "[[237.21988, 56.5], [452.59558, 100.0]]", "originalIndex": 10}, {"index": "F000246", "name": "FA 32:0", "precursor_mz": 481.49902, "MS2_norm": "[[463.37314, 100.0]]", "originalIndex": 11}, {"index": "F000273", "name": "Cer 23:0;2O_11:0", "precursor_mz": 522.5257, "MS2_norm": "[[209.18585, 87.1], [522.56305, 87.1], [523.51007, 100.0]]", "originalIndex": 12}, {"index": "F000281", "name": "DG 22:5_8:0", "precursor_mz": 531.40906, "MS2_norm": "[[345.20624, 56.8], [531.40839, 100.0]]", "originalIndex": 13}, {"index": "F000300", "name": "Cer 22:0;2O_14:0", "precursor_mz": 550.55634, "MS2_norm": "[[210.2234, 33.3], [237.22243, 93.1], [550.63263, 100.0], [551.62988, 43.1]]", "originalIndex": 14}, {"index": "F000304", "name": "DG 22:5_8:0", "precursor_mz": 553.3916, "MS2_norm": "[[553.38696, 100.0]]", "originalIndex": 15}, {"index": "F000309", "name": "TG 11:0_10:0_8:0", "precursor_mz": 558.47388, "MS2_norm": "[[175.13335, 57.1], [369.30121, 100.0], [370.30292, 81.0], [397.33063, 59.5]]", "originalIndex": 16}, {"index": "F000318", "name": "Cer 21:0;(2OH)_14:0;2O", "precursor_mz": 570.54919, "MS2_norm": "[[570.54706, 100.0]]", "originalIndex": 17}, {"index": "F000328", "name": "Cer 20:0;(3OH)_16:0;2O", "precursor_mz": 584.56165, "MS2_norm": "[[283.26434, 81.1], [311.29395, 100.0]]", "originalIndex": 18}, {"index": "F000346", "name": "LPC-O 23:0", "precursor_mz": 602.44812, "MS2_norm": "[[177.11392, 34.1], [215.20181, 59.4], [221.13998, 14.7], [453.33679, 13.5], [585.42426, 100.0], [602.44739, 72.4], [603.45349, 21.8]]", "originalIndex": 19}, {"index": "F000363", "name": "LPE-O 27:0", "precursor_mz": 616.46405, "MS2_norm": "[[616.46417, 100.0]]", "originalIndex": 20}, {"index": "F000364", "name": "LPC 24:6", "precursor_mz": 618.34924, "MS2_norm": "[[201.11334, 100.0], [529.26508, 18.0], [540.29327, 33.8], [601.32367, 50.4], [602.3244, 30.9], [618.35254, 20.1]]", "originalIndex": 21}, {"index": "F000383", "name": "DG 28:1_8:0", "precursor_mz": 640.58911, "MS2_norm": "[[640.586, 100.0]]", "originalIndex": 22}, {"index": "F000384", "name": "SE 27:1_16:1", "precursor_mz": 640.60278, "MS2_norm": "[[369.35022, 100.0]]", "originalIndex": 23}, {"index": "F000387", "name": "DGTS 22:5_6:0", "precursor_mz": 646.47394, "MS2_norm": "[[177.11057, 31.0], [196.00214, 32.4], [215.19987, 47.9], [221.13873, 33.8], [283.17282, 43.7], [520.4328, 32.4], [629.44714, 49.3], [630.48035, 29.6], [646.47595, 100.0]]", "originalIndex": 24}, {"index": "F000390", "name": "HexCer 15:0;3O_13:1;(2OH)", "precursor_mz": 648.46857, "MS2_norm": "[[265.16901, 86.7], [631.44409, 100.0]]", "originalIndex": 25}, {"index": "F000394", "name": "PC-O 20:5_8:0", "precursor_mz": 654.45367, "MS2_norm": "[[163.11452, 83.3], [175.1113, 97.2], [325.21729, 100.0]]", "originalIndex": 26}, {"index": "F000397", "name": "Cer 22:3;2O_20:5", "precursor_mz": 658.51196, "MS2_norm": "[[176.05579, 78.6], [293.23251, 100.0], [658.51215, 78.6]]", "originalIndex": 27}, {"index": "F000401", "name": "Cer 22:2;(2OH)_20:1;2O", "precursor_mz": 662.60925, "MS2_norm": "[[309.27844, 31.2], [495.26605, 28.7], [551.33185, 21.0], [607.3927, 25.5], [647.42181, 28.0], [662.60712, 100.0], [663.61188, 19.7]]", "originalIndex": 28}, {"index": "F000405", "name": "Cer 26:0;3O_15:1;(2OH)", "precursor_mz": 668.62036, "MS2_norm": "[[284.26559, 15.9], [668.61938, 100.0], [669.62604, 23.9]]", "originalIndex": 29}, {"index": "F000407", "name": "DG 28:7_9:0", "precursor_mz": 669.44159, "MS2_norm": "[[669.44086, 100.0]]", "originalIndex": 30}, {"index": "F000414", "name": "PE 16:0_16:0", "precursor_mz": 674.50415, "MS2_norm": "[[221.13657, 36.8], [229.21684, 28.1], [243.23019, 19.3], [657.4787, 26.3], [674.50623, 100.0]]", "originalIndex": 31}, {"index": "F000415", "name": "PE-O 20:2_12:0", "precursor_mz": 674.5058, "MS2_norm": "[[177.11292, 100.0], [674.51636, 76.9]]", "originalIndex": 32}, {"index": "F000419", "name": "PE 16:1_15:0", "precursor_mz": 676.48608, "MS2_norm": "[[647.46191, 100.0], [648.4635, 15.7], [676.48419, 12.9]]", "originalIndex": 33}, {"index": "F000436", "name": "Cer 34:2;(2OH)_9:0;3O", "precursor_mz": 694.6355, "MS2_norm": "[[694.6355, 100.0]]", "originalIndex": 34}, {"index": "F000439", "name": "Cer 24:1;3O_19:0;(2OH)", "precursor_mz": 696.65088, "MS2_norm": "[[312.2962, 20.8], [696.65192, 100.0]]", "originalIndex": 35}, {"index": "F000447", "name": "PE 17:1_16:0", "precursor_mz": 704.51508, "MS2_norm": "[[203.12607, 32.8], [547.32263, 41.8], [687.49042, 100.0], [688.48749, 37.3], [704.51587, 95.5]]", "originalIndex": 36}, {"index": "F000453", "name": "PC-P 18:1_14:0", "precursor_mz": 716.55316, "MS2_norm": "[[716.5517, 100.0]]", "originalIndex": 37}, {"index": "F000455", "name": "LPC 34:6", "precursor_mz": 718.5213, "MS2_norm": "[[481.31198, 95.7], [482.31595, 100.0]]", "originalIndex": 38}, {"index": "F000458", "name": "PG 16:1_16:0", "precursor_mz": 721.50745, "MS2_norm": "[[551.32806, 30.5], [721.50745, 100.0], [722.52826, 40.0]]", "originalIndex": 39}, {"index": "F000460", "name": "PE-P 20:5_16:0", "precursor_mz": 722.5047, "MS2_norm": "[[177.11333, 26.1], [219.12488, 26.1], [705.47864, 28.4], [722.50647, 100.0]]", "originalIndex": 40}, {"index": "F000462", "name": "PC-O 16:0", "precursor_mz": 728.58868, "MS2_norm": "[[728.58942, 100.0]]", "originalIndex": 41}, {"index": "F000463", "name": "PE 18:0_18:0", "precursor_mz": 730.5686, "MS2_norm": "[[730.56476, 100.0]]", "originalIndex": 42}, {"index": "F000482", "name": "HexCer 24:2;3O_12:0;(2OH)", "precursor_mz": 758.58264, "MS2_norm": "[[569.54138, 28.5], [570.5481, 100.0], [640.72369, 7.7]]", "originalIndex": 43}, {"index": "F000489", "name": "HexCer 24:2_15:2;2O", "precursor_mz": 764.60345, "MS2_norm": "[[184.07338, 100.0], [570.54553, 20.4], [571.54865, 8.1], [591.52112, 8.5], [592.52667, 41.2], [593.52917, 13.1], [716.52222, 40.0], [752.60559, 8.5], [753.61212, 39.6], [754.6181, 27.3], [764.62952, 8.5]]", "originalIndex": 44}, {"index": "F000501", "name": "PE 20:1_18:0", "precursor_mz": 774.5946, "MS2_norm": "[[774.5943, 100.0]]", "originalIndex": 45}, {"index": "F000518", "name": "HexCer 22:2;(2OH)_18:3;3O", "precursor_mz": 790.58899, "MS2_norm": "[[403.34348, 48.9], [790.58386, 100.0]]", "originalIndex": 46}, {"index": "F000523", "name": "SM 32:3_9:0;2O", "precursor_mz": 797.64978, "MS2_norm": "[[184.07382, 52.4], [482.3269, 2.2], [752.60986, 1.7], [753.61554, 100.0], [753.88733, 2.0], [754.62103, 19.6], [775.59698, 1.8]]", "originalIndex": 47}, {"index": "F000531", "name": "SM-d 24:1_18:2", "precursor_mz": 811.66602, "MS2_norm": "[[184.07431, 37.5], [184.10927, 0.4], [185.07753, 0.7], [242.08, 0.4], [482.33463, 0.3], [501.38583, 0.5], [752.61212, 1.1], [753.61572, 100.0], [754.61908, 19.6], [755.62549, 1.5], [775.59393, 0.6]]", "originalIndex": 48}, {"index": "F000535", "name": "DGCC 30:5_9:0", "precursor_mz": 816.64093, "MS2_norm": "[[816.64484, 100.0]]", "originalIndex": 49}, {"index": "F000538", "name": "TG 16:1_16:1_16:1", "precursor_mz": 818.7254, "MS2_norm": "[[519.44049, 41.2], [547.46899, 100.0], [575.50836, 67.5], [819.74707, 26.2]]", "originalIndex": 50}, {"index": "F000543", "name": "PC 24:0_16:0", "precursor_mz": 828.69281, "MS2_norm": "[[828.6925, 100.0]]", "originalIndex": 51}, {"index": "F000550", "name": "PS 20:0_19:0", "precursor_mz": 834.61469, "MS2_norm": "[[323.21039, 100.0]]", "originalIndex": 52}, {"index": "F000551", "name": "DGCC 34:8_8:0", "precursor_mz": 834.61676, "MS2_norm": "[[834.61688, 100.0]]", "originalIndex": 53}, {"index": "F000576", "name": "DGCC 36:8_9:0", "precursor_mz": 876.6629, "MS2_norm": "[[859.64111, 20.7], [876.66675, 100.0]]", "originalIndex": 54}, {"index": "F000581", "name": "TG 18:1_18:0_17:1", "precursor_mz": 890.8183, "MS2_norm": "[[577.51727, 77.8], [591.53705, 66.7], [603.5332, 100.0], [754.11444, 88.9]]", "originalIndex": 55}, {"index": "F000591", "name": "TG 25:0_17:1_12:0", "precursor_mz": 906.84894, "MS2_norm": "[[283.26544, 39.6], [906.85168, 100.0]]", "originalIndex": 56}, {"index": "F000599", "name": "PI_Cer-d 26:0_18:0", "precursor_mz": 920.68909, "MS2_norm": "[[920.69409, 100.0]]", "originalIndex": 57}, {"index": "F000602", "name": "TG 22:5_18:1_16:0", "precursor_mz": 924.80231, "MS2_norm": "[[576.52643, 96.4], [577.5238, 85.7], [924.68146, 100.0]]", "originalIndex": 58}, {"index": "F000610", "name": "HexCer 29:0;(2OH)_22:2;3O", "precursor_mz": 950.80243, "MS2_norm": "[[464.38324, 30.7], [493.38687, 100.0], [950.7984, 41.3]]", "originalIndex": 59}, {"index": "F000614", "name": "DGCC 42:8_9:0", "precursor_mz": 960.77185, "MS2_norm": "[[960.77057, 100.0]]", "originalIndex": 60}, {"index": "F000615", "name": "PI_Cer-t 26:0_20:0", "precursor_mz": 964.71619, "MS2_norm": "[[964.71625, 100.0]]", "originalIndex": 61}, {"index": "F000673", "name": "Cer 40:2;O FA 22:0_27:1;2O", "precursor_mz": 1335.33069, "MS2_norm": "[[175.14743, 1.8], [179.17827, 1.3], [180.18375, 1.2], [189.1633, 3.5], [190.16789, 2.4], [201.16364, 0.9], [203.17932, 1.3], [204.18507, 1.1], [205.19388, 2.8], [207.20865, 1.1], [217.19518, 1.7], [218.19705, 1.5], [219.21123, 1.4], [220.21381, 1.1], [229.19576, 1.3], [233.22641, 3.7], [235.24352, 2.0], [243.21059, 3.1], [244.21417, 1.3], [245.22542, 1.0], [247.2433, 1.7], [248.23907, 0.9], [257.22577, 2.1], [258.22763, 2.2], [259.24466, 1.0], [260.24805, 1.1], [273.25638, 1.7], [287.27274, 1.3], [288.27853, 1.5], [299.27206, 2.4], [307.3334, 1.0], [313.29031, 1.0], [369.35272, 100.0], [370.3558, 59.3], [371.35876, 9.1], [658.64526, 1.0], [659.65381, 1.7], [675.67932, 23.3], [676.68317, 41.2], [676.71527, 1.1], [677.68707, 16.7], [678.68756, 2.1], [680.6311, 1.6], [1028.00208, 2.9], [1029.00244, 1.3]]", "originalIndex": 62}, {"index": "F000821", "name": "SM 9:0_8:0;2O", "precursor_mz": 465.30539, "MS2_norm": "[[465.30319, 100.0]]", "originalIndex": 63}, {"index": "F000852", "name": "HexCer 19:0;2O_2:0", "precursor_mz": 518.37085, "MS2_norm": "[[281.22989, 33.3], [281.24805, 100.0], [281.38135, 21.7], [436.78928, 18.3]]", "originalIndex": 64}, {"index": "F000876", "name": "SM 13:1_8:1;2O", "precursor_mz": 563.34253, "MS2_norm": "[[493.26077, 100.0], [563.33954, 27.7]]", "originalIndex": 65}, {"index": "F000880", "name": "PC 10:0_10:0", "precursor_mz": 564.36536, "MS2_norm": "[[170.965, 29.2], [543.3515, 10.6], [543.39172, 6.2], [544.32208, 6.9], [544.35712, 100.0], [544.47583, 6.0], [545.35901, 14.1], [561.36255, 9.0], [562.37561, 11.8], [564.37183, 11.6]]", "originalIndex": 66}, {"index": "F000915", "name": "PC 16:3_11:0", "precursor_mz": 655.42365, "MS2_norm": "[[259.16913, 69.6], [655.42004, 100.0]]", "originalIndex": 67}, {"index": "F000924", "name": "MGDG 18:2_10:0", "precursor_mz": 669.45984, "MS2_norm": "[[187.1012, 72.4], [243.12321, 75.9], [261.1355, 100.0], [576.69611, 72.4], [669.44965, 79.3]]", "originalIndex": 68}, {"index": "F000932", "name": "PE 17:1_16:1", "precursor_mz": 699.4801, "MS2_norm": "[[699.48114, 100.0]]", "originalIndex": 69}, {"index": "F000933", "name": "PE 17:1_16:1", "precursor_mz": 699.48071, "MS2_norm": "[[699.4762, 100.0], [700.48492, 44.9]]", "originalIndex": 70}, {"index": "F000934", "name": "PE 17:1_16:1", "precursor_mz": 699.48157, "MS2_norm": "[[699.48407, 100.0], [700.49091, 29.9]]", "originalIndex": 71}, {"index": "F000935", "name": "PE 17:1_16:1", "precursor_mz": 699.48163, "MS2_norm": "[[503.84366, 34.2], [699.48077, 100.0]]", "originalIndex": 72}, {"index": "F000936", "name": "HexCer 19:2_16:1;2O", "precursor_mz": 708.5473, "MS2_norm": "[[241.22136, 42.2], [288.29355, 100.0], [708.54681, 56.2], [709.55487, 92.2]]", "originalIndex": 73}, {"index": "F000941", "name": "TG 16:4_14:1_13:1", "precursor_mz": 723.55768, "MS2_norm": "[[489.13858, 100.0]]", "originalIndex": 74}, {"index": "F000945", "name": "HexCer 18:0;2O_18:0", "precursor_mz": 728.60602, "MS2_norm": "[[255.23283, 100.0], [257.23563, 33.3], [283.26462, 37.9], [552.97198, 48.5]]", "originalIndex": 75}, {"index": "F000954", "name": "PE 18:1_18:1", "precursor_mz": 742.54028, "MS2_norm": "[[222.32416, 27.3], [281.24854, 100.0], [483.81409, 17.4], [494.7778, 16.7], [742.49292, 22.0], [742.54248, 30.3], [743.52795, 25.0]]", "originalIndex": 76}, {"index": "F000974", "name": "PMeOH 21:0_20:5", "precursor_mz": 777.54199, "MS2_norm": "[[241.21609, 100.0], [287.38565, 60.5], [288.293, 100.0], [288.3172, 51.2], [289.29437, 51.2], [709.5509, 74.4], [777.54266, 48.8]]", "originalIndex": 77}, {"index": "F000988", "name": "MGDG 19:2_16:3", "precursor_mz": 807.53052, "MS2_norm": "[[241.21838, 80.0], [288.2951, 100.0], [709.55334, 86.0]]", "originalIndex": 78}, {"index": "F000993", "name": "PE 20:2_19:2", "precursor_mz": 826.56177, "MS2_norm": "[[279.23285, 63.6], [280.23605, 100.0], [767.55591, 47.7]]", "originalIndex": 79}, {"index": "F000998", "name": "SQDG 21:0_12:0", "precursor_mz": 829.51178, "MS2_norm": "[[829.51105, 100.0]]", "originalIndex": 80}, {"index": "F001001", "name": "PE 20:0_19:1", "precursor_mz": 832.61023, "MS2_norm": "[[281.24969, 100.0]]", "originalIndex": 81}, {"index": "F001025", "name": "PI 20:3_20:0", "precursor_mz": 961.60931, "MS2_norm": "[[277.17538, 3.9], [479.25711, 2.3], [492.26572, 1.7], [607.40344, 7.4], [617.64569, 2.0], [660.22516, 2.5], [697.43811, 10.6], [698.43866, 2.2], [709.43542, 2.0], [709.46265, 2.3], [915.60217, 100.0], [916.60553, 43.0], [916.76593, 1.8], [916.84131, 2.0], [917.61096, 1.8]]", "originalIndex": 82}];
+            const columns = ['index', 'name', 'precursor_mz', 'MS2_norm'];
+            const rowsPerPage = 20;
+            let currentPage = 1;
+            let chartInstance = null;
+            let sortState = { column: null, direction: 'asc' };
+            let pageCount = 1;
+
+            const modal = document.getElementById('spectrumModal');
+            const closeBtn = document.querySelector('.close-button');
+
+            // --- Modal & Chart Functions ---
+            function showModal(spectrumDataStr, columnName) {
+                renderChart(spectrumDataStr, columnName);
+                modal.style.display = 'block';
+            }
+            function closeModal() { modal.style.display = 'none'; }
+            closeBtn.onclick = closeModal;
+            window.onclick = function(event) { if (event.target == modal) closeModal(); };
+
+            const topLabelsPlugin = {
+                id: 'topLabels',
+                afterDatasetsDraw(chart, args, pluginOptions) {
+                    const { ctx } = chart;
+                    ctx.save();
+                    ctx.font = 'bold 10px Arial';
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
+                    ctx.textAlign = 'center';
+
+                    const datasetMeta = chart.getDatasetMeta(0);
+                    datasetMeta.data.forEach((datapoint, index) => {
+                        const { x, y } = datapoint.getProps(['x', 'y'], true);
+                        const value = chart.data.datasets[0].data[index];
+                        const xValue = value.x; // The m/z value
+                        
+                        const yPos = y - 5; 
+
+                        if (value.y > 0) {
+                            ctx.fillText(xValue.toFixed(2), x, yPos);
+                        }
+                    });
+                    ctx.restore();
+                }
+            };
+
+            function renderChart(modalContent, columnName) {
+                const ctx = document.getElementById('modalChart').getContext('2d');
+                const inputData = JSON.parse(modalContent);
+                if (!Array.isArray(inputData) || inputData.length === 0) return;
+
+                const chartData = inputData.map(item => ({ x: item[0], y: item[1] }));
+                const xValues = inputData.map(item => item[0]);
+                const yValues = inputData.map(item => item[1]);
+
+                const minX = xValues.length > 0 ? Math.min(...xValues) - 50 : 0;
+                const maxX = xValues.length > 0 ? Math.max(...xValues) + 50 : 100;
+                
+                let maxY = (columnName === 'MS2_norm') ? 110 : (yValues.length > 0 ? Math.ceil(Math.max(...yValues) * 1.1) : 110);
+
+                if (chartInstance) chartInstance.destroy();
+                
+                chartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        datasets: [
+                            {
+                                label: 'Intensity',
+                                data: chartData,
+                                backgroundColor: '#7BBA8D',
+                                barThickness: 3,
+                            }
+                        ]
+                    },
+                    plugins: [topLabelsPlugin],
+                    options: {
+                        scales: {
+                            x: { type: 'linear', min: minX, max: maxX, title: { display: true, text: 'm/z' } },
+                            y: { min: 0, max: maxY, title: { display: true, text: 'Intensity' } }
+                        },
+                        plugins: { 
+                            legend: { 
+                                display: false
+                            },
+                            tooltip: {
+                                enabled: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // --- Sorting Function ---
+            function sortData(column) {
+                sortState.direction = (sortState.column === column && sortState.direction === 'asc') ? 'desc' : 'asc';
+                sortState.column = column;
+                data.sort((a, b) => {
+                    const valA = a[column], valB = b[column];
+                    if (valA < valB) return sortState.direction === 'asc' ? -1 : 1;
+                    if (valA > valB) return sortState.direction === 'asc' ? 1 : -1;
+                    return 0;
+                });
+                displayTable(1);
+                updateHeaders();
+            }
+
+            function updateHeaders() {
+                document.querySelectorAll('#interactive-table thead th').forEach(th => {
+                    const indicator = th.querySelector('.sort-indicator');
+                    if (indicator) {
+                        indicator.textContent = (th.dataset.column === sortState.column) ? (sortState.direction === 'asc' ? '▲' : '▼') : '';
+                    }
+                });
+            }
+
+            // --- Table and Pagination Rendering ---
+            function displayTable(page) {
+                currentPage = page;
+                const tableBody = document.querySelector('#interactive-table tbody');
+                tableBody.innerHTML = '';
+                const paginatedItems = data.slice((page - 1) * rowsPerPage, page * rowsPerPage);
+
+                paginatedItems.forEach(item => {
+                    const row = document.createElement('tr');
+                    columns.forEach(col => {
+                        const cell = document.createElement('td');
+                        if (['MS2', 'MS2_norm'].includes(col) && item[col]) {
+                            const link = document.createElement('a');
+                            link.textContent = 'View Spectrum';
+                            link.className = 'clickable-link';
+                            link.addEventListener('click', () => showModal(item[col], col));
+                            cell.appendChild(link);
+                        } else {
+                            cell.textContent = item[col];
+                            cell.title = item[col];
+                        }
+                        row.appendChild(cell);
+                    });
+                    tableBody.appendChild(row);
+                });
+                updatePaginationControls();
+            }
+
+            function setupPagination() {
+                const paginationControls = document.getElementById('pagination-controls');
+                pageCount = Math.ceil(data.length / rowsPerPage);
+
+                paginationControls.innerHTML = `
+                    <button id="prev-page" title="Previous Page">&laquo; Prev</button>
+                    <span id="page-info"></span>
+                    <button id="next-page" title="Next Page">Next &raquo;</button>
+                    <input type="number" id="page-input" min="1" max="${pageCount}" style="width: 60px;">
+                    <button id="go-to-page">Go</button>
+                `;
+
+                document.getElementById('prev-page').addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        displayTable(currentPage - 1);
+                    }
+                });
+
+                document.getElementById('next-page').addEventListener('click', () => {
+                    if (currentPage < pageCount) {
+                        displayTable(currentPage + 1);
+                    }
+                });
+
+                const goToPage = () => {
+                    const pageInput = document.getElementById('page-input');
+                    let pageNum = parseInt(pageInput.value, 10);
+                    if (!isNaN(pageNum) && pageNum >= 1 && pageNum <= pageCount) {
+                        displayTable(pageNum);
+                    } else {
+                        pageInput.value = currentPage; // Reset if invalid
+                    }
+                };
+
+                document.getElementById('go-to-page').addEventListener('click', goToPage);
+                document.getElementById('page-input').addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        goToPage();
+                    }
+                });
+            }
+
+            function updatePaginationControls() {
+                const paginationControls = document.getElementById('pagination-controls');
+
+                if (pageCount <= 1) {
+                    paginationControls.style.display = 'none';
+                    return;
+                }
+                
+                paginationControls.style.display = 'flex';
+                document.getElementById('page-info').textContent = `Page ${currentPage} of ${pageCount}`;
+                document.getElementById('page-input').value = currentPage;
+                document.getElementById('prev-page').disabled = currentPage === 1;
+                document.getElementById('next-page').disabled = currentPage === pageCount;
+            }
+            
+            function initialize() {
+                const tableHead = document.querySelector('#interactive-table thead');
+                const headerRow = document.createElement('tr');
+                columns.forEach(col => {
+                    const th = document.createElement('th');
+                    th.textContent = col;
+                    th.dataset.column = col;
+                    th.innerHTML += `<span class="sort-indicator"></span>`;
+                    th.addEventListener('click', () => sortData(col));
+                    headerRow.appendChild(th);
+                });
+                tableHead.appendChild(headerRow);
+                setupPagination();
+                displayTable(1);
+            }
+
+            initialize();
+        </script>
+    </body>
+    </html>
+    

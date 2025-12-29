@@ -1,6 +1,7 @@
 # Installation
 ### Clone the project folder and download database 
 Download the source code at [https://github.com/Bowen999/LIPID-PLUS/releases](https://github.com/Bowen999/LIPID-PLUS/releases) or run the command below:
+
 ```bash
 git clone https://github.com/Bowen999/LIPID-PLUS.git
 cd LIPID-PLUS
@@ -38,6 +39,7 @@ The usage of the pipeline with custom parameters can be found in the `Advanced U
 The pipeline will generate several files in the `results/` directory.   
 **Main result file**: `results/final_annotations.csv` contains the complete lipid annotations result, search/prediction are recorded in `name` column.
 &nbsp;
+
 ```text
 results/
 ├── identification_result.csv     # Final merged output (Database + ML predictions)
@@ -194,15 +196,17 @@ python code/adduct_predict.py input.csv model/adduct.joblib \
 #### Input Requirements
 
 The CSV must contain:
+
 - `precursor_mz`: Precursor m/z (will be rounded to 2 decimals)
 - `ion_mode`: Ion mode (`positive` or `negative`)
 - `mz_*` columns: Binary features (0/1) indicating presence of fragment ions
 
 #### Output Columns
+Original columns plus:  
 
-Original columns plus:
 - `predicted_adduct`: Predicted adduct type
 - `adduct_confidence`: Prediction confidence (0-1), if available
+
 ---
 
 
@@ -316,6 +320,7 @@ The CSV must contain:
 #### Output Columns
 
 Cleaned output with:
+
 - `name`: Combined lipid name (e.g., "PC 16:0_18:1")
 - `precursor_mz`, `ion_mode`, `adduct`, `class`, `category`
 - `num_chain`: Number of chains
@@ -324,6 +329,7 @@ Cleaned output with:
 
 #### Name Format
 The `name` column combines class and chain information:
+
 - Format: `{Class} {C1}:{DB1}_{C2}:{DB2}_{C3}:{DB3}_{C4}:{DB4}`
 - Chains sorted by length (descending)
 - Zero chains (0:0) are omitted
@@ -331,6 +337,7 @@ The `name` column combines class and chain information:
   - `PC 16:0_18:1` (PC with C16:0 and C18:1)
   - `TG 16:0_18:1_18:2` (TG with three chains)
   - `Cer 18:1_16:0` (Ceramide with two chains)
+
 ---
 
 ## Alternative: Formula Annotation
@@ -532,7 +539,7 @@ Lipid class information can be found in [LIPID MAPS](https://www.lipidmaps.org/d
 | CE     | ST       | 1         | Cholesterol Ester                        | Sterol Lipids            |
 | ST     | ST       | 1         | Sterol                                   | Sterol Lipids            |
 
-## Data Source
+## prediction Confidence
 The model outputs probabilities for each of the three components: adduct, class, and plsf. 
 For rule-based class classification, the probability is 0.8 if it's the unique intersection of the exact mass and the MS/MS diagnostic ion.
 
@@ -554,6 +561,6 @@ For metabolite MS databases (GNPS, MassBank, MoNA, MassSpecGym), spectra were fi
 
 
 # Release Note
-#### Last Updated: Dec 28, 2025, Version: 1.0.1
-
+#### Last Updated: Dec 29, 2025, Version: 1.0.1
+* **Dec 29, 2025**: Add example report.
 * **Dec 28, 2025**: Fixed some garbled text issues in visualizations. Update the confidence calculation method.

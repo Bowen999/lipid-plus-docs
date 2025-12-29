@@ -175,6 +175,10 @@
                                         Class
                                     </a>
 
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-prediction-confidence" onclick="showPage('page-faq-prediction-confidence', 'nav-docs', this)">
+                                        prediction Confidence
+                                    </a>
+
                                     <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-data-source" onclick="showPage('page-faq-data-source', 'nav-docs', this)">
                                         Data Source
                                     </a>
@@ -201,6 +205,7 @@
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Installation</h1>
                     <h3 class="text-xl font-semibold mt-6 mb-3 dark:text-white">Clone the project folder and download database </h3>
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Download the source code at <a href="https://github.com/Bowen999/LIPID-PLUS/releases" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">https://github.com/Bowen999/LIPID-PLUS/releases</a> or run the command below:</p>
+
 <pre data-language="bash">
 <code class="language-bash">git clone https://github.com/Bowen999/LIPID-PLUS.git
 cd LIPID-PLUS
@@ -242,6 +247,7 @@ pip install -r requirements.txt</code>
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The pipeline will generate several files in the <code>results/</code> directory.</p>
 <strong>Main result file</strong>: <code>results/final_annotations.csv</code> contains the complete lipid annotations result, search/prediction are recorded in <code>name</code> column.
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">&nbsp;</p>
+
 <pre data-language="text">
 <code class="language-text">results/
 ├── identification_result.csv     # Final merged output (Database + ML predictions)
@@ -397,7 +403,13 @@ python run.py feature_df.csv \
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">If True, tolerances (--ms1_tol, --ms2_tol) are in ppm; if False, in Da</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--similarity_method</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>weighted_dot_product</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">choose from dot_product,weighted_dot_product,entropy_similarity,unweighted_entropy_similarity</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_threshold</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.7</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 similarity score for database match</td>
@@ -590,6 +602,7 @@ python run.py feature_df.csv \
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Input Requirements</h4>
 
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The CSV must contain:</p>
+
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li><code>precursor_mz</code>: Precursor m/z (will be rounded to 2 decimals)</li>
 <li><code>ion_mode</code>: Ion mode (<code>positive</code> or <code>negative</code>)</li>
@@ -597,12 +610,13 @@ python run.py feature_df.csv \
 </ul>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Columns</h4>
-
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Original columns plus:</p>
+
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li><code>predicted_adduct</code>: Predicted adduct type</li>
 <li><code>adduct_confidence</code>: Prediction confidence (0-1), if available</li>
 </ul>
+
 <hr />
 
 
@@ -812,6 +826,7 @@ python code/class_predict.py input.csv class.joblib \
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Columns</h4>
 
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Cleaned output with:</p>
+
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li><code>name</code>: Combined lipid name (e.g., "PC 16:0_18:1")</li>
 <li><code>precursor_mz</code>, <code>ion_mode</code>, <code>adduct</code>, <code>class</code>, <code>category</code></li>
@@ -822,6 +837,7 @@ python code/class_predict.py input.csv class.joblib \
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Name Format</h4>
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <code>name</code> column combines class and chain information:</p>
+
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>Format: <code>{Class} {C1}:{DB1}_{C2}:{DB2}_{C3}:{DB3}_{C4}:{DB4}</code></li>
 <li>Chains sorted by length (descending)</li>
@@ -831,6 +847,7 @@ python code/class_predict.py input.csv class.joblib \
 <li><code>TG 16:0_18:1_18:2</code> (TG with three chains)</li>
 <li><code>Cer 18:1_16:0</code> (Ceramide with two chains)</li>
 </ul>
+
 <hr />
 
                     </section>
@@ -937,7 +954,7 @@ python formula_annotation.py data.csv \
   --group_1 0h \
   --group_2 8h \
   --p_value_threshold 0.1 \
-  --fc_threshold 1 \</code>
+  --fc_threshold 1</code>
 </pre>
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">&nbsp;</p>
 
@@ -1009,7 +1026,7 @@ python formula_annotation.py data.csv \
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--keep_cols</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>List</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>[&#x27;index&#x27;, &#x27;name&#x27;, &#x27;precursor_mz&#x27;, &#x27;adduct&#x27;, &#x27;MS2_norm&#x27;]</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>index name precursor_mz adduct MS2_norm</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Specific columns to retain for the interactive Mass Spec table in the report.</td>
 </tr>
 </tbody>
@@ -1105,7 +1122,13 @@ python run.py feature_df.csv \
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">If True, tolerances (--ms1_tol, --ms2_tol) are in ppm; if False, in Da</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--similarity_method</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>weighted_dot_product</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">choose from dot_product,weighted_dot_product,entropy_similarity,unweighted_entropy_similarity</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_threshold</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.7</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 similarity score for database match</td>
@@ -1300,6 +1323,7 @@ python run.py feature_df.csv \
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Input Requirements</h4>
 
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The CSV must contain:</p>
+
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li><code>precursor_mz</code>: Precursor m/z (will be rounded to 2 decimals)</li>
 <li><code>ion_mode</code>: Ion mode (<code>positive</code> or <code>negative</code>)</li>
@@ -1307,12 +1331,13 @@ python run.py feature_df.csv \
 </ul>
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Columns</h4>
-
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Original columns plus:</p>
+
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li><code>predicted_adduct</code>: Predicted adduct type</li>
 <li><code>adduct_confidence</code>: Prediction confidence (0-1), if available</li>
 </ul>
+
 <hr />
 
 
@@ -1524,6 +1549,7 @@ python code/class_predict.py input.csv class.joblib \
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Output Columns</h4>
 
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Cleaned output with:</p>
+
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li><code>name</code>: Combined lipid name (e.g., "PC 16:0_18:1")</li>
 <li><code>precursor_mz</code>, <code>ion_mode</code>, <code>adduct</code>, <code>class</code>, <code>category</code></li>
@@ -1534,6 +1560,7 @@ python code/class_predict.py input.csv class.joblib \
 
 <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Name Format</h4>
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The <code>name</code> column combines class and chain information:</p>
+
 <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
 <li>Format: <code>{Class} {C1}:{DB1}_{C2}:{DB2}_{C3}:{DB3}_{C4}:{DB4}</code></li>
 <li>Chains sorted by length (descending)</li>
@@ -1543,6 +1570,7 @@ python code/class_predict.py input.csv class.joblib \
 <li><code>TG 16:0_18:1_18:2</code> (TG with three chains)</li>
 <li><code>Cer 18:1_16:0</code> (Ceramide with two chains)</li>
 </ul>
+
 <hr />
 
                 </section>
@@ -1651,7 +1679,7 @@ python formula_annotation.py data.csv \
   --group_1 0h \
   --group_2 8h \
   --p_value_threshold 0.1 \
-  --fc_threshold 1 \</code>
+  --fc_threshold 1</code>
 </pre>
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">&nbsp;</p>
 
@@ -1723,7 +1751,7 @@ python formula_annotation.py data.csv \
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--keep_cols</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>List</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>[&#x27;index&#x27;, &#x27;name&#x27;, &#x27;precursor_mz&#x27;, &#x27;adduct&#x27;, &#x27;MS2_norm&#x27;]</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>index name precursor_mz adduct MS2_norm</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Specific columns to retain for the interactive Mass Spec table in the report.</td>
 </tr>
 </tbody>
@@ -2207,6 +2235,16 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 </tbody>
 </table>
 </div>
+
+                    </section>
+                    
+                    <section id="page-faq-prediction-confidence-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">prediction Confidence</h2>
+                        <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The model outputs probabilities for each of the three components: adduct, class, and plsf.</p>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For rule-based class classification, the probability is 0.8 if it's the unique intersection of the exact mass and the MS/MS diagnostic ion.</p>
+
+<code>pred_confidence = (plsf × adduct × class) ^ (1/3)</code>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Each confidence value has a minimum floor of 0.01 applied before calculation. This prevents an extremely low value from making the final score near zero.</p>
 
                     </section>
                     
@@ -2705,6 +2743,17 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 
                 </section>
 
+                <!-- Page: prediction Confidence -->
+                <section id="page-faq-prediction-confidence" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">prediction Confidence</h1>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The model outputs probabilities for each of the three components: adduct, class, and plsf.</p>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">For rule-based class classification, the probability is 0.8 if it's the unique intersection of the exact mass and the MS/MS diagnostic ion.</p>
+
+<code>pred_confidence = (plsf × adduct × class) ^ (1/3)</code>
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Each confidence value has a minimum floor of 0.01 applied before calculation. This prevents an extremely low value from making the final score near zero.</p>
+
+                </section>
+
                 <!-- Page: Data Source -->
                 <section id="page-faq-data-source" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Data Source</h1>
@@ -2728,11 +2777,11 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
                 <!-- Page: Release Note -->
                 <section id="page-release-note" class="page-content hidden">
                     <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Release Note</h1>
-                    <ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
-<li><strong>Last Updated:</strong> Dec 08, 2025    </li>
-<li><strong>Version:</strong> 1.0</li>
+                    <h4 class="text-lg font-semibold mt-6 mb-3 dark:text-white">Last Updated: Dec 29, 2025, Version: 1.0.1</h4>
+<ul class="list-disc list-inside space-y-2 mb-4 text-gray-700 dark:text-gray-300">
+<li><strong>Dec 29, 2025</strong>: Add example report.</li>
+<li><strong>Dec 28, 2025</strong>: Fixed some garbled text issues in visualizations. Update the confidence calculation method.</li>
 </ul>
-
                 </section>
             </div>
         </main>

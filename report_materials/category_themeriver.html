@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+                <script type="text/javascript" src="https://assets.pyecharts.org/assets/v5/echarts.min.js"></script>
+
+    
+</head>
+<body >
+    <div id="2294ef42fc824d6c884764cd8fc28292" class="chart-container" style="width:1200px; height:400px; "></div>
+    <script>
+        var chart_2294ef42fc824d6c884764cd8fc28292 = echarts.init(
+            document.getElementById('2294ef42fc824d6c884764cd8fc28292'), 'white', {renderer: 'canvas', locale: 'ZH'});
+        var option_2294ef42fc824d6c884764cd8fc28292 = {
+    "backgroundColor": "#ffffff",
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "aria": {
+        "enabled": false
+    },
+    "color": [
+        "#FFF689",
+        "#1E2136",
+        "#FBC2C2",
+        "#32769B",
+        "#F4D35E",
+        "#64557B",
+        "#FFB88A",
+        "#62866C",
+        "#FF9C5B",
+        "#81B2D9",
+        "#F67B45",
+        "#A0C5E3",
+        "#CB7876",
+        "#BBA6DD",
+        "#8BA47C",
+        "#E39B99",
+        "#8C7DA8",
+        "#B4CFA4"
+    ],
+    "series": [
+        {
+            "type": "themeRiver",
+            "name": [
+                "FA",
+                "GL",
+                "GP",
+                "SL",
+                "SP"
+            ],
+            "data": [
+                [
+                    1,
+                    2,
+                    "FA"
+                ],
+                [
+                    1,
+                    7,
+                    "GL"
+                ],
+                [
+                    1,
+                    18,
+                    "GP"
+                ],
+                [
+                    1,
+                    4,
+                    "SL"
+                ],
+                [
+                    1,
+                    20,
+                    "SP"
+                ],
+                [
+                    2,
+                    2,
+                    "FA"
+                ],
+                [
+                    2,
+                    6,
+                    "GL"
+                ],
+                [
+                    2,
+                    17,
+                    "GP"
+                ],
+                [
+                    2,
+                    3,
+                    "SL"
+                ],
+                [
+                    2,
+                    19,
+                    "SP"
+                ],
+                [
+                    3,
+                    1,
+                    "FA"
+                ],
+                [
+                    3,
+                    7,
+                    "GL"
+                ],
+                [
+                    3,
+                    12,
+                    "GP"
+                ],
+                [
+                    3,
+                    4,
+                    "SL"
+                ],
+                [
+                    3,
+                    14,
+                    "SP"
+                ],
+                [
+                    4,
+                    1,
+                    "FA"
+                ],
+                [
+                    4,
+                    8,
+                    "GL"
+                ],
+                [
+                    4,
+                    15,
+                    "GP"
+                ],
+                [
+                    4,
+                    1,
+                    "SL"
+                ],
+                [
+                    4,
+                    16,
+                    "SP"
+                ]
+            ],
+            "label": {
+                "show": true,
+                "margin": 8,
+                "valueAnimation": false
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "FA",
+                "GL",
+                "GP",
+                "SL",
+                "SP"
+            ],
+            "selected": {},
+            "show": true,
+            "left": "center",
+            "top": "5%",
+            "orient": "horizontal",
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14,
+            "backgroundColor": "transparent",
+            "borderColor": "#ccc",
+            "borderRadius": 0,
+            "pageButtonItemGap": 5,
+            "pageButtonPosition": "end",
+            "pageFormatter": "{current}/{total}",
+            "pageIconColor": "#2f4554",
+            "pageIconInactiveColor": "#aaa",
+            "pageIconSize": 15,
+            "animationDurationUpdate": 800,
+            "selector": false,
+            "selectorPosition": "auto",
+            "selectorItemGap": 7,
+            "selectorButtonGap": 10
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "axis",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "enterable": false,
+        "confine": false,
+        "appendToBody": false,
+        "transitionDuration": 0.4,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5,
+        "order": "seriesAsc"
+    },
+    "singleAxis": {
+        "max": 4,
+        "min": 1,
+        "top": "70",
+        "bottom": "50",
+        "type": "value",
+        "axisTick": {
+            "show": true,
+            "alignWithLabel": true,
+            "inside": false
+        },
+        "axisLabel": {
+            "show": true,
+            "margin": 8,
+            "fontSize": 12,
+            "fontWeight": "bold",
+            "formatter": function(value) {            var labels = ['0h', '2h', '4h', '8h'];            var idx = Math.round(value) - 1;            if (idx >= 0 && idx < labels.length) {                return labels[idx];            }            return '';        },
+            "valueAnimation": false
+        }
+    },
+    "title": [
+        {
+            "show": true,
+            "target": "blank",
+            "subtarget": "blank",
+            "left": "center",
+            "padding": 5,
+            "itemGap": 10,
+            "textAlign": "auto",
+            "textVerticalAlign": "auto",
+            "triggerEvent": false
+        }
+    ]
+};
+        chart_2294ef42fc824d6c884764cd8fc28292.setOption(option_2294ef42fc824d6c884764cd8fc28292);
+    </script>
+</body>
+</html>
