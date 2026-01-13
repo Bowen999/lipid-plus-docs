@@ -485,7 +485,7 @@ For example, the complete lipid name `PC 10:0/18:2(9Z, 12Z)` is simplified to it
 This representation avoids the ambiguity and false positives associated with predicting complete structures, which is often unsuitable for lipids, its fixed and simple format makes it also more suitable for machine learning.
 
 
-## Class
+## Classes
 Lipid class information can be found in [LIPID MAPS](https://www.lipidmaps.org/data/classification/lipid_cns.html). Following are classes that support by LIPID+:
 
 | Class  | Category | Number of Tail | Full Name of Class                       | Full Name of Category    |
@@ -538,6 +538,77 @@ Lipid class information can be found in [LIPID MAPS](https://www.lipidmaps.org/d
 | SM     | SP       | 2         | Sphingomyelin                            | Sphingolipids            |
 | CE     | ST       | 1         | Cholesterol Ester                        | Sterol Lipids            |
 | ST     | ST       | 1         | Sterol                                   | Sterol Lipids            |
+
+## Class Rules
+
+**Rules for assigning lipid classes based on characteristic MS/MS fragmentation patterns.**
+
+| Class | Diagnostic Transition | m/z / Δm | Fragment Identity | 
+| :--- | :--- | :--- | :--- | 
+| **PC** | [M+H]⁺ → 184.0733 | 184.0733 | [Phosphocholine]⁺ | 
+| **PC** | [M+HCOO]⁻ → NL 60 | 60.0211 | CH₃ + HCOOH | 
+| **LPC** | [M+H]⁺ → 104.107 | 104.107 | [Choline]⁺ (vs PC) | 
+| **PE** | [M+H]⁺ → NL 141 | 141.0194 | Phosphoethanolamine | 
+| **PE** | [M-H]⁻ → 140.0188 | 140.0188 | [Phosphoethanolamine]⁻ | 
+| **PS** | [M+H]⁺ → NL 185 | 185.0089 | Phosphoserine | 
+| **PS** | [M-H]⁻ → NL 87 | 87.032 | Serine | 
+| **PG** | [M+H]⁺ → NL 172 | 172.0135 | Glycerol-3-phosphate | 
+| **PI** | [M-H]⁻ → 241.0119 | 241.0119 | [Inositol-cyclic-P]⁻ | 
+| **PA** | [M+NH₄]⁺ → NL 115 | 115.0262 | NH₃ + H₃PO₄ | 
+| **CE** | [M+H]⁺ → 369.3516 | 369.3516 | [Cholesterol-H₂O]⁺ | 
+| **FA** | [M-H]⁻ → NL 44 | 43.9898 | CO₂ | 
+| **NAE** | [M+H]⁺ → 62.0600 | 62.06 | [Ethanolamine]⁺ |
+
+*Note:* "NL" indicates a Neutral Loss.       
+<br />
+<br />
+<br />
+**Constraints on the number of chemical elements permitted for different lipid classes.**
+
+| Lipid Class | C (Carbon) | H (Hydrogen) | O (Oxygen) | P (Phosphorus) | N (Nitrogen) | 
+ | ----- | ----- | ----- | ----- | ----- | ----- | 
+| **PA, PA-O, PA-P** | 8-80 | 15-155 | 8 | 1 | 0 | 
+| **PC, PC-O, PC-P** | 13-85 | 26-168 | 8 | 1 | 1 | 
+| **PE, PE-O, PE-P** | 10-82 | 22-162 | 8 | 1 | 1 | 
+| **PS, PS-O, PS-P** | 13-85 | 24-164 | 10 | 1 | 1 | 
+| **PG, PG-O, PG-P** | 11-83 | 21-161 | 10 | 1 | 0 | 
+| **PI, PI-O, PI-P** | 14-86 | 25-165 | 13 | 1 | 0 | 
+| **CL** | 21-153 | 38-302 | 17 | 2 | 0 | 
+| **BMP** | 14-86 | 25-165 | 13 | 1 | 0 | 
+| **PMeOH** | 9-81 | 18-158 | 8 | 1 | 0 | 
+| **LPA** | 5-42 | 11-83 | 7 | 1 | 0 | 
+| **LPC, LPC-O, LPC-P** | 8-45 | 18-90 | 7 | 1 | 1 | 
+| **LPE, LPE-O, LPE-P** | 5-42 | 14-84 | 7 | 1 | 1 | 
+| **LPS** | 8-45 | 16-86 | 9 | 1 | 1 | 
+| **LPG** | 6-43 | 15-85 | 9 | 1 | 0 | 
+| **LPI** | 9-46 | 19-89 | 12 | 1 | 0 | 
+| **MG, MG-O, MG-P** | 5-42 | 10-82 | 4 | 0 | 0 | 
+| **DG, DG-O, DG-P** | 8-78 | 14-152 | 5 | 0 | 0 | 
+| **TG, TG-O** | 11-114 | 18-222 | 6 | 0 | 0 | 
+| **MGDG** | 14-84 | 24-164 | 10 | 0 | 0 | 
+| **DGDG** | 20-90 | 34-174 | 15 | 0 | 0 | 
+| **SQDG** | 14-84 | 24-164 | 12 | 0 | 0 | 
+| **DGTS/LDGTS** | 18-88 | 35-173 | 7 | 0 | 1 | 
+| **DGCC/LDGCC** | 18-88 | 34-172 | 8 | 0 | 1 | 
+| **DGGA** | 17-87 | 32-170 | 9 | 0 | 1 | 
+| **Cer, Cer-d** | 20-84 | 39-165 | 3 | 0 | 1 | 
+| **Cer-t** | 20-84 | 39-167 | 4 | 0 | 1 | 
+| **SM, SM-d** | 25-89 | 51-177 | 6 | 1 | 2 | 
+| **SM-t** | 25-89 | 51-179 | 7 | 1 | 2 | 
+| **PE_Cer** | 22-86 | 44-170 | 6 | 1 | 2 | 
+| **HexCer/GalCer/GlcCer** | 26-90 | 49-177 | 8 | 0 | 1 | 
+| **LacCer** | 32-96 | 59-189 | 13 | 0 | 1 | 
+| **PI_Cer, PI_Cer-d** | 26-90 | 49-179 | 12 | 1 | 1 | 
+| **PI_Cer-t** | 26-90 | 49-181 | 13 | 1 | 1 | 
+| **ST** | 27-29 | 44-48 | 1 | 0 | 0 | 
+| **CE** | 29-65 | 46-110 | 2 | 0 | 0 | 
+| **SE** | 29-65 | 46-110 | 2 | 0 | 0 | 
+| **FA** | 2-36 | 4-72 | 2 | 0 | 0 | 
+| **WE** | 4-72 | 8-144 | 2 | 0 | 0 | 
+| **CAR** | 9-43 | 19-85 | 4 | 0 | 1 | 
+| **NAE** | 4-40 | 9-81 | 2 | 0 | 1 |
+
+
 
 ## prediction Confidence
 The model outputs probabilities for each of the three components: adduct, class, and plsf. 

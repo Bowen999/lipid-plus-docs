@@ -171,8 +171,12 @@
                                         What is PLSF
                                     </a>
 
-                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-class" onclick="showPage('page-faq-class', 'nav-docs', this)">
-                                        Class
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-classes" onclick="showPage('page-faq-classes', 'nav-docs', this)">
+                                        Classes
+                                    </a>
+
+                                    <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-class-rules" onclick="showPage('page-faq-class-rules', 'nav-docs', this)">
+                                        Class Rules
                                     </a>
 
                                     <a href="#" class="sidebar-link group flex items-center px-3 py-2 text-sm font-medium rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" data-page-id="page-faq-prediction-confidence" onclick="showPage('page-faq-prediction-confidence', 'nav-docs', this)">
@@ -1880,8 +1884,8 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 
                     </section>
                     
-                    <section id="page-faq-class-content" class="mt-10">
-                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Class</h2>
+                    <section id="page-faq-classes-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Classes</h2>
                         <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Lipid class information can be found in <a href="https://www.lipidmaps.org/data/classification/lipid_cns.html" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">LIPID MAPS</a>. Following are classes that support by LIPID+:</p>
 
 <div class="overflow-x-auto mb-6">
@@ -2238,6 +2242,504 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 
                     </section>
                     
+                    <section id="page-faq-class-rules-content" class="mt-10">
+                        <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">Class Rules</h2>
+                        
+<strong>Rules for assigning lipid classes based on characteristic MS/MS fragmentation patterns.</strong>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Class</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Diagnostic Transition</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">m/z / Δm</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Fragment Identity</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400"></th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PC</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 184.0733</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">184.0733</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Phosphocholine]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PC</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+HCOO]⁻ → NL 60</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">60.0211</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CH₃ + HCOOH</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPC</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 104.107</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">104.107</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Choline]⁺ (vs PC)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → NL 141</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">141.0194</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → 140.0188</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">140.0188</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Phosphoethanolamine]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PS</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → NL 185</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">185.0089</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PS</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → NL 87</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">87.032</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Serine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PG</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → NL 172</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">172.0135</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerol-3-phosphate</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PI</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → 241.0119</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">241.0119</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Inositol-cyclic-P]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PA</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+NH₄]⁺ → NL 115</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">115.0262</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NH₃ + H₃PO₄</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>CE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 369.3516</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">369.3516</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Cholesterol-H₂O]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>FA</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → NL 44</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">43.9898</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CO₂</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>NAE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 62.0600</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">62.06</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Ethanolamine]⁺</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<em>Note:</em> "NL" indicates a Neutral Loss.       
+<br />
+<br />
+<br />
+<strong>Constraints on the number of chemical elements permitted for different lipid classes.</strong>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Lipid Class</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">C (Carbon)</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">H (Hydrogen)</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">O (Oxygen)</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">P (Phosphorus)</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">N (Nitrogen)</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400"></th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PA, PA-O, PA-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8-80</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">15-155</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PC, PC-O, PC-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">13-85</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">26-168</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PE, PE-O, PE-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">10-82</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">22-162</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PS, PS-O, PS-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">13-85</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">24-164</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">10</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PG, PG-O, PG-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">11-83</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">21-161</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">10</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PI, PI-O, PI-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">14-86</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">25-165</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">13</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>CL</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">21-153</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">38-302</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">17</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>BMP</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">14-86</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">25-165</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">13</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PMeOH</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9-81</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">18-158</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPA</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">5-42</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">11-83</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">7</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPC, LPC-O, LPC-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8-45</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">18-90</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">7</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPE, LPE-O, LPE-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">5-42</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">14-84</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">7</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPS</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8-45</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">16-86</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPG</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">6-43</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">15-85</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPI</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9-46</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">19-89</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">12</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>MG, MG-O, MG-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">5-42</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">10-82</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>DG, DG-O, DG-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8-78</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">14-152</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">5</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>TG, TG-O</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">11-114</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">18-222</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">6</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>MGDG</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">14-84</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">24-164</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">10</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>DGDG</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">20-90</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">34-174</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">15</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>SQDG</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">14-84</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">24-164</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">12</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>DGTS/LDGTS</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">18-88</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">35-173</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">7</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>DGCC/LDGCC</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">18-88</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">34-172</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>DGGA</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">17-87</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">32-170</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>Cer, Cer-d</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">20-84</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">39-165</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>Cer-t</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">20-84</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">39-167</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>SM, SM-d</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">25-89</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">51-177</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">6</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>SM-t</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">25-89</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">51-179</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">7</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PE_Cer</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">22-86</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">44-170</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">6</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>HexCer/GalCer/GlcCer</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">26-90</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">49-177</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LacCer</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">32-96</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">59-189</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">13</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PI_Cer, PI_Cer-d</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">26-90</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">49-179</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">12</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PI_Cer-t</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">26-90</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">49-181</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">13</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>ST</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">27-29</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">44-48</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>CE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">29-65</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">46-110</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>SE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">29-65</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">46-110</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>FA</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2-36</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4-72</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>WE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4-72</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8-144</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>CAR</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9-43</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">19-85</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>NAE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4-40</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9-81</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+                    </section>
+                    
                     <section id="page-faq-prediction-confidence-content" class="mt-10">
                         <h2 class="text-2xl font-semibold mt-8 mb-4 dark:text-white">prediction Confidence</h2>
                         <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">The model outputs probabilities for each of the three components: adduct, class, and plsf.</p>
@@ -2384,9 +2886,9 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 
                 </section>
 
-                <!-- Page: Class -->
-                <section id="page-faq-class" class="page-content hidden">
-                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Class</h1>
+                <!-- Page: Classes -->
+                <section id="page-faq-classes" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Classes</h1>
                     <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Lipid class information can be found in <a href="https://www.lipidmaps.org/data/classification/lipid_cns.html" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">LIPID MAPS</a>. Following are classes that support by LIPID+:</p>
 
 <div class="overflow-x-auto mb-6">
@@ -2740,6 +3242,505 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 </tbody>
 </table>
 </div>
+
+                </section>
+
+                <!-- Page: Class Rules -->
+                <section id="page-faq-class-rules" class="page-content hidden">
+                    <h1 class="text-4xl font-bold mb-6 pb-2 border-b border-gray-200 text-gray-900 dark:text-white dark:border-gray-700">Class Rules</h1>
+                    
+<strong>Rules for assigning lipid classes based on characteristic MS/MS fragmentation patterns.</strong>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Class</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Diagnostic Transition</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">m/z / Δm</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Fragment Identity</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400"></th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PC</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 184.0733</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">184.0733</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Phosphocholine]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PC</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+HCOO]⁻ → NL 60</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">60.0211</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CH₃ + HCOOH</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPC</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 104.107</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">104.107</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Choline]⁺ (vs PC)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → NL 141</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">141.0194</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → 140.0188</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">140.0188</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Phosphoethanolamine]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PS</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → NL 185</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">185.0089</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PS</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → NL 87</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">87.032</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Serine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PG</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → NL 172</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">172.0135</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerol-3-phosphate</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PI</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → 241.0119</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">241.0119</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Inositol-cyclic-P]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PA</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+NH₄]⁺ → NL 115</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">115.0262</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NH₃ + H₃PO₄</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>CE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 369.3516</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">369.3516</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Cholesterol-H₂O]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>FA</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → NL 44</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">43.9898</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CO₂</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>NAE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 62.0600</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">62.06</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Ethanolamine]⁺</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<em>Note:</em> "NL" indicates a Neutral Loss.       
+<br />
+<br />
+<br />
+<strong>Constraints on the number of chemical elements permitted for different lipid classes.</strong>
+
+<div class="overflow-x-auto mb-6">
+<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+<thead class="bg-gray-50 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Lipid Class</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">C (Carbon)</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">H (Hydrogen)</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">O (Oxygen)</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">P (Phosphorus)</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">N (Nitrogen)</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400"></th>
+</tr>
+</thead>
+<tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PA, PA-O, PA-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8-80</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">15-155</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PC, PC-O, PC-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">13-85</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">26-168</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PE, PE-O, PE-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">10-82</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">22-162</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PS, PS-O, PS-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">13-85</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">24-164</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">10</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PG, PG-O, PG-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">11-83</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">21-161</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">10</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PI, PI-O, PI-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">14-86</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">25-165</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">13</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>CL</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">21-153</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">38-302</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">17</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>BMP</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">14-86</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">25-165</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">13</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PMeOH</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9-81</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">18-158</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPA</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">5-42</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">11-83</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">7</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPC, LPC-O, LPC-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8-45</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">18-90</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">7</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPE, LPE-O, LPE-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">5-42</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">14-84</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">7</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPS</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8-45</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">16-86</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPG</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">6-43</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">15-85</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPI</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9-46</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">19-89</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">12</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>MG, MG-O, MG-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">5-42</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">10-82</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>DG, DG-O, DG-P</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8-78</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">14-152</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">5</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>TG, TG-O</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">11-114</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">18-222</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">6</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>MGDG</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">14-84</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">24-164</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">10</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>DGDG</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">20-90</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">34-174</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">15</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>SQDG</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">14-84</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">24-164</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">12</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>DGTS/LDGTS</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">18-88</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">35-173</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">7</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>DGCC/LDGCC</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">18-88</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">34-172</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>DGGA</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">17-87</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">32-170</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>Cer, Cer-d</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">20-84</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">39-165</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>Cer-t</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">20-84</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">39-167</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>SM, SM-d</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">25-89</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">51-177</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">6</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>SM-t</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">25-89</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">51-179</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">7</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PE_Cer</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">22-86</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">44-170</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">6</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>HexCer/GalCer/GlcCer</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">26-90</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">49-177</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LacCer</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">32-96</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">59-189</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">13</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PI_Cer, PI_Cer-d</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">26-90</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">49-179</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">12</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PI_Cer-t</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">26-90</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">49-181</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">13</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>ST</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">27-29</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">44-48</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>CE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">29-65</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">46-110</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>SE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">29-65</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">46-110</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>FA</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2-36</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4-72</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>WE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4-72</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">8-144</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>CAR</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9-43</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">19-85</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>NAE</strong></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4-40</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">9-81</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">0</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
 
                 </section>
 
