@@ -354,75 +354,81 @@ python run.py feature_df.csv \
 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>input_path</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>(Required)</em></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to input CSV file</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--adduct_model</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;model/adduct.joblib&#x27;</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained adduct prediction model</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--class_model</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;model/class.joblib&#x27;</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained class prediction model</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--plsf_model</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;model/plsf.joblib&#x27;</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained PLSF model</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the input CSV file containing feature data</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--result_path</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;results&#x27;</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Directory to save all results</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>results</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Directory where all results and intermediate files will be saved</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--db_path</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;dataset/lipid_plus.db&#x27;</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to lipid database file</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>dataset/lipid_plus.db</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the SQLite lipid spectral database</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.005</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for database search and prediction (in ppm)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>10.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance (units defined by <code>--is_ppm</code>)</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.01</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for database search nd prediction (in ppm)</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--is_ppm</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>bool</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>True</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">If True, tolerances (--ms1_tol, --ms2_tol) are in ppm; if False, in Da</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--similarity_method</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>weighted_dot_product</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">choose from dot_product,weighted_dot_product,entropy_similarity,unweighted_entropy_similarity</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>20.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 fragment tolerance (units defined by <code>--is_ppm</code>)</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_threshold</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.7</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 similarity score for database match</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 similarity score (0.0–1.0) to accept a match</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--similarity_method</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>weighted_dot_product</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Scoring method: <code>dot_product</code>, <code>weighted_dot_product</code>, <code>entropy_similarity</code>, or <code>unweighted_entropy_similarity</code></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--is_ppm</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">bool</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>True</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Set to <code>True</code> for ppm tolerances, <code>False</code> for Dalton (Da)</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--n_jobs</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>int</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">int</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>4</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Number of parallel workers to use for the PLSF prediction</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Number of parallel workers used for PLSF prediction</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--norm_int</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>3.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Min intensity threshold for MS2 peaks</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--adduct_model</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>model/adduct.joblib</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the trained adduct prediction model file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--class_model</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>model/class.joblib</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the trained lipid class prediction model file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--plsf_model</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>model/plsf.joblib</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the trained PLSF chain composition model file</td>
 </tr>
 </tbody>
 </table>
@@ -474,49 +480,55 @@ python run.py feature_df.csv \
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>csv_path</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to input CSV file</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the input CSV file containing spectral data</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--result_path</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>.</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output directory</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the directory where results will be saved</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--db_path</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>lipid_plus.db</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to SQLite database</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the lipid database file</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS1_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.005</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance (Da or ppm)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>20</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for database search (units defined by <code>--is_ppm</code>)</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.01</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 fragment tolerance (Da)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>30</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for database search (Daltons)</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--method</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>weighted_dot_product</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Scoring method: <code>dot_product</code>, <code>weighted_dot_product</code>, <code>entropy_similarity</code>, <code>unweighted_entropy_similarity</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Scoring method for spectral matching: <code>dot_product</code>, <code>weighted_dot_product</code>, <code>entropy_similarity</code>, <code>unweighted_entropy_similarity</code></td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_threshold</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.7</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 score (0-1) to accept a match</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 score threshold for a match to be considered valid</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--is_ppm</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">bool</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>False</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Use ppm for MS1 tolerance (True) or Da (False)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>True</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Specify if MS1 tolerance is in ppm (<code>True</code>) or Da (<code>False</code>)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--norm_int</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>3</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Min intensity threshold for MS2 peaks; if > 3, also normalizes database MS2</td>
 </tr>
 </tbody>
 </table>
@@ -1073,75 +1085,81 @@ python run.py feature_df.csv \
 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>input_path</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>(Required)</em></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to input CSV file</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--adduct_model</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;model/adduct.joblib&#x27;</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained adduct prediction model</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--class_model</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;model/class.joblib&#x27;</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained class prediction model</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--plsf_model</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;model/plsf.joblib&#x27;</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to trained PLSF model</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the input CSV file containing feature data</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--result_path</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;results&#x27;</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Directory to save all results</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>results</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Directory where all results and intermediate files will be saved</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--db_path</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>&#x27;dataset/lipid_plus.db&#x27;</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to lipid database file</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>dataset/lipid_plus.db</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the SQLite lipid spectral database</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.005</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for database search and prediction (in ppm)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>10.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance (units defined by <code>--is_ppm</code>)</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.01</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for database search nd prediction (in ppm)</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--is_ppm</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>bool</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>True</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">If True, tolerances (--ms1_tol, --ms2_tol) are in ppm; if False, in Da</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--similarity_method</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>str</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>weighted_dot_product</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">choose from dot_product,weighted_dot_product,entropy_similarity,unweighted_entropy_similarity</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>20.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 fragment tolerance (units defined by <code>--is_ppm</code>)</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_threshold</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>float</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.7</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 similarity score for database match</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 similarity score (0.0–1.0) to accept a match</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--similarity_method</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>weighted_dot_product</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Scoring method: <code>dot_product</code>, <code>weighted_dot_product</code>, <code>entropy_similarity</code>, or <code>unweighted_entropy_similarity</code></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--is_ppm</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">bool</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>True</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Set to <code>True</code> for ppm tolerances, <code>False</code> for Dalton (Da)</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--n_jobs</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>int</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">int</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>4</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Number of parallel workers to use for the PLSF prediction</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Number of parallel workers used for PLSF prediction</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--norm_int</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>3.0</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Min intensity threshold for MS2 peaks</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--adduct_model</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>model/adduct.joblib</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the trained adduct prediction model file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--class_model</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>model/class.joblib</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the trained lipid class prediction model file</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--plsf_model</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>model/plsf.joblib</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the trained PLSF chain composition model file</td>
 </tr>
 </tbody>
 </table>
@@ -1194,49 +1212,55 @@ python run.py feature_df.csv \
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>csv_path</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><em>required</em></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to input CSV file</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the input CSV file containing spectral data</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--result_path</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>.</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Output directory</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the directory where results will be saved</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--db_path</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>lipid_plus.db</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to SQLite database</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Path to the lipid database file</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS1_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms1_tol</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.005</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance (Da or ppm)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>20</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS1 tolerance for database search (units defined by <code>--is_ppm</code>)</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_tol</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_tol</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.01</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 fragment tolerance (Da)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>30</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 tolerance for database search (Daltons)</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--method</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">str</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>weighted_dot_product</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Scoring method: <code>dot_product</code>, <code>weighted_dot_product</code>, <code>entropy_similarity</code>, <code>unweighted_entropy_similarity</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Scoring method for spectral matching: <code>dot_product</code>, <code>weighted_dot_product</code>, <code>entropy_similarity</code>, <code>unweighted_entropy_similarity</code></td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--MS2_threshold</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--ms2_threshold</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>0.7</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Minimum MS2 score (0-1) to accept a match</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MS2 score threshold for a match to be considered valid</td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--is_ppm</code></td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">bool</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>False</code></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Use ppm for MS1 tolerance (True) or Da (False)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>True</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Specify if MS1 tolerance is in ppm (<code>True</code>) or Da (<code>False</code>)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>--norm_int</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">float</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><code>3</code></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Min intensity threshold for MS2 peaks; if > 3, also normalizes database MS2</td>
 </tr>
 </tbody>
 </table>
@@ -1892,349 +1916,335 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
 <thead class="bg-gray-50 dark:bg-gray-800">
 <tr>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Class</th>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Category</th>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Number of Tail</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Class Abbreviation</th>
 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Full Name of Class</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Category Abbreviation</th>
 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Full Name of Category</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400"></th>
 </tr>
 </thead>
 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CAR</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Acyl carnitine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CAR</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Acyl Carnitines</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acid</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NAE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">N-acyl Ethanolamines</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">N-acyl ethanolamine</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">WE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Wax Esters</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Wax Ester</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DG</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglycerol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGDG</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Digalactosyldiacylglycerol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Monoacylglycerols</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Monoacylglycerol</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MGDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglycerols</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Monogalactosyldiacylglycerol</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SQDG</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sulfoquinovosyldiacylglycerol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">TG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Triacylglycerols</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Triacylglycerol</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">BMP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Bis(monoacylglycero)phosphate</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MGDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Monogalactosyldiacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cardiolipin</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Digalactosyldiacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidic acid</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylcholine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC-O</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-alkylphosphatidylcholine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylethanolamine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE-O</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-alkylphosphatidylethanolamine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPG</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylglycerol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPI</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylinositol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPS</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylserine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidic acid</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylcholine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-O</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkylphosphatidylcholine (PC-O)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-P</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Plasmenylcholine (PC-P)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylethanolamine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-O</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkylphosphatidylethanolamine (PE-O)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-P</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Plasmenylethanolamine (PE-P)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylglycerol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG-O</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkylphosphatidylglycerol (PG-O)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG-P</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Plasmenylglycerol (PG-P)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylinositol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PMeOH</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylmethanol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PS</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylserine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGCC</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglyceryl-N,N,N-trimethylhomoserine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGGA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglycerylglucuronide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SQDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sulfoquinovosyldiacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGTS</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglyceryl hydroxymethyl-N,N,N-trimethyl-beta-alanine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglyceryl hydroxymethyl-N,N,N-trimethyl-β-alanine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LDGCC</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-diacylglyceryl-N,N,N-trimethylhomoserine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGCC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglyceryl-N,N,N-trimethylhomoserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGGA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglycerylglucuronide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LDGTS</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-diacylglyceryl hydroxymethyl-N,N,N-trimethyl-beta-alanine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-diacylglyceryl hydroxymethyl-N,N,N-trimethyl-β-alanine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LDGCC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-diacylglyceryl-N,N,N-trimethylhomoserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylerine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylinositol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidic acid</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPI</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylinositol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidic acid</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkyl-phosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkyl-phosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkyl-phosphatidylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-alkyl-phosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-alkyl-phosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-P</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylcholine plasmalogen</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-P</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylethanolamine plasmalogen</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG-P</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylglycerol plasmalogen</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cardiolipin</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">BMP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Bis(monoacylglycero)phosphate</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PMeOH</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylmethanol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Ceramides</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Ceramide</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GalCer</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Galactosylceramide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GlcCer</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glucosylceramide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">HexCer</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Hexosylceramide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LacCer</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lactosylceramide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE_Cer</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoethanolamine ceramide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI_Cer</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoinositol ceramide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SM</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingomyelin</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">HexCer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Hexosylceramides (GlcCer/GalCer)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LacCer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lactosylceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE_Cer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoethanolamine ceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI_Cer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoinositol ceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Free Sterols (e.g., Cholesterol)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol Lipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cholesteryl Esters</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cholesterol Ester</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol Lipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol Lipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 </tbody>
 </table>
@@ -2252,102 +2262,180 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 <thead class="bg-gray-50 dark:bg-gray-800">
 <tr>
 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Class</th>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Diagnostic Transition</th>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">m/z / Δm</th>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Fragment Identity</th>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400"></th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Adduct</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">m/z / NL</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Comment</th>
 </tr>
 </thead>
 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PC</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 184.0733</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">184.0733</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Phosphocholine]⁺</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PC</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+HCOO]⁻ → NL 60</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+HCOO]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">60.0211</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CH₃ + HCOOH</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of methyl group + formic acid</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPC</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 104.107</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">104.107</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Choline]⁺ (vs PC)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+CH3COO]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">74.0368</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of methyl group + acetic acid</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PE</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → NL 141</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">184.0733</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Protonated phosphocholine headgroup</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">184.0733</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Protonated phosphocholine headgroup</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">104.1070</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[C5H14NO]⁺ fragment; differentiates from PC</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">141.0194</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoethanolamine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of phosphoethanolamine headgroup</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PE</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → 140.0188</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">141.0194</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of phosphoethanolamine headgroup</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">140.0188</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Phosphoethanolamine]⁻</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Deprotonated phosphoethanolamine headgroup</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PS</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → NL 185</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">196.0380</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[C5H11NO5P]⁻</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">185.0089</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoserine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of phosphoserine headgroup</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PS</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → NL 87</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">87.032</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Serine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">87.0320</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of serine moiety</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PG</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → NL 172</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">172.0135</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerol-3-phosphate</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of glycerol phosphate headgroup</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PI</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → 241.0119</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+NH4]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">189.0402</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of glycerol phosphate headgroup + NH3</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">241.0119</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Inositol-cyclic-P]⁻</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Inositol-1,2-cyclic monophosphate anion</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PA</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+NH₄]⁺ → NL 115</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+NH4]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">277.0563</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Inositol-1,2-cyclic monophosphate cation + NH3</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+NH4]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">115.0262</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NH₃ + H₃PO₄</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of NH3 + H3PO4</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>CE</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 369.3516</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">18.0106</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Neutral loss of water (H2O)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">92.0470</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Neutral loss of glycerol headgroup</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+Na]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">368.3441</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of neutral cholestane molecule</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">369.3516</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Cholesterol-H₂O]⁺</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Dehydrated cholesterol fragment</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>FA</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → NL 44</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">43.9898</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CO₂</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of carbon dioxide (CO2)</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>NAE</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 62.0600</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">62.06</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Ethanolamine]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NAE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">62.0600</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Protonated ethanolamine fragment</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">184.0733</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Protonated phosphocholine (indistinguishable from PC)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">141.0194</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of phosphoethanolamine (indistinguishable from PE)</td>
 </tr>
 </tbody>
 </table>
@@ -2748,6 +2836,10 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 <code>pred_confidence = (plsf × adduct × class) ^ (1/3)</code>
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Each confidence value has a minimum floor of 0.01 applied before calculation. This prevents an extremely low value from making the final score near zero.</p>
 
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">If the <a href="https://www.nature.com/articles/s41580-024-00758-4" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">lipid length is outside the common reasonable range</a>, an additional 0.2 points will be deducted for single-chain lipids, and 0.1 points will be deducted for multi-chain lipids.</p>
+
+
+
                     </section>
                     
                     <section id="page-faq-data-source-content" class="mt-10">
@@ -2895,349 +2987,335 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
 <thead class="bg-gray-50 dark:bg-gray-800">
 <tr>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Class</th>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Category</th>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Number of Tail</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Class Abbreviation</th>
 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Full Name of Class</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Category Abbreviation</th>
 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Full Name of Category</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400"></th>
 </tr>
 </thead>
 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CAR</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Acyl carnitine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CAR</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Acyl Carnitines</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acid</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NAE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">N-acyl Ethanolamines</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">N-acyl ethanolamine</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">WE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Wax Esters</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Wax Ester</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Fatty Acyls</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DG</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglycerol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGDG</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Digalactosyldiacylglycerol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Monoacylglycerols</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Monoacylglycerol</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MGDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglycerols</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Monogalactosyldiacylglycerol</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SQDG</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sulfoquinovosyldiacylglycerol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">TG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Triacylglycerols</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Triacylglycerol</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">BMP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Bis(monoacylglycero)phosphate</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MGDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Monogalactosyldiacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">4</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cardiolipin</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Digalactosyldiacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidic acid</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylcholine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC-O</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-alkylphosphatidylcholine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylethanolamine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE-O</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-alkylphosphatidylethanolamine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPG</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylglycerol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPI</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylinositol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPS</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylserine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidic acid</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylcholine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-O</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkylphosphatidylcholine (PC-O)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-P</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Plasmenylcholine (PC-P)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylethanolamine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-O</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkylphosphatidylethanolamine (PE-O)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-P</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Plasmenylethanolamine (PE-P)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylglycerol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG-O</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkylphosphatidylglycerol (PG-O)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG-P</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Plasmenylglycerol (PG-P)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylinositol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PMeOH</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylmethanol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PS</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylserine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGCC</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglyceryl-N,N,N-trimethylhomoserine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGGA</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglycerylglucuronide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SQDG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sulfoquinovosyldiacylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGTS</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglyceryl hydroxymethyl-N,N,N-trimethyl-beta-alanine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglyceryl hydroxymethyl-N,N,N-trimethyl-β-alanine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LDGCC</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-diacylglyceryl-N,N,N-trimethylhomoserine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGCC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglyceryl-N,N,N-trimethylhomoserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">DGGA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Diacylglycerylglucuronide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LDGTS</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SL</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-diacylglyceryl hydroxymethyl-N,N,N-trimethyl-beta-alanine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Saccharolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-diacylglyceryl hydroxymethyl-N,N,N-trimethyl-β-alanine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LDGCC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-diacylglyceryl-N,N,N-trimethylhomoserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylerine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylinositol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidic acid</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylserine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPI</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidylinositol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lysophosphatidic acid</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkyl-phosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkyl-phosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Alkyl-phosphatidylglycerol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-alkyl-phosphatidylcholine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lyso-alkyl-phosphatidylethanolamine</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-P</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylcholine plasmalogen</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-P</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylethanolamine plasmalogen</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG-P</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylglycerol plasmalogen</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CL</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cardiolipin</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">BMP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Bis(monoacylglycero)phosphate</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PMeOH</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphatidylmethanol</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerophospholipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Ceramides</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Ceramide</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GalCer</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Galactosylceramide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">GlcCer</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glucosylceramide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">HexCer</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Hexosylceramide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LacCer</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lactosylceramide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE_Cer</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoethanolamine ceramide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI_Cer</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">3</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoinositol ceramide</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SM</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">2</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingomyelin</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">HexCer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Hexosylceramides (GlcCer/GalCer)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LacCer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Lactosylceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE_Cer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoethanolamine ceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI_Cer</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoinositol ceramide</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">SP</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sphingolipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Free Sterols (e.g., Cholesterol)</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol Lipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 <tr>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cholesteryl Esters</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Cholesterol Ester</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol Lipids</td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">ST</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">1</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Sterol Lipids</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
 </tr>
 </tbody>
 </table>
@@ -3256,102 +3334,180 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 <thead class="bg-gray-50 dark:bg-gray-800">
 <tr>
 <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Class</th>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Diagnostic Transition</th>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">m/z / Δm</th>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Fragment Identity</th>
-<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400"></th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Adduct</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">m/z / NL</th>
+<th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Comment</th>
 </tr>
 </thead>
 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:divide-gray-700">
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PC</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 184.0733</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">184.0733</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Phosphocholine]⁺</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
-</tr>
-<tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PC</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+HCOO]⁻ → NL 60</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+HCOO]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">60.0211</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CH₃ + HCOOH</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of methyl group + formic acid</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>LPC</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 104.107</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">104.107</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Choline]⁺ (vs PC)</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+CH3COO]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">74.0368</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of methyl group + acetic acid</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PE</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → NL 141</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">184.0733</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Protonated phosphocholine headgroup</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">184.0733</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Protonated phosphocholine headgroup</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPC</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">104.1070</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[C5H14NO]⁺ fragment; differentiates from PC</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">141.0194</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoethanolamine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of phosphoethanolamine headgroup</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PE</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → 140.0188</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">LPE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">141.0194</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of phosphoethanolamine headgroup</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">140.0188</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Phosphoethanolamine]⁻</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Deprotonated phosphoethanolamine headgroup</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PS</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → NL 185</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">196.0380</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[C5H11NO5P]⁻</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">185.0089</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Phosphoserine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of phosphoserine headgroup</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PS</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → NL 87</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">87.032</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Serine</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">87.0320</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of serine moiety</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PG</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → NL 172</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">172.0135</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Glycerol-3-phosphate</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of glycerol phosphate headgroup</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PI</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → 241.0119</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+NH4]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">189.0402</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of glycerol phosphate headgroup + NH3</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">241.0119</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Inositol-cyclic-P]⁻</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Inositol-1,2-cyclic monophosphate anion</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>PA</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+NH₄]⁺ → NL 115</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PI</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+NH4]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">277.0563</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Inositol-1,2-cyclic monophosphate cation + NH3</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+NH4]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">115.0262</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NH₃ + H₃PO₄</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of NH3 + H3PO4</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>CE</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 369.3516</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">18.0106</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Neutral loss of water (H2O)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">MG</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">92.0470</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Neutral loss of glycerol headgroup</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+Na]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">368.3441</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of neutral cholestane molecule</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">369.3516</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Cholesterol-H₂O]⁺</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Dehydrated cholesterol fragment</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>FA</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻ → NL 44</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">FA</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M-H]⁻</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
 <td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">43.9898</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">CO₂</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"></td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of carbon dioxide (CO2)</td>
 </tr>
 <tr>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300"><strong>NAE</strong></td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺ → 62.0600</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">62.06</td>
-<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[Ethanolamine]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NAE</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">62.0600</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Protonated ethanolamine fragment</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PC-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PIS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">184.0733</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Protonated phosphocholine (indistinguishable from PC)</td>
+</tr>
+<tr>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">PE-O</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">[M+H]⁺</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">NLS</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">141.0194</td>
+<td class="px-4 py-3 text-sm text-gray-700 dark:text-gray-300">Loss of phosphoethanolamine (indistinguishable from PE)</td>
 </tr>
 </tbody>
 </table>
@@ -3752,6 +3908,10 @@ F000002,788.6164,positive,[M+H]+,&quot;[[184.07, 8000], [506.36, 1500]]&quot;,1,
 
 <code>pred_confidence = (plsf × adduct × class) ^ (1/3)</code>
 <p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">Each confidence value has a minimum floor of 0.01 applied before calculation. This prevents an extremely low value from making the final score near zero.</p>
+
+<p class="text-lg text-gray-700 leading-relaxed mb-4 dark:text-gray-300">If the <a href="https://www.nature.com/articles/s41580-024-00758-4" class="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300">lipid length is outside the common reasonable range</a>, an additional 0.2 points will be deducted for single-chain lipids, and 0.1 points will be deducted for multi-chain lipids.</p>
+
+
 
                 </section>
 

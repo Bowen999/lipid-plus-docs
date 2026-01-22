@@ -628,6 +628,10 @@ For rule-based class classification, the probability is 0.8 if it's the unique i
 `pred_confidence = (plsf × adduct × class) ^ (1/3)`
 Each confidence value has a minimum floor of 0.01 applied before calculation. This prevents an extremely low value from making the final score near zero.
 
+If the [lipid length is outside the common reasonable range](https://www.nature.com/articles/s41580-024-00758-4), an additional 0.2 points will be deducted for single-chain lipids, and 0.1 points will be deducted for multi-chain lipids.
+
+
+
 ## Data Source
 The **LIPID+** dataset is aggregated from the following MS libraries and resources:  
 
@@ -644,5 +648,6 @@ For metabolite MS databases (GNPS, MassBank, MoNA, MassSpecGym), spectra were fi
 
 # Release Note
 #### Last Updated: Dec 29, 2025, Version: 1.0.1
+* **Jan 22, 2026**: Fixed some class annotation bus.
 * **Dec 29, 2025**: Add example report.
 * **Dec 28, 2025**: Fixed some garbled text issues in visualizations. Update the confidence calculation method.
