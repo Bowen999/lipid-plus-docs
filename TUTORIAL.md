@@ -98,18 +98,19 @@ python run.py feature_df.csv \
 
 | Parameter | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `input_path` | `str` | *(Required)* | Path to input CSV file |
-| `--adduct_model` | `str` | `'model/adduct.joblib'` | Path to trained adduct prediction model |
-| `--class_model` | `str` | `'model/class.joblib'` | Path to trained class prediction model |
-| `--plsf_model` | `str` | `'model/plsf.joblib'` | Path to trained PLSF model |
-| `--result_path` | `str` | `'results'` | Directory to save all results |
-| `--db_path` | `str` | `'dataset/lipid_plus.db'` | Path to lipid database file |
-| `--ms1_tol` | `float` | `0.005` | MS1 tolerance for database search and prediction (in ppm)|
-| `--ms2_tol` | `float` | `0.01` | MS2 tolerance for database search nd prediction (in ppm)|
-| `--is_ppm`|  `bool`| `True`| If True, tolerances (--ms1_tol, --ms2_tol) are in ppm; if False, in Da|
-|`--similarity_method`| `str` |`weighted_dot_product`| choose from dot_product,weighted_dot_product,entropy_similarity,unweighted_entropy_similarity|
-| `--ms2_threshold` | `float` | `0.7` | Minimum MS2 similarity score for database match |
-|`--n_jobs`|`int`|`4`|Number of parallel workers to use for the PLSF prediction|
+| `input_path` | str | *required* | Path to the input CSV file containing feature data |
+| `--result_path` | str | `results` | Directory where all results and intermediate files will be saved |
+| `--db_path` | str | `dataset/lipid_plus.db` | Path to the SQLite lipid spectral database |
+| `--ms1_tol` | float | `10.0` | MS1 tolerance (units defined by `--is_ppm`) |
+| `--ms2_tol` | float | `20.0` | MS2 fragment tolerance (units defined by `--is_ppm`) |
+| `--ms2_threshold` | float | `0.7` | Minimum MS2 similarity score (0.0–1.0) to accept a match |
+| `--similarity_method` | str | `weighted_dot_product` | Scoring method: `dot_product`, `weighted_dot_product`, `entropy_similarity`, or `unweighted_entropy_similarity` |
+| `--is_ppm` | bool | `True` | Set to `True` for ppm tolerances, `False` for Dalton (Da) |
+| `--n_jobs` | int | `4` | Number of parallel workers used for PLSF prediction |
+| `--norm_int` | float | `3.0` | Min intensity threshold for MS2 peaks|
+| `--adduct_model` | str | `model/adduct.joblib` | Path to the trained adduct prediction model file |
+| `--class_model` | str | `model/class.joblib` | Path to the trained lipid class prediction model file |
+| `--plsf_model` | str | `model/plsf.joblib` | Path to the trained PLSF chain composition model file |
 
 Your input_path CSV must contain:
 - `precursor_mz`: Precursor mass-to-charge ratio
@@ -138,15 +139,16 @@ python code/db_search.py feature_df.csv \
 #### Parameters
 
 | Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `csv_path` | str | *required* | Path to input CSV file |
-| `--result_path` | str | `.` | Output directory |
-| `--db_path` | str | `lipid_plus.db` | Path to SQLite database |
-| `--MS1_tol` | float | `0.005` | MS1 tolerance (Da or ppm) |
-| `--MS2_tol` | float | `0.01` | MS2 fragment tolerance (Da) |
-| `--method` | str | `weighted_dot_product` | Scoring method: `dot_product`, `weighted_dot_product`, `entropy_similarity`, `unweighted_entropy_similarity` |
-| `--MS2_threshold` | float | `0.7` | Minimum MS2 score (0-1) to accept a match |
-| `--is_ppm` | bool | `False` | Use ppm for MS1 tolerance (True) or Da (False) |
+|:---|:---|:---|:---|
+| `csv_path` | str | *required* | Path to the input CSV file containing spectral data |
+| `--result_path` | str | `.` | Path to the directory where results will be saved |
+| `--db_path` | str | `lipid_plus.db` | Path to the lipid database file |
+| `--ms1_tol` | float | `20` | MS1 tolerance for database search (units defined by `--is_ppm`) |
+| `--ms2_tol` | float | `30` | MS2 tolerance for database search (Daltons) |
+| `--method` | str | `weighted_dot_product` | Scoring method for spectral matching: `dot_product`, `weighted_dot_product`, `entropy_similarity`, `unweighted_entropy_similarity` |
+| `--ms2_threshold` | float | `0.7` | MS2 score threshold for a match to be considered valid |
+| `--is_ppm` | bool | `True` | Specify if MS1 tolerance is in ppm (`True`) or Da (`False`) |
+| `--norm_int` | float | `3` | Min intensity threshold for MS2 peaks; if > 3, also normalizes database MS2 |
 
 #### Input Requirements
 
@@ -488,76 +490,85 @@ This representation avoids the ambiguity and false positives associated with pre
 ## Classes
 Lipid class information can be found in [LIPID MAPS](https://www.lipidmaps.org/data/classification/lipid_cns.html). Following are classes that support by LIPID+:
 
-| Class  | Category | Number of Tail | Full Name of Class                       | Full Name of Category    |
-| :----- | :------- | :-------- | :--------------------------------------- | :----------------------- |
-| CAR    | FA       | 1         | Acyl carnitine                           | Fatty Acyls              |
-| FA     | FA       | 1         | Fatty Acid                               | Fatty Acyls              |
-| NAE    | FA       | 1         | N-acyl ethanolamine                      | Fatty Acyls              |
-| WE     | FA       | 1         | Wax Ester                                | Fatty Acyls              |
-| DG     | GL       | 2         | Diacylglycerol                           | Glycerolipids            |
-| DGDG   | GL       | 2         | Digalactosyldiacylglycerol               | Glycerolipids            |
-| MG     | GL       | 3         | Monoacylglycerol                         | Glycerolipids            |
-| MGDG   | GL       | 2         | Monogalactosyldiacylglycerol             | Glycerolipids            |
-| SQDG   | GL       | 2         | Sulfoquinovosyldiacylglycerol            | Glycerolipids            |
-| TG     | GL       | 3         | Triacylglycerol                          | Glycerolipids            |
-| BMP    | GP       | 2         | Bis(monoacylglycero)phosphate            | Glycerophospholipids     |
-| CL     | GP       | 4         | Cardiolipin                              | Glycerophospholipids     |
-| LPA    | GP       | 1         | Lysophosphatidic acid                    | Glycerophospholipids     |
-| LPC    | GP       | 1         | Lysophosphatidylcholine                  | Glycerophospholipids     |
-| LPC-O  | GP       | 1         | Lyso-alkylphosphatidylcholine            | Glycerophospholipids     |
-| LPE    | GP       | 1         | Lysophosphatidylethanolamine             | Glycerophospholipids     |
-| LPE-O  | GP       | 1         | Lyso-alkylphosphatidylethanolamine       | Glycerophospholipids     |
-| LPG    | GP       | 1         | Lysophosphatidylglycerol                 | Glycerophospholipids     |
-| LPI    | GP       | 1         | Lysophosphatidylinositol                 | Glycerophospholipids     |
-| LPS    | GP       | 1         | Lysophosphatidylserine                   | Glycerophospholipids     |
-| PA     | GP       | 2         | Phosphatidic acid                        | Glycerophospholipids     |
-| PC     | GP       | 2         | Phosphatidylcholine                      | Glycerophospholipids     |
-| PC-O   | GP       | 2         | Alkylphosphatidylcholine (PC-O)          | Glycerophospholipids     |
-| PC-P   | GP       | 2         | Plasmenylcholine (PC-P)                  | Glycerophospholipids     |
-| PE     | GP       | 2         | Phosphatidylethanolamine                 | Glycerophospholipids     |
-| PE-O   | GP       | 2         | Alkylphosphatidylethanolamine (PE-O)     | Glycerophospholipids     |
-| PE-P   | GP       | 2         | Plasmenylethanolamine (PE-P)             | Glycerophospholipids     |
-| PG     | GP       | 2         | Phosphatidylglycerol                     | Glycerophospholipids     |
-| PG-O   | GP       | 2         | Alkylphosphatidylglycerol (PG-O)         | Glycerophospholipids     |
-| PG-P   | GP       | 2         | Plasmenylglycerol (PG-P)                 | Glycerophospholipids     |
-| PI     | GP       | 2         | Phosphatidylinositol                     | Glycerophospholipids     |
-| PMeOH  | GP       | 2         | Phosphatidylmethanol                     | Glycerophospholipids     |
-| PS     | GP       | 2         | Phosphatidylserine                       | Glycerophospholipids     |
-| DGCC   | SL       | 2         | Diacylglyceryl-N,N,N-trimethylhomoserine | Saccharolipids           |
-| DGGA   | SL       | 2         | Diacylglycerylglucuronide                | Saccharolipids           |
-| DGTS   | SL       | 2         | Diacylglyceryl hydroxymethyl-N,N,N-trimethyl-beta-alanine | Saccharolipids           |
-| LDGCC  | SL       | 1         | Lyso-diacylglyceryl-N,N,N-trimethylhomoserine | Saccharolipids           |
-| LDGTS  | SL       | 1         | Lyso-diacylglyceryl hydroxymethyl-N,N,N-trimethyl-beta-alanine | Saccharolipids           |
-| Cer    | SP       | 2         | Ceramide                                 | Sphingolipids            |
-| GalCer | SP       | 2         | Galactosylceramide                       | Sphingolipids            |
-| GlcCer | SP       | 2         | Glucosylceramide                         | Sphingolipids            |
-| HexCer | SP       | 2         | Hexosylceramide                          | Sphingolipids            |
-| LacCer | SP       | 2         | Lactosylceramide                         | Sphingolipids            |
-| PE_Cer | SP       | 3         | Phosphoethanolamine ceramide             | Sphingolipids            |
-| PI_Cer | SP       | 3         | Phosphoinositol ceramide                 | Sphingolipids            |
-| SM     | SP       | 2         | Sphingomyelin                            | Sphingolipids            |
-| CE     | ST       | 1         | Cholesterol Ester                        | Sterol Lipids            |
-| ST     | ST       | 1         | Sterol                                   | Sterol Lipids            |
+| Class Abbreviation | Full Name of Class | Category Abbreviation | Full Name of Category | 
+| ----- | ----- | ----- | ----- | 
+| FA | Fatty Acids | FA | Fatty Acyls | 
+| CAR | Acyl Carnitines | FA | Fatty Acyls | 
+| NAE | N-acyl Ethanolamines | FA | Fatty Acyls | 
+| WE | Wax Esters | FA | Fatty Acyls | 
+| MG | Monoacylglycerols | GL | Glycerolipids | 
+| DG | Diacylglycerols | GL | Glycerolipids | 
+| TG | Triacylglycerols | GL | Glycerolipids | 
+| MGDG | Monogalactosyldiacylglycerol | GL | Glycerolipids | 
+| DGDG | Digalactosyldiacylglycerol | GL | Glycerolipids | 
+| SQDG | Sulfoquinovosyldiacylglycerol | GL | Glycerolipids | 
+| DGTS | Diacylglyceryl hydroxymethyl-N,N,N-trimethyl-β-alanine | GL | Glycerolipids | 
+| DGCC | Diacylglyceryl-N,N,N-trimethylhomoserine | GL | Glycerolipids | 
+| DGGA | Diacylglycerylglucuronide | GL | Glycerolipids | 
+| LDGTS | Lyso-diacylglyceryl hydroxymethyl-N,N,N-trimethyl-β-alanine | GL | Glycerolipids | 
+| LDGCC | Lyso-diacylglyceryl-N,N,N-trimethylhomoserine | GL | Glycerolipids | 
+| PC | Phosphatidylcholine | GP | Glycerophospholipids | 
+| PE | Phosphatidylethanolamine | GP | Glycerophospholipids | 
+| PS | Phosphatidylerine | GP | Glycerophospholipids | 
+| PG | Phosphatidylglycerol | GP | Glycerophospholipids | 
+| PI | Phosphatidylinositol | GP | Glycerophospholipids | 
+| PA | Phosphatidic acid | GP | Glycerophospholipids | 
+| LPC | Lysophosphatidylcholine | GP | Glycerophospholipids | 
+| LPE | Lysophosphatidylethanolamine | GP | Glycerophospholipids | 
+| LPS | Lysophosphatidylserine | GP | Glycerophospholipids | 
+| LPG | Lysophosphatidylglycerol | GP | Glycerophospholipids | 
+| LPI | Lysophosphatidylinositol | GP | Glycerophospholipids | 
+| LPA | Lysophosphatidic acid | GP | Glycerophospholipids | 
+| PC-O | Alkyl-phosphatidylcholine | GP | Glycerophospholipids | 
+| PE-O | Alkyl-phosphatidylethanolamine | GP | Glycerophospholipids | 
+| PG-O | Alkyl-phosphatidylglycerol | GP | Glycerophospholipids | 
+| LPC-O | Lyso-alkyl-phosphatidylcholine | GP | Glycerophospholipids | 
+| LPE-O | Lyso-alkyl-phosphatidylethanolamine | GP | Glycerophospholipids | 
+| PC-P | Phosphatidylcholine plasmalogen | GP | Glycerophospholipids | 
+| PE-P | Phosphatidylethanolamine plasmalogen | GP | Glycerophospholipids | 
+| PG-P | Phosphatidylglycerol plasmalogen | GP | Glycerophospholipids | 
+| CL | Cardiolipin | GP | Glycerophospholipids | 
+| BMP | Bis(monoacylglycero)phosphate | GP | Glycerophospholipids | 
+| PMeOH | Phosphatidylmethanol | GP | Glycerophospholipids | 
+| Cer | Ceramides | SP | Sphingolipids | 
+| SM | Sphingomyelin | SP | Sphingolipids | 
+| HexCer | Hexosylceramides (GlcCer/GalCer) | SP | Sphingolipids | 
+| LacCer | Lactosylceramide | SP | Sphingolipids | 
+| PE_Cer | Phosphoethanolamine ceramide | SP | Sphingolipids | 
+| PI_Cer | Phosphoinositol ceramide | SP | Sphingolipids | 
+| ST | Free Sterols (e.g., Cholesterol) | ST | Sterol Lipids | 
+| CE | Cholesteryl Esters | ST | Sterol Lipids | 
 
 ## Class Rules
 
 **Rules for assigning lipid classes based on characteristic MS/MS fragmentation patterns.**
 
-| Class | Diagnostic Transition | m/z / Δm | Fragment Identity | 
-| :--- | :--- | :--- | :--- | 
-| **PC** | [M+H]⁺ → 184.0733 | 184.0733 | [Phosphocholine]⁺ | 
-| **PC** | [M+HCOO]⁻ → NL 60 | 60.0211 | CH₃ + HCOOH | 
-| **LPC** | [M+H]⁺ → 104.107 | 104.107 | [Choline]⁺ (vs PC) | 
-| **PE** | [M+H]⁺ → NL 141 | 141.0194 | Phosphoethanolamine | 
-| **PE** | [M-H]⁻ → 140.0188 | 140.0188 | [Phosphoethanolamine]⁻ | 
-| **PS** | [M+H]⁺ → NL 185 | 185.0089 | Phosphoserine | 
-| **PS** | [M-H]⁻ → NL 87 | 87.032 | Serine | 
-| **PG** | [M+H]⁺ → NL 172 | 172.0135 | Glycerol-3-phosphate | 
-| **PI** | [M-H]⁻ → 241.0119 | 241.0119 | [Inositol-cyclic-P]⁻ | 
-| **PA** | [M+NH₄]⁺ → NL 115 | 115.0262 | NH₃ + H₃PO₄ | 
-| **CE** | [M+H]⁺ → 369.3516 | 369.3516 | [Cholesterol-H₂O]⁺ | 
-| **FA** | [M-H]⁻ → NL 44 | 43.9898 | CO₂ | 
-| **NAE** | [M+H]⁺ → 62.0600 | 62.06 | [Ethanolamine]⁺ |
+| Class | Adduct | Type | m/z / NL | Comment |
+| :--- | :--- | :--- | :--- | :--- |
+| PC | [M+HCOO]⁻ | NLS | 60.0211 | Loss of methyl group + formic acid |
+| PC | [M+CH3COO]⁻ | NLS | 74.0368 | Loss of methyl group + acetic acid |
+| PC | [M+H]⁺ | PIS | 184.0733 | Protonated phosphocholine headgroup |
+| LPC | [M+H]⁺ | PIS | 184.0733 | Protonated phosphocholine headgroup |
+| LPC | [M+H]⁺ | PIS | 104.1070 | [C5H14NO]⁺ fragment; differentiates from PC |
+| PE | [M+H]⁺ | NLS | 141.0194 | Loss of phosphoethanolamine headgroup |
+| LPE | [M+H]⁺ | NLS | 141.0194 | Loss of phosphoethanolamine headgroup |
+| PE | [M-H]⁻ | PIS | 140.0188 | Deprotonated phosphoethanolamine headgroup |
+| PE | [M-H]⁻ | PIS | 196.0380 | [C5H11NO5P]⁻ |
+| PS | [M+H]⁺ | NLS | 185.0089 | Loss of phosphoserine headgroup |
+| PS | [M-H]⁻ | NLS | 87.0320 | Loss of serine moiety |
+| PG | [M+H]⁺ | NLS | 172.0135 | Loss of glycerol phosphate headgroup |
+| PG | [M+NH4]⁺ | NLS | 189.0402 | Loss of glycerol phosphate headgroup + NH3 |
+| PI | [M-H]⁻ | PIS | 241.0119 | Inositol-1,2-cyclic monophosphate anion |
+| PI | [M+NH4]⁺ | NLS | 277.0563 | Inositol-1,2-cyclic monophosphate cation + NH3 |
+| PA | [M+NH4]⁺ | NLS | 115.0262 | Loss of NH3 + H3PO4 |
+| MG | [M+H]⁺ | NLS | 18.0106 | Neutral loss of water (H2O) |
+| MG | [M+H]⁺ | NLS | 92.0470 | Neutral loss of glycerol headgroup |
+| CE | [M+Na]⁺ | NLS | 368.3441 | Loss of neutral cholestane molecule |
+| CE | [M+H]⁺ | PIS | 369.3516 | Dehydrated cholesterol fragment |
+| FA | [M-H]⁻ | NLS | 43.9898 | Loss of carbon dioxide (CO2) |
+| NAE | [M+H]⁺ | PIS | 62.0600 | Protonated ethanolamine fragment |
+| PC-O | [M+H]⁺ | PIS | 184.0733 | Protonated phosphocholine (indistinguishable from PC) |
+| PE-O | [M+H]⁺ | NLS | 141.0194 | Loss of phosphoethanolamine (indistinguishable from PE) |
 
 *Note:* "NL" indicates a Neutral Loss.       
 <br />
