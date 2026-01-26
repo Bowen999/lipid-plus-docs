@@ -478,13 +478,21 @@ F000002,788.6164,positive,[M+H]+,"[[184.07, 8000], [506.36, 1500]]",1,0,...
 The **Primary Lipid Structural Features (PLSF)** are the fundamental parts of a lipid structure that can be **reliably identified** using conventional tandem mass spectrometry.
 
 PLSFs specifically include:
-* **Lipid Class**: for example, `PC`
-* **Composition of Each Chain**: for example, `18:2_16:1`
+* **Head Group bond type**: for example, `PC`
+* **Acyl/ether Composition**: for example, `18:2_16:1`
 
 
 For example, the complete lipid name `PC 10:0/18:2(9Z, 12Z)` is simplified to its PLSF: `PC 10:0_18:2`.  
 
 This representation avoids the ambiguity and false positives associated with predicting complete structures, which is often unsuitable for lipids, its fixed and simple format makes it also more suitable for machine learning.
+
+For fine-grained characterization of lipid structures, it is usually necessary to introduce additional experimental steps beyond standard LC-MS/MS workflows; see in particular: [Structural Lipidomics Enabled by Isomer-Resolved Tandem Mass Spectrometr](https://pubs.acs.org/doi/10.1021/acs.analchem.4c06680).
+
+
+
+
+
+
 
 
 ## Classes
