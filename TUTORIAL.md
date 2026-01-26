@@ -656,6 +656,6 @@ For metabolite MS databases (GNPS, MassBank, MoNA, MassSpecGym), spectra were fi
 
 # Release Note
 #### Last Updated: Dec 29, 2025, Version: 1.0.1
-* **Jan 22, 2026**: Fixed some class annotation bus.
+* **Jan 22, 2026**: Fixed some class annotation bugs.
 * **Dec 29, 2025**: Add example report.
 * **Dec 28, 2025**: Fixed some garbled text issues in visualizations. Update the confidence calculation method.
